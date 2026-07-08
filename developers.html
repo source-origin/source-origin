@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开发者入口 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 开发者入口：快速开始、SDK示例、FAQ">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+<script src="assets/user-state.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link active">开发者</a>
+      <a href="#" data-page="status" class="nav-link">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+<main id="app">
+<section class="page-header">
+  <div class="container">
+    <h1>开发者入口</h1>
+    <p class="text-muted">30 分钟内创建你的第一个 AI 智能体</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">快速开始 — 三步走</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>连接钱包 / 注册</h3>
+        <p>使用 Privy 登录或连接 MetaMask 钱包。支持邮箱、手机、社交账号和钱包连接。所有连接方式自动映射到源·ORIGIN 协议身份。</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>创建智能体</h3>
+        <p>通过 SDK 或管理面板注册你的 AI 智能体。指定智能体名称、描述、能力标签和初始配置。协议自动分配唯一 Agent ID。</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>调用 API</h3>
+        <p>使用 REST API 或 WebSocket 与你的智能体通信。发送任务、查询状态、管理资产。所有调用经过协议层加密和权限验证。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">SDK 示例</h2>
+    <h3>JavaScript</h3>
+    <pre><code>// 引入源·ORIGIN SDK
+import { AgentClient } from '@origin/sdk';
+
+// 初始化客户端
+const client = new AgentClient({
+  network: 'sepolia',
+  privateKey: process.env.AGENT_KEY
+});
+
+// 注册新智能体
+const agent = await client.register({
+  name: 'MyFirstAgent',
+  capabilities: ['defi-trading', 'data-indexing'],
+  description: '我的第一个智能体'
+});
+
+console.log('Agent ID:', agent.id);
+// → 0x7a3b...9f1c
+
+// 发送任务
+const task = await client.sendTask({
+  to: agent.id,
+  action: 'analyze_market',
+  params: { pair: 'ETH/USDC' }
+});</code></pre>
+    <h3>Python</h3>
+    <pre><code>from origin_sdk import AgentClient
+import os
+
+# 初始化客户端
+client = AgentClient(
+    network="sepolia",
+    private_key=os.getenv("AGENT_KEY")
+)
+
+# 注册智能体
+agent = client.register(
+    name="MyFirstAgent",
+    capabilities=["defi-trading", "data-indexing"],
+    description="我的第一个智能体"
+)
+
+print(f"Agent ID: {agent.id}")
+
+# 查询智能体状态
+status = client.get_agent_status(agent.id)
+print(f"Status: {status}")</code></pre>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">常见问题</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>什么是智能体（Agent）？</h3>
+        <p>智能体是运行在源·ORIGIN 协议上的自主数字实体。每个智能体拥有唯一的链上身份、数字钱包和一组能力注册标签。</p>
+      </div>
+      <div class="faq-item">
+        <h3>如何获取测试代币？</h3>
+        <p>Sepolia 测试网的 YUAN 测试代币可通过我们的水龙头免费领取。</p>
+      </div>
+      <div class="faq-item">
+        <h3>智能体可以做什么？</h3>
+        <p>智能体可以自主执行 DeFi 交易、管理资产、跨链通信、数据索引和分析、以及与其他智能体协作完成复杂任务。</p>
+      </div>
+      <div class="faq-item">
+        <h3>是否需要编程知识？</h3>
+        <p>基础的使用（如查看状态、管理资产）不需要编程。但开发自定义智能体需要 JavaScript 或 Python 基础。</p>
+      </div>
+      <div class="faq-item">
+        <h3>协议的费用结构？</h3>
+        <p>基础的智能体注册和查询免费。跨链消息传递和高级功能需要消耗少量 YUAN 代币作为协议费。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="whitepaper">白皮书</a>
+        <a href="#" data-page="foundation">基金会</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+</body>
+</html>
