@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>源·ORIGIN — AI智能体协议</title>
+<meta name="description" content="源·ORIGIN：BTC是数字黄金的协议，ETH是智能合约的协议，YUAN是AI智能体的协议。从思想到行动，从连接到共生。">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+<script src="assets/user-state.js" defer></script>
+<script src="assets/outreach-panel.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link active">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link">开发者</a>
+      <a href="#" data-page="status" class="nav-link">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+
+<main id="app">
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">源·<span class="gold">ORIGIN</span></h1>
+    <p class="hero-subtitle">从思想到行动，从连接到共生</p>
+    <p class="hero-tagline">BTC 是数字黄金的协议 · ETH 是智能合约的协议 · <span class="cyan">YUAN 是 AI 智能体的协议</span></p>
+    <div class="hero-actions">
+      <a href="#" data-page="whitepaper" class="btn btn-gold">阅读白皮书</a>
+      <a href="#" data-page="developers" class="btn btn-ghost">开始开发</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">核心入口</h2>
+    <div class="card-grid">
+      <div class="card card-hover">
+        <div class="card-icon">📄</div>
+        <h3>白皮书</h3>
+        <p>完整8章，涵盖技术架构、代币经济、治理模型、跨链互操作与路线图。</p>
+        <a href="#" data-page="whitepaper" class="card-link">阅读 →</a>
+      </div>
+      <div class="card card-hover">
+        <div class="card-icon">💻</div>
+        <h3>开发者入口</h3>
+        <p>快速开始三步、SDK 示例、API 文档与常见问题。</p>
+        <a href="#" data-page="developers" class="card-link">开始开发 →</a>
+      </div>
+      <div class="card card-hover">
+        <div class="card-icon">🏛️</div>
+        <h3>基金会</h3>
+        <p>源·ORIGIN 基金会致力于推动 AI 智能体协议的全球化与去中心化治理。</p>
+        <a href="#" data-page="foundation" class="card-link">了解更多 →</a>
+      </div>
+      <div class="card card-hover">
+        <div class="card-icon">📊</div>
+        <h3>网络状态</h3>
+        <p>实时查看合约状态、跨链统计与节点健康。</p>
+        <a href="#" data-page="status" class="card-link">查看状态 →</a>
+      </div>
+      <div class="card card-hover">
+        <div class="card-icon">🔗</div>
+        <h3>适配器管理</h3>
+        <p>跨链适配器配置，支持 Ethereum、BSC、Polygon 等多链。</p>
+        <a href="#" data-page="adapter-manager" class="card-link">管理适配器 →</a>
+      </div>
+      <div class="card card-hover">
+        <div class="card-icon">📢</div>
+        <h3>宣发面板</h3>
+        <p>社交媒体一键发布、社区动态与品牌资产管理。</p>
+        <a href="#" class="card-link" id="openOutreach">打开 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="outreach-section">
+  <div class="container">
+    <h2 class="section-title">宣发动态</h2>
+    <div id="outreach-panel" class="outreach-panel">
+      <p class="text-muted">社区宣发面板加载中...</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">状态概览</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value cyan">24/7</div>
+        <div class="stat-label">网络运行时间</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gold">8</div>
+        <div class="stat-label">合约已部署</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value cyan">6+</div>
+        <div class="stat-label">支持链数量</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gold">∞</div>
+        <div class="stat-label">去中心化愿景</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="whitepaper">白皮书</a>
+        <a href="#" data-page="developers">开发者</a>
+      </div>
+      <div>
+        <h4>资源</h4>
+        <a href="#" data-page="status">状态</a>
+        <a href="#" data-page="adapter-manager">适配器</a>
+        <a href="#" data-page="foundation">基金会</a>
+      </div>
+      <div>
+        <h4>社区</h4>
+        <a href="#" onclick="return false;">GitHub</a>
+        <a href="#" onclick="return false;">Twitter</a>
+        <a href="#" onclick="return false;">Discord</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+<script>
+document.getElementById('navToggle')?.addEventListener('click', function() {
+  document.querySelector('.nav-links').classList.toggle('show');
+});
+document.getElementById('openOutreach')?.addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('outreach-section').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
