@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>适配器管理 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 跨链适配器管理面板">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+<script src="assets/deploy-matrix.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link">开发者</a>
+      <a href="#" data-page="status" class="nav-link">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link active">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+<main id="app">
+<section class="page-header">
+  <div class="container">
+    <h1>跨链适配器管理</h1>
+    <p class="text-muted">配置和管理源·ORIGIN 协议支持的跨链适配器</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">支持的链</h2>
+    <div class="chain-grid">
+      <div class="chain-card">
+        <div class="chain-icon">🔷</div>
+        <h3>Ethereum</h3>
+        <span class="badge badge-green">已连接</span>
+        <p class="text-muted">Chain ID: 1 / 11155111<br>适配器 v1.2.0</p>
+      </div>
+      <div class="chain-card">
+        <div class="chain-icon">🟡</div>
+        <h3>BNB Smart Chain</h3>
+        <span class="badge badge-green">已连接</span>
+        <p class="text-muted">Chain ID: 56 / 97<br>适配器 v1.1.0</p>
+      </div>
+      <div class="chain-card">
+        <div class="chain-icon">🟣</div>
+        <h3>Polygon</h3>
+        <span class="badge badge-green">已连接</span>
+        <p class="text-muted">Chain ID: 137 / 80001<br>适配器 v1.0.0</p>
+      </div>
+      <div class="chain-card">
+        <div class="chain-icon">🔴</div>
+        <h3>Arbitrum</h3>
+        <span class="badge badge-yellow">整合中</span>
+        <p class="text-muted">Chain ID: 42161 / 421614<br>适配器 v0.9.0</p>
+      </div>
+      <div class="chain-card">
+        <div class="chain-icon">🟠</div>
+        <h3>Optimism</h3>
+        <span class="badge badge-yellow">整合中</span>
+        <p class="text-muted">Chain ID: 10 / 11155420<br>适配器 v0.8.0</p>
+      </div>
+      <div class="chain-card">
+        <div class="chain-icon">🔵</div>
+        <h3>Base</h3>
+        <span class="badge badge-yellow">规划中</span>
+        <p class="text-muted">Chain ID: 8453 / 84532<br>适配器 v0.5.0</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">适配器操作</h2>
+    <div class="table-wrapper">
+      <table class="adapter-table">
+        <thead>
+          <tr>
+            <th>链</th>
+            <th>适配器地址</th>
+            <th>状态</th>
+            <th>消息数</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ethereum</td>
+            <td><code>0xA1b2...c3d4</code></td>
+            <td><span class="badge badge-green">运行中</span></td>
+            <td>847</td>
+            <td><button class="btn btn-small">同步</button></td>
+          </tr>
+          <tr>
+            <td>BSC</td>
+            <td><code>0xB2c3...d4e5</code></td>
+            <td><span class="badge badge-green">运行中</span></td>
+            <td>312</td>
+            <td><button class="btn btn-small">同步</button></td>
+          </tr>
+          <tr>
+            <td>Polygon</td>
+            <td><code>0xC3d4...e5f6</code></td>
+            <td><span class="badge badge-green">运行中</span></td>
+            <td>88</td>
+            <td><button class="btn btn-small">同步</button></td>
+          </tr>
+          <tr>
+            <td>Arbitrum</td>
+            <td><code>0xD4e5...f6a7</code></td>
+            <td><span class="badge badge-yellow">测试中</span></td>
+            <td>0</td>
+            <td><button class="btn btn-small" disabled>不可用</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="status">状态</a>
+        <a href="#" data-page="foundation">基金会</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+</body>
+</html>
