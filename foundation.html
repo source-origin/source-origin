@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基金会 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 基金会：推动AI智能体协议的全球化与去中心化治理">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link">开发者</a>
+      <a href="#" data-page="status" class="nav-link">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link active">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+<main id="app">
+<section class="page-header">
+  <div class="container">
+    <h1>源·ORIGIN 基金会</h1>
+    <p class="text-muted">推动 AI 智能体协议的全球化与去中心化治理</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="foundation-intro">
+      <h2 class="section-title">我们的使命</h2>
+      <p>源·ORIGIN 基金会是一个非营利组织，致力于支持源·ORIGIN 协议的发展和生态建设。我们的核心使命是确保协议的去中心化治理、技术持续迭代、以及全球社区的健康成长。</p>
+      <p>基金会负责管理协议国库、资助生态项目、组织社区治理，并代表源·ORIGIN 社区与外部机构对话。所有决策通过 DAO 机制实现透明化、去中心化。</p>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">基金会收款地址</h2>
+    <div class="wallet-card">
+      <div class="wallet-icon">🏦</div>
+      <div class="wallet-info">
+        <h3>BSC 钱包地址</h3>
+        <p class="wallet-address">0x46a091b707174eF96202Aaf6fdCF9cE7E9312841</p>
+        <p class="text-muted">网络：BNB Smart Chain (BEP-20)</p>
+        <p class="text-muted">支持资产：YUAN、BNB、USDT、USDC</p>
+      </div>
+      <button class="btn btn-gold" id="copyAddress">复制地址</button>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">合伙人招募</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>技术合伙人</h3>
+        <p>参与核心协议开发和智能合约审计。要求：Solidity/Rust 经验、DeFi 或跨链协议开发背景。</p>
+      </div>
+      <div class="card">
+        <h3>生态合伙人</h3>
+        <p>负责社区运营、开发者关系、生态项目孵化。要求：区块链社区运营经验、技术理解力。</p>
+      </div>
+      <div class="card">
+        <h3>战略合伙人</h3>
+        <p>参与基金会治理和战略决策，贡献行业资源和关系网络。</p>
+      </div>
+      <div class="card">
+        <h3>社区合伙人</h3>
+        <p>建立本地社区、翻译文档、组织线上线下活动。要求：熟悉当地开发者社区。</p>
+      </div>
+    </div>
+    <div class="cta-box">
+      <p>有兴趣成为合伙人？请通过以下方式联系我们。</p>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">联系方式</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3>邮箱</h3>
+        <p>foundation@origin.ag</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🐦</div>
+        <h3>Twitter / X</h3>
+        <p>@OriginProtocol</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
+        <h3>Discord</h3>
+        <p>discord.gg/originprotocol</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📄</div>
+        <h3>GitHub</h3>
+        <p>github.com/source-origin</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="whitepaper">白皮书</a>
+        <a href="#" data-page="developers">开发者</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+<script>
+document.getElementById('copyAddress')?.addEventListener('click', function() {
+  const addr = '0x46a091b707174eF96202Aaf6fdCF9cE7E9312841';
+  navigator.clipboard.writeText(addr).then(() => {
+    this.textContent = '已复制 ✓';
+    setTimeout(() => { this.textContent = '复制地址'; }, 2000);
+  }).catch(() => {
+    alert('复制失败，请手动复制');
+  });
+});
+</script>
+</body>
+</html>
