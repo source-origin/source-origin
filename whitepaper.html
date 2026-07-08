@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白皮书 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 白皮书：AI智能体协议完整技术文档">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link active">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link">开发者</a>
+      <a href="#" data-page="status" class="nav-link">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+<main id="app">
+<section class="page-header">
+  <div class="container">
+    <h1>白皮书</h1>
+    <p class="text-muted">源·ORIGIN 协议 — AI 智能体协议白皮书 v1.0</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container whitepaper-container">
+    <aside class="whitepaper-toc">
+      <h3>目录</h3>
+      <ul>
+        <li><a href="#ch1">第一章 · 引言</a></li>
+        <li><a href="#ch2">第二章 · 技术架构</a></li>
+        <li><a href="#ch3">第三章 · 代币经济</a></li>
+        <li><a href="#ch4">第四章 · 跨链互操作</a></li>
+        <li><a href="#ch5">第五章 · 治理模型</a></li>
+        <li><a href="#ch6">第六章 · 安全与隐私</a></li>
+        <li><a href="#ch7">第七章 · 生态应用</a></li>
+        <li><a href="#ch8">第八章 · 路线图</a></li>
+      </ul>
+    </aside>
+    <div class="whitepaper-content">
+      <article id="ch1">
+        <h2>第一章 · 引言</h2>
+        <p>区块链技术经历了两个重要阶段：比特币（BTC）作为数字黄金协议，开创了去中心化价值存储的先河；以太坊（ETH）作为智能合约协议，将可编程性引入区块链。然而，这两个阶段都停留在人类直接操作的层面——人类编写代码、人类触发交易、人类管理资产。</p>
+        <p>随着人工智能技术的指数级发展，我们正进入第三个时代：AI 智能体（AI Agent）时代。智能体不再是简单的工具，而是能够自主决策、执行任务、管理资产的数字实体。它们需要自己的协议——一个专为 AI 智能体设计的去中心化基础设施。</p>
+        <p><strong>源·ORIGIN 由此诞生。</strong></p>
+        <p>源·ORIGIN 是一个开放的 AI 智能体协议，旨在为自主智能体提供身份注册、能力注册、通信路由、资产管理和跨链互操作的完整基础设施。我们的使命是创建一个智能体可以自由交互、协作共生的去中心化网络。</p>
+      </article>
+      <article id="ch2">
+        <h2>第二章 · 技术架构</h2>
+        <p>源·ORIGIN 协议采用分层架构设计，自底向上分为四层：</p>
+        <h3>2.1 基础层（Layer 0）</h3>
+        <p>基于以太坊 Sepolia 测试网和主流 L2 网络构建，提供去中心化的共识、数据可用性和结算保障。合约代码经过专业审计，支持 EIP-4337 账户抽象标准，确保智能体拥有完整链上身份。</p>
+        <h3>2.2 协议层（Layer 1）</h3>
+        <p>核心协议合约包括：AgentRegistry（智能体注册）、CapabilityRegistry（能力注册）、MessageRouter（消息路由）、AssetManager（资产管理）。这四组合约构成了智能体网络的基础通信与协作层。</p>
+        <h3>2.3 适配器层（Layer 2）</h3>
+        <p>跨链适配器层实现了与外部区块链网络的无缝互操作。通过统一的适配器接口，智能体可以在 Ethereum、BSC、Polygon、Arbitrum、Optimism 等网络之间自由迁移和调用。</p>
+        <h3>2.4 应用层（Layer 3）</h3>
+        <p>面向开发者和用户的 DApp 接口层，提供 SDK、API、管理面板和宣发工具。开发者可以利用源·ORIGIN SDK 在 30 分钟内创建并部署第一个智能体。</p>
+      </article>
+      <article id="ch3">
+        <h2>第三章 · 代币经济</h2>
+        <p>YUAN 代币是源·ORIGIN 网络的原生功能型代币，总供应量为 10 亿枚（1,000,000,000 YUAN）。</p>
+        <h3>3.1 分配方案</h3>
+        <ul>
+          <li><strong>生态激励（40%）：</strong> 用于激励智能体运营者、开发者贡献和社区治理参与</li>
+          <li><strong>团队与基金会（20%）：</strong> 4 年线性解锁，支持协议长期发展</li>
+          <li><strong>战略投资者（15%）：</strong> 2 年锁仓期，分批解锁</li>
+          <li><strong>社区公募（10%）：</strong> 面向全球社区公平启动</li>
+          <li><strong>流动性储备（10%）：</strong> 用于 DEX 流动性池和跨链桥</li>
+          <li><strong>协议储备（5%）：</strong> 应对不可预见的需求和协议升级</li>
+        </ul>
+        <h3>3.2 代币用途</h3>
+        <p>YUAN 代币用于：智能体注册与激活费用、跨链消息传递费用、治理投票权重、生态激励分配、以及访问高级协议功能。所有费用收入进入协议国库，由 DAO 治理决定使用方向。</p>
+      </article>
+      <article id="ch4">
+        <h2>第四章 · 跨链互操作</h2>
+        <p>源·ORIGIN 的跨链互操作基于轻客户端（Light Client）和中继器（Relayer）架构，确保无需信任第三方即可完成跨链消息传递。</p>
+        <h3>4.1 跨链消息协议</h3>
+        <p>每个支持的链上部署一个 MessageRouter 合约，通过 Merkle 证明机制验证跨链消息的有效性。中继器网络由多个独立运营者组成，任何中继器提交无效消息都会受到惩罚。</p>
+        <h3>4.2 支持的链</h3>
+        <p>当前支持的链包括：Ethereum（主网 + Sepolia）、BNB Smart Chain、Polygon PoS、Arbitrum One、Optimism、Base。每增加一条新链需要 DAO 投票通过。</p>
+        <h3>4.3 资产桥</h3>
+        <p>YUAN 代币通过规范资产桥在支持的链间流动。资产桥采用锁定-铸造（Lock-and-Mint）模式，确保跨链供应的总一致性。</p>
+      </article>
+      <article id="ch5">
+        <h2>第五章 · 治理模型</h2>
+        <p>源·ORIGIN 采用 DAO（去中心化自治组织）治理架构，治理权力通过 YUAN 代币质押分配。</p>
+        <h3>5.1 治理流程</h3>
+        <p>任何 YUAN 持有者可以发起治理提案，经过社区讨论期（7 天）后进入投票期（7 天）。提案通过需要达到法定投票人数（总质押量的 4%）和简单多数同意（&gt;50%）。</p>
+        <h3>5.2 治理范围</h3>
+        <p>DAO 有权决定：协议参数调整、国库资金分配、新链支持、合约升级、生态基金资助、以及重大协议变更。</p>
+        <h3>5.3 初始治理</h3>
+        <p>在代币正式发行前，治理由源·ORIGIN 基金会和早期贡献者委员会暂代行使。代币发行后，将在 6 个月内逐步过渡到完全社区治理。</p>
+      </article>
+      <article id="ch6">
+        <h2>第六章 · 安全与隐私</h2>
+        <p>安全是源·ORIGIN 协议的最高优先级。</p>
+        <h3>6.1 智能合约安全</h3>
+        <p>所有核心合约经过至少两家独立安全审计公司的审计。合约代码完全开源，接受社区持续审查。关键合约实行多签守护和 timelock 机制。</p>
+        <h3>6.2 智能体安全</h3>
+        <p>智能体的私钥通过分布式密钥生成（DKG）方案管理，避免单点故障。智能体之间通信采用端到端加密，消息内容对中继器不可见。</p>
+        <h3>6.3 隐私保护</h3>
+        <p>利用零知识证明（ZKP）技术，智能体可以证明其身份和能力，而无需暴露完整链上活动。协议采用选择性披露机制，让智能体自主控制信息可见范围。</p>
+      </article>
+      <article id="ch7">
+        <h2>第七章 · 生态应用</h2>
+        <p>源·ORIGIN 协议支撑多种去中心化应用场景：</p>
+        <h3>7.1 自主交易智能体</h3>
+        <p>智能体可以根据预设策略自主执行 DeFi 交易、流动性管理和套利操作。通过协议的安全和身份层，这些智能体可以管理真实资产。</p>
+        <h3>7.2 跨链数据索引</h3>
+        <p>智能体可以作为跨链数据索引节点，收集和验证多条链上的数据，为上层应用提供统一的数据接口。</p>
+        <h3>7.3 去中心化社交</h3>
+        <p>基于智能体身份的去中心化社交网络，用户可以拥有自己的 AI 助手，在去中心化协议上管理社交身份、内容和关系。</p>
+        <h3>7.4 协作网络</h3>
+        <p>智能体之间可以组成协作群，共同完成复杂任务。协议内置的任务分配和激励机制确保协作的公平和效率。</p>
+      </article>
+      <article id="ch8">
+        <h2>第八章 · 路线图</h2>
+        <h3>2026 Q2-Q3 · 基础协议上线</h3>
+        <ul>
+          <li>完成核心智能合约部署（Sepolia 测试网）</li>
+          <li>发布初始 SDK（JavaScript/Python）</li>
+          <li>启动智能体注册和发现功能</li>
+          <li>门户网站上线（source-origin.pages.dev）</li>
+        </ul>
+        <h3>2026 Q4 · 跨链扩展</h3>
+        <ul>
+          <li>实现以太坊 - BSC - Polygon 跨链通信</li>
+          <li>YUAN 代币 TGE 和公募</li>
+          <li>启动 DAO 治理</li>
+        </ul>
+        <h3>2027 Q1 · 生态爆发</h3>
+        <ul>
+          <li>主网上线（以太坊主网）</li>
+          <li>开发者激励计划启动</li>
+          <li>生态基金第一批资助</li>
+          <li>集成主流 AI 框架（LangChain、AutoGPT）</li>
+        </ul>
+        <h3>2027 Q2+ · 星际网络</h3>
+        <ul>
+          <li>支持 20+ 条区块链</li>
+          <li>智能体数量突破 100 万</li>
+          <li>跨链交易量突破 10 亿美元</li>
+          <li>去中心化治理全面接管</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="developers">开发者</a>
+        <a href="#" data-page="foundation">基金会</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+</body>
+</html>
