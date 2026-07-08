@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网络状态 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 网络状态：合约状态、跨链统计、节点健康">
+<link rel="stylesheet" href="style.css">
+<script src="router.js" defer></script>
+<script src="assets/deploy-matrix.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="nav-logo">✦</span>
+      <span class="nav-name">源·ORIGIN</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" data-page="home" class="nav-link">首页</a>
+      <a href="#" data-page="whitepaper" class="nav-link">白皮书</a>
+      <a href="#" data-page="developers" class="nav-link">开发者</a>
+      <a href="#" data-page="status" class="nav-link active">状态</a>
+      <a href="#" data-page="adapter-manager" class="nav-link">适配器</a>
+      <a href="#" data-page="foundation" class="nav-link">基金会</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+</nav>
+<main id="app">
+<section class="page-header">
+  <div class="container">
+    <h1>网络状态</h1>
+    <p class="text-muted">实时监控源·ORIGIN 协议的运行状态</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">合约状态</h2>
+    <div class="contract-grid">
+      <div class="status-card">
+        <div class="status-indicator green"></div>
+        <div>
+          <h3>AgentRegistry</h3>
+          <p class="text-muted">Sepolia · 0x9A1f...b3D2</p>
+          <span class="badge badge-green">活跃</span>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="status-indicator green"></div>
+        <div>
+          <h3>CapabilityRegistry</h3>
+          <p class="text-muted">Sepolia · 0xB7e3...c8F1</p>
+          <span class="badge badge-green">活跃</span>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="status-indicator green"></div>
+        <div>
+          <h3>MessageRouter</h3>
+          <p class="text-muted">Sepolia · 0xD4a2...e5B7</p>
+          <span class="badge badge-green">活跃</span>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="status-indicator green"></div>
+        <div>
+          <h3>AssetManager</h3>
+          <p class="text-muted">Sepolia · 0xF1b8...9A3c</p>
+          <span class="badge badge-green">活跃</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">网络统计</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value gold">16</div>
+        <div class="stat-label">已部署合约</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value cyan">189</div>
+        <div class="stat-label">已注册用户</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value gold">1,247</div>
+        <div class="stat-label">跨链消息</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value cyan">99.97%</div>
+        <div class="stat-label">正常运行率</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">节点健康</h2>
+    <div class="node-list">
+      <div class="node-card">
+        <span class="status-indicator green"></span>
+        <div>
+          <h3>中继器节点 #1</h3>
+          <p class="text-muted">延迟: 45ms · 最后更新: 实时</p>
+        </div>
+      </div>
+      <div class="node-card">
+        <span class="status-indicator green"></span>
+        <div>
+          <h3>中继器节点 #2</h3>
+          <p class="text-muted">延迟: 62ms · 最后更新: 实时</p>
+        </div>
+      </div>
+      <div class="node-card">
+        <span class="status-indicator yellow"></span>
+        <div>
+          <h3>适配器节点 #3</h3>
+          <p class="text-muted">延迟: 210ms · 最后更新: 2分钟前</p>
+        </div>
+      </div>
+      <div class="node-card">
+        <span class="status-indicator green"></span>
+        <div>
+          <h3>验证节点 #1</h3>
+          <p class="text-muted">延迟: 38ms · 最后更新: 实时</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>源·ORIGIN</h4>
+        <p class="text-muted">从思想到行动，从连接到共生</p>
+      </div>
+      <div>
+        <h4>导航</h4>
+        <a href="#" data-page="home">首页</a>
+        <a href="#" data-page="whitepaper">白皮书</a>
+        <a href="#" data-page="developers">开发者</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 源·ORIGIN 基金会 · 开放协议 · 去中心化治理</p>
+    </div>
+  </div>
+</footer>
+</main>
+</body>
+</html>
