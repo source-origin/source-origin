@@ -1,0 +1,10 @@
+﻿# Cloudflare Pages Configuration
+pages_build_output_dir = "."
+
+[env.production]
+name = "source-origin"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
