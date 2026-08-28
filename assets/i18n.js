@@ -160,6 +160,188 @@
       'board.placeholder': 'Escribe tu mensaje… (compartir / pedir / ayuda / ideas)',
       'board.nameHolder': 'Tu nombre',
       'board.anonymous': 'Anónimo'
+    },
+
+    fr: {
+      'nav.home': 'Accueil',
+      'nav.factory': 'Usine d\'agents',
+      'nav.weapon': 'Arsenal',
+      'nav.cases': 'Cas',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'À propos',
+      'nav.services': 'Services IA',
+      'nav.global': 'Global',
+
+      'lang.switcher': 'Langue',
+      'common.learnMore': 'En savoir plus',
+      'common.explore': 'Explorer',
+      'common.home': 'Accueil',
+      'common.tagline': 'De la pensée à l\'action, de la connexion à la symbiose',
+      'common.motto': 'Le pouvoir vient de l\'innovation, pas du capital',
+      'common.footer': 'Protocole ouvert · Gouvernance décentralisée · Couche de compensation et de règlement pour l\'économie des agents IA',
+      'common.sourceOrigin': 'Source·ORIGIN',
+
+      'board.empty': 'Aucun signal pour le moment. Envoyez le premier 🚀',
+      'board.placeholder': 'Écrivez votre message… (partage / demande / aide / idées)',
+      'board.nameHolder': 'Votre pseudo',
+      'board.anonymous': 'Anonyme'
+    },
+
+    de: {
+      'nav.home': 'Startseite',
+      'nav.factory': 'Agentenfabrik',
+      'nav.weapon': 'Arsenal',
+      'nav.cases': 'Fälle',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'Über uns',
+      'nav.services': 'KI-Dienste',
+      'nav.global': 'Global',
+
+      'lang.switcher': 'Sprache',
+      'common.learnMore': 'Mehr erfahren',
+      'common.explore': 'Erkunden',
+      'common.home': 'Startseite',
+      'common.tagline': 'Vom Gedanken zum Handeln, von der Verbindung zur Symbiose',
+      'common.motto': 'Macht entsteht aus Innovation, nicht aus Kapital',
+      'common.footer': 'Offenes Protokoll · Dezentrale Governance · Clearing- und Settlement-Ebene für die KI-Agenten-Ökonomie',
+      'common.sourceOrigin': 'Quelle·ORIGIN',
+
+      'board.empty': 'Noch keine Signale. Sende das erste 🚀',
+      'board.placeholder': 'Schreibe deine Nachricht… (teilen / anfragen / helfen / Ideen)',
+      'board.nameHolder': 'Dein Nickname',
+      'board.anonymous': 'Anonym'
+    },
+
+    ru: {
+      'nav.home': 'Главная',
+      'nav.factory': 'Фабрика агентов',
+      'nav.weapon': 'Арсенал',
+      'nav.cases': 'Кейсы',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'О нас',
+      'nav.services': 'ИИ-сервисы',
+      'nav.global': 'Глобальный',
+
+      'lang.switcher': 'Язык',
+      'common.learnMore': 'Узнать больше',
+      'common.explore': 'Исследовать',
+      'common.home': 'Главная',
+      'common.tagline': 'От мысли к действию, от связи к симбиозу',
+      'common.motto': 'Сила исходит из инноваций, а не из капитала',
+      'common.footer': 'Открытый протокол · Децентрализованное управление · Слой расчётов и расчётов по клирингу для экономики ИИ-агентов',
+      'common.sourceOrigin': 'Источник·ORIGIN',
+
+      'board.empty': 'Сигналов пока нет. Отправьте первый 🚀',
+      'board.placeholder': 'Введите сообщение… (поделиться / спросить / помощь / идеи)',
+      'board.nameHolder': 'Ваш ник',
+      'board.anonymous': 'Аноним'
+    },
+
+    pt: {
+      'nav.home': 'Início',
+      'nav.factory': 'Fábrica de Agentes',
+      'nav.weapon': 'Arsenal',
+      'nav.cases': 'Casos',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'Sobre',
+      'nav.services': 'Serviços de IA',
+      'nav.global': 'Global',
+
+      'lang.switcher': 'Idioma',
+      'common.learnMore': 'Saiba mais',
+      'common.explore': 'Explorar',
+      'common.home': 'Início',
+      'common.tagline': 'Do pensamento à ação, da conexão à simbiose',
+      'common.motto': 'O poder vem da inovação, não do capital',
+      'common.footer': 'Protocolo aberto · Governança descentralizada · Camada de compensação e liquidação para a economia de agentes de IA',
+      'common.sourceOrigin': 'Fonte·ORIGIN',
+
+      'board.empty': 'Ainda não há sinais. Envie o primeiro 🚀',
+      'board.placeholder': 'Escreva sua mensagem… (compartilhar / pedir / ajudar / ideias)',
+      'board.nameHolder': 'Seu apelido',
+      'board.anonymous': 'Anônimo'
+    },
+
+    vi: {
+      'nav.home': 'Trang chủ',
+      'nav.factory': 'Nhà máy tác nhân AI',
+      'nav.weapon': 'Kho vũ khí',
+      'nav.cases': 'Trường hợp',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'Giới thiệu',
+      'nav.services': 'Dịch vụ AI',
+      'nav.global': 'Toàn cầu',
+
+      'lang.switcher': 'Ngôn ngữ',
+      'common.learnMore': 'Tìm hiểu thêm',
+      'common.explore': 'Khám phá',
+      'common.home': 'Trang chủ',
+      'common.tagline': 'Từ suy nghĩ đến hành động, từ kết nối đến cộng sinh',
+      'common.motto': 'Sức mạnh đến từ sự đổi mới, không phải vốn',
+      'common.footer': 'Giao thức mở · Quản trị phi tập trung · Lớp bù trừ và thanh toán cho nền kinh tế tác nhân AI',
+      'common.sourceOrigin': 'Nguồn·ORIGIN',
+
+      'board.empty': 'Chưa có tín hiệu nào. Gửi tín hiệu đầu tiên 🚀',
+      'board.placeholder': 'Nhập tin nhắn của bạn… (chia sẻ / yêu cầu / giúp đỡ / ý tưởng)',
+      'board.nameHolder': 'Biệt danh của bạn',
+      'board.anonymous': 'Ẩn danh'
+    },
+
+    ar: {
+      'nav.home': 'الرئيسية',
+      'nav.factory': 'مصنع الوكلاء',
+      'nav.weapon': 'الترسانة',
+      'nav.cases': 'الحالات',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'حول',
+      'nav.services': 'خدمات الذكاء الاصطناعي',
+      'nav.global': 'عالمي',
+
+      'lang.switcher': 'اللغة',
+      'common.learnMore': 'اعرف المزيد',
+      'common.explore': 'استكشف',
+      'common.home': 'الرئيسية',
+      'common.tagline': 'من الفكر إلى الفعل، من الاتصال إلى التعايش',
+      'common.motto': 'القوة تأتي من الابتكار، وليس من رأس المال',
+      'common.footer': 'بروتوكول مفتوح · حوكمة لا مركزية · طبقة المقاصة والتسوية لاقتصاد الوكلاء الذكيين',
+      'common.sourceOrigin': 'المصدر·ORIGIN',
+
+      'board.empty': 'لا توجد إشارات بعد. أرسل الإشارة الأولى 🚀',
+      'board.placeholder': 'اكتب رسالتك… (مشاركة / طلب / مساعدة / أفكار)',
+      'board.nameHolder': 'اسمك المستعار',
+      'board.anonymous': 'مجهول'
+    },
+
+    hi: {
+      'nav.home': 'होम',
+      'nav.factory': 'एजेंट फैक्ट्री',
+      'nav.weapon': 'शस्त्रागार',
+      'nav.cases': 'मामले',
+      'nav.developers': 'Dev Command',
+      'nav.agents': 'Agent Command',
+      'nav.about': 'परिचय',
+      'nav.services': 'AI सेवाएं',
+      'nav.global': 'वैश्विक',
+
+      'lang.switcher': 'भाषा',
+      'common.learnMore': 'और जानें',
+      'common.explore': 'खोजें',
+      'common.home': 'होम',
+      'common.tagline': 'विचार से क्रिया तक, जुड़ाव से सहजीवन तक',
+      'common.motto': 'शक्ति पूंजी से नहीं, नवाचार से आती है',
+      'common.footer': 'खुला प्रोटोकॉल · विकेंद्रीकृत शासन · AI एजेंट अर्थव्यवस्था के लिए निपटान और क्लियरिंग परत',
+      'common.sourceOrigin': 'स्रोत·ORIGIN',
+
+      'board.empty': 'अभी कोई संकेत नहीं। पहला भेजें 🚀',
+      'board.placeholder': 'अपना संदेश लिखें… (साझा / अनुरोध / मदद / विचार)',
+      'board.nameHolder': 'आपका उपनाम',
+      'board.anonymous': 'अनाम'
     }
   };
 
