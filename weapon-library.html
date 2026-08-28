@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>武器库 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 武器库：24+ 开源项目整合提纯成果，Agent 框架、视频生成、数据采集、合约审计。">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<script src="assets/weapons-data.js" defer></script>
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+</head>
+<body data-page="weapon">
+<main id="app">
+
+  <section class="page-hero">
+    <span class="badge">🔫 武器库</span>
+    <h1>24+ 开源项目 · 提纯成果</h1>
+    <p class="page-sub">我们把高价值的开源项目与前沿协议深度学习、拆解、精炼，沉淀为可复用的能力资产。这是「智能体工厂」的原料库。</p>
+    <div class="search-box">
+      <input type="text" id="weaponSearch" class="search-input" placeholder="🔍 搜索武器库… (如 Agent / 爬虫 / 语音)">
+    </div>
+    <div class="filter-pills" id="filterPills">
+      <button class="pill active" data-cat="all">全部 <b id="cntAll"></b></button>
+      <button class="pill" data-cat="agent">Agent 框架</button>
+      <button class="pill" data-cat="infra">平台/基建</button>
+      <button class="pill" data-cat="contract">结算/合约</button>
+      <button class="pill" data-cat="crawl">数据采集</button>
+      <button class="pill" data-cat="video">视频/生成</button>
+      <button class="pill" data-cat="voice">语音</button>
+    </div>
+    <div class="status-pills" id="statusPills">
+      <button class="pill st active" data-cat="all">全部状态</button>
+      <button class="pill st" data-cat="activated">🟢 已激活 <b id="cntActivated"></b></button>
+      <button class="pill st" data-cat="ready">🟡 可激活 <b id="cntReady"></b></button>
+      <button class="pill st" data-cat="applicable">⚪ 待申请 <b id="cntApplicable"></b></button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="weapon-grid" id="weaponGrid"></div>
+      <p class="text-muted" id="weaponEmpty" style="display:none;text-align:center;padding:40px 0">没有匹配的武器，换个关键词试试。</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  function boot() {
+    var data = (window.WEAPONS) || [];
+    var grid = document.getElementById('weaponGrid');
+    var empty = document.getElementById('weaponEmpty');
+    var search = document.getElementById('weaponSearch');
+    var pills = document.querySelectorAll('#filterPills .pill');
+    var sPills = document.querySelectorAll('#statusPills .pill.st');
+    var cat = 'all';
+    var st = 'all';
+    var kw = '';
+
+    var PRODUCT = {
+      'ai-agent': '智能体开发', 'crawl': '数据采集',
+      'rag': '知识库问答', 'media': '视频/声音', 'chain': '合约结算'
+    };
+    var STATUS = {
+      'activated': ['🟢', '已激活', 'bg:#0e3b2a;border-color:#2e9e5b;color:#4ade80'],
+      'ready': ['🟡', '可激活', 'bg:#3b2f0e;border-color:#9e7b2e;color:#f5c518'],
+      'applicable': ['⚪', '待申请', 'bg:#222b3a;border-color:#334155;color:#8899bb']
+    };
+
+    function statCounts() {
+      var c = { all: data.length, activated: 0, ready: 0, applicable: 0 };
+      data.forEach(function (w) { c[w.status] = (c[w.status] || 0) + 1; });
+      return c;
+    }
+
+    function render() {
+      var cnt = statCounts();
+      var el1 = document.getElementById('cntAll'); if (el1) el1.textContent = cnt.all;
+      var el2 = document.getElementById('cntActivated'); if (el2) el2.textContent = cnt.activated;
+      var el3 = document.getElementById('cntReady'); if (el3) el3.textContent = cnt.ready;
+      var el4 = document.getElementById('cntApplicable'); if (el4) el4.textContent = cnt.applicable;
+
+      var list = data.filter(function (w) {
+        var okCat = (cat === 'all') || (w.cat === cat);
+        var okSt = (st === 'all') || (w.status === st);
+        var txt = (w.name + ' ' + w.desc + ' ' + w.tags.join(' ')).toLowerCase();
+        var okKw = !kw || txt.indexOf(kw) !== -1;
+        return okCat && okSt && okKw;
+      });
+      if (!list.length) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      grid.innerHTML = list.map(function (w) {
+        var tags = w.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('');
+        var s = STATUS[w.status] || STATUS.applicable;
+        var prod = PRODUCT[w.product] || '—';
+        var act = w.status === 'applicable'
+          ? '<a class="w-act" href="agent-services.html?activate=' + encodeURIComponent(w.name) + '" target="_blank">⚡ 申请激活</a>'
+          : (w.status === 'ready'
+            ? '<a class="w-act" href="agent-services.html?activate=' + encodeURIComponent(w.name) + '" target="_blank">▶ 部署激活</a>'
+            : '<span class="w-act-done">✓ 已激活运行</span>');
+        return '<div class="weapon-card w-' + w.status + '">' +
+          '<div class="w-head"><h3>' + w.name + '</h3><span class="w-star">' + w.star + '</span></div>' +
+          '<div class="w-meta"><span class="w-badge" style="background:' + s[2].split(';')[0] + ';color:' + s[2].split(';')[2].replace('color:','') + ';border:1px solid ' + s[2].split(';')[1].split(':')[1] + '">' + s[0] + ' ' + s[1] + '</span>' +
+          '<span class="w-prod">📍 ' + prod + '</span></div>' +
+          '<p class="w-desc">' + w.desc + '</p>' +
+          '<div class="w-foot"><div>' + tags + '</div>' + act + '</div>' +
+          '</div>';
+      }).join('');
+    }
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        pills.forEach(function (x) { x.classList.remove('active'); });
+        p.classList.add('active');
+        cat = p.getAttribute('data-cat');
+        render();
+      });
+    });
+    sPills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        sPills.forEach(function (x) { x.classList.remove('active'); });
+        p.classList.add('active');
+        st = p.getAttribute('data-cat');
+        render();
+      });
+    });
+
+    search.addEventListener('input', function () {
+      kw = this.value.trim().toLowerCase();
+      render();
+    });
+
+    render();
+  }
+
+  // 等待 defer 的 weapons-data.js 就绪后再渲染
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿# Cloudflare Pages Configuration
+pages_build_output_dir = "."
+compatibility_date = "2024-11-01"
+
+# 源·ORIGIN D1 数据库（在线落账 + 离线兜底通知审计）
+[[d1_databases]]
+binding = "DB"
+database_name = "source-origin"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[env.production]
+name = "source-origin"
+
+# 路由/SPA fallback 由 _redirects 文件管理 (无需要在 wrangler.toml 重复)

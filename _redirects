@@ -1,0 +1,7 @@
+# 源·ORIGIN Portal
+# SPA fallback
+# 注意: /api/* 走 Cloudflare Pages Functions（functions/ 目录），
+# Pages Functions 优先于本 _redirects 与静态资源匹配，因此不会被此 SPA fallback 吞掉。
+# 若需本地/其他静态托管，请在此显式排除 /api（见下方注释示例）
+# /api/*   200
+/*    /index.html    200

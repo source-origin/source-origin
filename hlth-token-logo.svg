@@ -1,0 +1,287 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Backgrounds -->
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a2848"/>
+      <stop offset="30%" stop-color="#101c30"/>
+      <stop offset="60%" stop-color="#080f1a"/>
+      <stop offset="100%" stop-color="#030610"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="38%" r="40%">
+      <stop offset="0%" stop-color="#1a4030" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#0d2518" stop-opacity="0.35"/>
+      <stop offset="100%" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="runeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD700" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#F7931A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gradients -->
+    <linearGradient id="gold" x1="0.1" y1="0" x2="0.95" y2="1">
+      <stop offset="0%" stop-color="#FFFAE0"/>
+      <stop offset="15%" stop-color="#FFE566"/>
+      <stop offset="35%" stop-color="#FFD700"/>
+      <stop offset="60%" stop-color="#F7931A"/>
+      <stop offset="85%" stop-color="#E07000"/>
+      <stop offset="100%" stop-color="#C04A00"/>
+    </linearGradient>
+    <linearGradient id="emerald" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="25%" stop-color="#34d399"/>
+      <stop offset="55%" stop-color="#22c55e"/>
+      <stop offset="80%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#0a3d1a"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="20%" stop-color="#4ade80"/>
+      <stop offset="45%" stop-color="#FFE566"/>
+      <stop offset="65%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#F7931A"/>
+    </linearGradient>
+    <linearGradient id="cyanAccent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="35%" stop-color="#06b6d4"/>
+      <stop offset="65%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#FFD700"/>
+    </linearGradient>
+    <linearGradient id="runeGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF0A0"/>
+      <stop offset="40%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glowGold" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glowGreen" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glowCyan" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComponentTransfer in="blur"><feFuncA type="linear" slope="0.6"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRune" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feComponentTransfer in="blur"><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background base -->
+  <circle cx="256" cy="256" r="252" fill="url(#bg)"/>
+
+  <!-- Ambient core glow -->
+  <circle cx="256" cy="175" r="220" fill="url(#coreGlow)"/>
+
+  <!-- ===== COSMIC RUNE RING (outer) ===== -->
+  <circle cx="256" cy="256" r="238" fill="url(#runeGlow)"/>
+
+  <!-- Rune ring: 12 sacred geometry runes surrounding the outer edge -->
+  <g font-family="'Segoe UI Symbol','Arial Unicode MS',sans-serif" fill="url(#runeGold)" opacity="0.45" filter="url(#glowRune)">
+    <!-- 12-o'clock runes -->
+    <text x="256" y="36" text-anchor="middle" font-size="16" opacity="0.7">✦</text>
+    <text x="190" y="48" text-anchor="middle" font-size="12">⏣</text>
+    <text x="322" y="48" text-anchor="middle" font-size="12">⏣</text>
+
+    <!-- 3-o'clock runes -->
+    <text x="465" y="146" text-anchor="middle" font-size="12">⏣</text>
+    <text x="478" y="256" text-anchor="middle" font-size="16" opacity="0.7">✦</text>
+    <text x="465" y="366" text-anchor="middle" font-size="12">⏣</text>
+
+    <!-- 6-o'clock runes -->
+    <text x="322" y="468" text-anchor="middle" font-size="12">⏣</text>
+    <text x="256" y="478" text-anchor="middle" font-size="16" opacity="0.7">✦</text>
+    <text x="190" y="468" text-anchor="middle" font-size="12">⏣</text>
+
+    <!-- 9-o'clock runes -->
+    <text x="47" y="366" text-anchor="middle" font-size="12">⏣</text>
+    <text x="34" y="256" text-anchor="middle" font-size="16" opacity="0.7">✦</text>
+    <text x="47" y="146" text-anchor="middle" font-size="12">⏣</text>
+  </g>
+
+  <!-- Rune connecting lines: hexagram / merkaba -->
+  <g stroke="#FFD700" stroke-width="0.6" opacity="0.12" fill="none">
+    <circle cx="256" cy="256" r="80"/><circle cx="256" cy="256" r="120"/><circle cx="256" cy="256" r="160"/>
+  </g>
+
+  <!-- === INNER HEXAGON (sacred geometry Merkaba) === -->
+  <g stroke="#FFD700" stroke-width="0.7" opacity="0.15" fill="none">
+    <polygon points="256,98 340,146 340,242 256,290 172,242 172,146"/>
+    <polygon points="256,414 340,366 340,270 256,222 172,270 172,366"/>
+  </g>
+
+  <!-- === SRI YANTRA / METATRON ENERGY LINES === -->
+  <g stroke="#22c55e" stroke-width="0.5" opacity="0.1" fill="none">
+    <line x1="100" y1="100" x2="412" y2="412"/><line x1="412" y1="100" x2="100" y2="412"/>
+    <line x1="256" y1="60" x2="256" y2="452"/><line x1="60" y1="256" x2="452" y2="256"/>
+    <line x1="140" y1="80" x2="372" y2="432"/><line x1="372" y1="80" x2="140" y2="432"/>
+    <line x1="80" y1="140" x2="432" y2="372"/><line x1="432" y1="140" x2="80" y2="372"/>
+  </g>
+
+  <!-- Hex grid sci-fi texture -->
+  <g stroke="#06b6d4" stroke-width="0.3" opacity="0.06" fill="none">
+    <line x1="80" y1="90" x2="432" y2="90"/><line x1="80" y1="120" x2="432" y2="120"/>
+    <line x1="80" y1="150" x2="432" y2="150"/><line x1="80" y1="180" x2="432" y2="180"/>
+    <line x1="80" y1="210" x2="432" y2="210"/><line x1="80" y1="240" x2="432" y2="240"/>
+    <line x1="80" y1="270" x2="432" y2="270"/><line x1="80" y1="300" x2="432" y2="300"/>
+    <line x1="80" y1="330" x2="432" y2="330"/><line x1="80" y1="360" x2="432" y2="360"/>
+    <line x1="80" y1="390" x2="432" y2="390"/>
+  </g>
+
+  <!-- Orbiting energy rings around DNA -->
+  <ellipse cx="256" cy="175" rx="170" ry="52" fill="none" stroke="url(#cyanAccent)" stroke-width="0.8" opacity="0.2" transform="rotate(-18 256 175)"/>
+  <ellipse cx="256" cy="175" rx="155" ry="45" fill="none" stroke="#FFD700" stroke-width="0.5" opacity="0.12" transform="rotate(8 256 175)"/>
+  <ellipse cx="256" cy="175" rx="185" ry="60" fill="none" stroke="#06b6d4" stroke-width="0.4" opacity="0.08" transform="rotate(-5 256 175)"/>
+
+  <!-- Power rails -->
+  <line x1="100" y1="80" x2="100" y2="290" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+  <line x1="88" y1="100" x2="88" y2="270" stroke="#06b6d4" stroke-width="0.6" opacity="0.15"/>
+  <line x1="412" y1="80" x2="412" y2="290" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+  <line x1="424" y1="100" x2="424" y2="270" stroke="#06b6d4" stroke-width="0.6" opacity="0.15"/>
+
+  <!-- Power rail ticks -->
+  <g stroke="#22c55e" stroke-width="1.5" opacity="0.45">
+    <line x1="96" y1="95" x2="104" y2="95"/><line x1="96" y1="125" x2="104" y2="125"/>
+    <line x1="96" y1="155" x2="104" y2="155"/><line x1="96" y1="185" x2="104" y2="185"/>
+    <line x1="96" y1="215" x2="104" y2="215"/><line x1="96" y1="245" x2="104" y2="245"/>
+    <line x1="408" y1="95" x2="416" y2="95"/><line x1="408" y1="125" x2="416" y2="125"/>
+    <line x1="408" y1="155" x2="416" y2="155"/><line x1="408" y1="185" x2="416" y2="185"/>
+    <line x1="408" y1="215" x2="416" y2="215"/><line x1="408" y1="245" x2="416" y2="245"/>
+  </g>
+
+  <!-- ===== COSMIC WEALTH RUNES (inner, near DNA) ===== -->
+  <g font-family="'Segoe UI Symbol','Arial Unicode MS',sans-serif" font-size="22" fill="url(#runeGold)" opacity="0.55" filter="url(#glowRune)">
+    <!-- Wealth/prosperity symbols -->
+    <text x="155" y="128" text-anchor="middle">⁜</text>
+    <text x="145" y="195" text-anchor="middle">✧</text>
+    <text x="155" y="260" text-anchor="middle">⁜</text>
+
+    <text x="357" y="128" text-anchor="middle">⁜</text>
+    <text x="367" y="195" text-anchor="middle">✧</text>
+    <text x="357" y="260" text-anchor="middle">⁜</text>
+
+    <!-- Power symbols top/bottom -->
+    <text x="256" y="108" text-anchor="middle" font-size="26" opacity="0.7">⦿</text>
+    <text x="256" y="285" text-anchor="middle" font-size="26" opacity="0.7">⦿</text>
+  </g>
+
+  <!-- === DNA DOUBLE HELIX === -->
+  <path d="M215 85 Q160 120 215 160 Q270 195 215 230 Q160 265 215 305" fill="none" stroke="url(#emerald)" stroke-width="9" stroke-linecap="round" filter="url(#glowGreen)"/>
+  <path d="M297 85 Q352 120 297 160 Q242 195 297 230 Q352 265 297 305" fill="none" stroke="url(#emerald)" stroke-width="9" stroke-linecap="round" filter="url(#glowGreen)" opacity="0.85"/>
+
+  <!-- Inner bright cores -->
+  <path d="M215 85 Q160 120 215 160 Q270 195 215 230 Q160 265 215 305" fill="none" stroke="#6ee7b7" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M297 85 Q352 120 297 160 Q242 195 297 230 Q352 265 297 305" fill="none" stroke="#6ee7b7" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- Base pairs -->
+  <line x1="218" y1="110" x2="294" y2="110" stroke="url(#gold)" stroke-width="4.5" opacity="0.8" stroke-linecap="round"/>
+  <line x1="205" y1="148" x2="307" y2="148" stroke="url(#gold)" stroke-width="4.5" opacity="0.8" stroke-linecap="round"/>
+  <line x1="218" y1="188" x2="294" y2="188" stroke="url(#gold)" stroke-width="4.5" opacity="0.8" stroke-linecap="round"/>
+  <line x1="205" y1="228" x2="307" y2="228" stroke="url(#gold)" stroke-width="4.5" opacity="0.8" stroke-linecap="round"/>
+  <line x1="218" y1="265" x2="294" y2="265" stroke="url(#gold)" stroke-width="4.5" opacity="0.8" stroke-linecap="round"/>
+
+  <!-- GLOWING GOLD NODES -->
+  <g filter="url(#glowGold)">
+    <circle cx="218" cy="110" r="8.5" fill="url(#gold)"/><circle cx="294" cy="110" r="8.5" fill="url(#gold)"/>
+    <circle cx="205" cy="148" r="8.5" fill="url(#gold)"/><circle cx="307" cy="148" r="8.5" fill="url(#gold)"/>
+    <circle cx="218" cy="188" r="8.5" fill="url(#gold)"/><circle cx="294" cy="188" r="8.5" fill="url(#gold)"/>
+    <circle cx="205" cy="228" r="8.5" fill="url(#gold)"/><circle cx="307" cy="228" r="8.5" fill="url(#gold)"/>
+    <circle cx="218" cy="265" r="8.5" fill="url(#gold)"/><circle cx="294" cy="265" r="8.5" fill="url(#gold)"/>
+  </g>
+
+  <!-- Node specular highlights -->
+  <circle cx="215" cy="107" r="3.5" fill="#FFFFFF" opacity="0.55"/><circle cx="291" cy="107" r="3.5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="202" cy="145" r="3.5" fill="#FFFFFF" opacity="0.55"/><circle cx="304" cy="145" r="3.5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="215" cy="185" r="3.5" fill="#FFFFFF" opacity="0.55"/><circle cx="291" cy="185" r="3.5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="202" cy="225" r="3.5" fill="#FFFFFF" opacity="0.55"/><circle cx="304" cy="225" r="3.5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="215" cy="262" r="3.5" fill="#FFFFFF" opacity="0.55"/><circle cx="291" cy="262" r="3.5" fill="#FFFFFF" opacity="0.55"/>
+
+  <!-- Cybernetic rings around nodes -->
+  <circle cx="218" cy="110" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="294" cy="110" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="205" cy="148" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="307" cy="148" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="218" cy="188" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="294" cy="188" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="205" cy="228" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="307" cy="228" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="218" cy="265" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+  <circle cx="294" cy="265" r="13" fill="none" stroke="url(#cyanAccent)" stroke-width="1.2" opacity="0.55"/>
+
+  <!-- Scanning lines -->
+  <line x1="256" y1="80" x2="256" y2="310" stroke="#06b6d4" stroke-width="1" opacity="0.2" stroke-dasharray="3 6"/>
+  <line x1="248" y1="80" x2="248" y2="310" stroke="#06b6d4" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 8"/>
+  <line x1="264" y1="80" x2="264" y2="310" stroke="#06b6d4" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 8"/>
+
+  <!-- Floating data dots -->
+  <circle cx="170" cy="135" r="1.8" fill="#06b6d4" opacity="0.6"/><circle cx="140" cy="200" r="1.2" fill="#22c55e" opacity="0.5"/>
+  <circle cx="345" cy="155" r="1.8" fill="#FFD700" opacity="0.5"/><circle cx="365" cy="240" r="1.2" fill="#06b6d4" opacity="0.4"/>
+  <circle cx="175" cy="250" r="1.2" fill="#FFD700" opacity="0.35"/><circle cx="340" cy="180" r="1" fill="#8b5cf6" opacity="0.35"/>
+
+  <!-- ===== COSMIC WEALTH ENERGY PARTICLES ===== -->
+  <g filter="url(#glowRune)">
+    <text x="128" y="170" font-family="'Segoe UI Symbol'" font-size="14" fill="#FFD700" opacity="0.35">◇</text>
+    <text x="384" y="170" font-family="'Segoe UI Symbol'" font-size="14" fill="#FFD700" opacity="0.35">◇</text>
+    <text x="128" y="235" font-family="'Segoe UI Symbol'" font-size="12" fill="#FFD700" opacity="0.25">◇</text>
+    <text x="384" y="235" font-family="'Segoe UI Symbol'" font-size="12" fill="#FFD700" opacity="0.25">◇</text>
+  </g>
+
+  <!-- === 长寿 === -->
+  <text x="256" y="432" text-anchor="middle" font-family="'Microsoft YaHei','PingFang SC','Noto Sans SC','SimHei','Segoe UI',sans-serif" font-size="92" font-weight="900" letter-spacing="18" fill="url(#textGrad)" filter="url(#glowStrong)">长寿</text>
+
+  <!-- Underscore: luminous bar -->
+  <rect x="140" y="446" width="232" height="4" rx="2" fill="url(#textGrad)" filter="url(#glowGold)" opacity="0.7"/>
+  <rect x="175" y="451" width="162" height="1.5" rx="1" fill="#06b6d4" opacity="0.3"/>
+
+  <!-- Wealth runes flanking 长寿 -->
+  <text x="120" y="440" font-family="'Segoe UI Symbol'" font-size="16" fill="url(#runeGold)" opacity="0.5" filter="url(#glowRune)">◇◇</text>
+  <text x="392" y="440" font-family="'Segoe UI Symbol'" font-size="16" fill="url(#runeGold)" opacity="0.5" filter="url(#glowRune)">◇◇</text>
+
+  <!-- HLTH -->
+  <text x="256" y="488" text-anchor="middle" font-family="'Segoe UI','SF Pro Display',Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="16" fill="url(#gold)" opacity="0.75">HLTH</text>
+
+  <!-- Sci-fi frame -->
+  <path d="M22 20 L22 65 M22 20 L65 20" fill="none" stroke="url(#cyanAccent)" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="22" cy="20" r="4.5" fill="#22c55e" opacity="0.85" filter="url(#glowCyan)"/>
+  <path d="M490 20 L490 65 M490 20 L447 20" fill="none" stroke="url(#cyanAccent)" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="490" cy="20" r="4.5" fill="#22c55e" opacity="0.85" filter="url(#glowCyan)"/>
+  <path d="M22 492 L22 447 M22 492 L65 492" fill="none" stroke="url(#cyanAccent)" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="22" cy="492" r="4.5" fill="#22c55e" opacity="0.85" filter="url(#glowCyan)"/>
+  <path d="M490 492 L490 447 M490 492 L447 492" fill="none" stroke="url(#cyanAccent)" stroke-width="2.5" opacity="0.65"/>
+  <circle cx="490" cy="492" r="4.5" fill="#22c55e" opacity="0.85" filter="url(#glowCyan)"/>
+
+  <!-- Outer borders -->
+  <circle cx="256" cy="256" r="250" fill="none" stroke="#FFD700" stroke-width="1.2" opacity="0.12"/>
+  <circle cx="256" cy="256" r="246" fill="none" stroke="#22c55e" stroke-width="0.6" opacity="0.08"/>
+
+  <!-- Rune ring: outer rune circle at 12 positions -->
+  <g font-family="'Segoe UI Symbol','Arial Unicode MS',sans-serif" font-size="10" fill="#FFD700" opacity="0.25">
+    <text x="256" y="26">⚴</text><text x="325" y="40">⚷</text>
+    <text x="376" y="90">⚸</text><text x="402" y="166">⚹</text>
+    <text x="402" y="346">⚹</text><text x="376" y="422">⚸</text>
+    <text x="325" y="472">⚷</text><text x="256" y="486">⚴</text>
+    <text x="187" y="472">⚷</text><text x="136" y="422">⚸</text>
+    <text x="110" y="346">⚹</text><text x="110" y="166">⚹</text>
+    <text x="136" y="90">⚸</text><text x="187" y="40">⚷</text>
+  </g>
+
+  <!-- Status bars -->
+  <rect x="218" y="10" width="8" height="4" rx="2" fill="#22c55e" opacity="0.5"/>
+  <rect x="230" y="10" width="8" height="4" rx="2" fill="#22c55e" opacity="0.7"/>
+  <rect x="242" y="10" width="8" height="4" rx="2" fill="#4ade80" opacity="0.9" filter="url(#glowGreen)"/>
+  <rect x="254" y="10" width="8" height="4" rx="2" fill="#FFD700" opacity="0.85" filter="url(#glowGold)"/>
+  <rect x="266" y="10" width="8" height="4" rx="2" fill="#FFD700" opacity="0.65"/>
+  <rect x="278" y="10" width="8" height="4" rx="2" fill="#F7931A" opacity="0.45"/>
+  <rect x="290" y="10" width="8" height="4" rx="2" fill="#F7931A" opacity="0.3"/>
+</svg>

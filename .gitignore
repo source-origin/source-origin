@@ -1,0 +1,25 @@
+# 凭证/密钥 - 绝不提交
+assets/privy-config.js
+assets/user-state.js
+assets/outreach-panel.js
+assets/deploy-matrix.js
+
+# 历史残页 - 不进公共仓库
+adapter-manager.html
+status.html
+agent-services-en.html
+EN_pub.html
+idx_master.html
+
+# 本地运行/备份/缓存
+_srv.pid
+*.bak
+*.bak-*
+*.bak-*.*
+.wrangler/
+gh_pages*.json
+.git-old-*/
+
+# 构建产物/依赖
+node_modules/
+dist/

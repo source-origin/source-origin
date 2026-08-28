@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>程序员指挥部 · Dev Command — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 程序员留言板：AI 智能体 / L5 结算 / 合约审计 / 爬虫 / 语音 开发者聚集地，未来新兴力量的协作区。">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+
+<style>
+  /* ============================================
+     Dev Command 留言板 · 局部样式
+     主题：Dark Cosmos（深蓝 #05060d + 金 #f0b90b + 青 #00d4ff）
+     复用 facade-v2 版型类：page-hero / badge / btn / container / section
+     ============================================ */
+  :root {
+    --dc-bg: #05060d;
+    --dc-panel: rgba(10, 17, 34, 0.72);
+    --dc-panel-solid: #0a1122;
+    --dc-line: rgba(120, 160, 255, 0.14);
+    --dc-gold: #f0b90b;
+    --dc-cyan: #00d4ff;
+    --dc-dim: #93a5cc;
+    --dc-text: #e7eefb;
+  }
+
+  /* ---------- Hero ---------- */
+  .dev-hero {
+    text-align: center;
+    padding: 96px 20px 40px;
+    position: relative;
+  }
+  .dev-hero h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    margin: 0 auto 14px;
+    max-width: 900px;
+    line-height: 1.2;
+    color: #00d4ff;
+    text-shadow: 0 0 18px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.28);
+  }
+  .dev-hero h1 .gold { color: var(--dc-gold); text-shadow: 0 0 18px rgba(240, 185, 11, 0.6); }
+  .dev-hero .dev-tagline {
+    color: var(--dc-dim);
+    font-size: 17px;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.9;
+  }
+  .dev-hero .dev-tagline .cyan { color: var(--dc-cyan); }
+
+  .board-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .board-section { padding: 40px 0 84px; }
+
+  /* ---------- 发布区 ---------- */
+  .composer {
+    background: var(--dc-panel);
+    border: 1px solid var(--dc-line);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 0 34px rgba(0, 212, 255, 0.06), 0 20px 48px rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+  }
+  .composer-title {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 2px;
+    color: var(--dc-gold);
+    margin-bottom: 14px;
+  }
+  .composer-title .sig { color: var(--dc-cyan); }
+  .dev-input, .dev-textarea {
+    width: 100%;
+    background: rgba(5, 6, 13, 0.85);
+    border: 1px solid var(--dc-line);
+    border-radius: 10px;
+    color: var(--dc-text);
+    font-family: inherit;
+    font-size: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .dev-input:focus, .dev-textarea:focus {
+    outline: none;
+    border-color: var(--dc-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.14);
+  }
+  .dev-textarea { min-height: 96px; resize: vertical; line-height: 1.7; }
+  .composer-field { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+  .composer-field label {
+    font-size: 12px; letter-spacing: 1.5px; color: var(--dc-dim);
+    white-space: nowrap; text-transform: uppercase;
+  }
+  .composer-field .dev-input { margin-bottom: 0; }
+  .composer-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    margin-top: 6px; flex-wrap: wrap;
+  }
+  .composer-hint { font-size: 12px; color: var(--dc-dim); }
+  .composer-hint b { color: var(--dc-cyan); font-weight: 600; }
+  .btn-pulse {
+    background: linear-gradient(135deg, #f0b90b, #f5c518);
+    color: #0a0d18;
+    border: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 12px 26px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 0 18px rgba(240, 185, 11, 0.35);
+  }
+  .btn-pulse:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(240,185,11,0.7); }
+  .btn-pulse:active { transform: translateY(0); }
+  .btn-pulse:disabled { opacity: .55; cursor: not-allowed; }
+
+  /* ---------- 留言列表头 ---------- */
+  .list-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+    margin: 8px 0 18px;
+  }
+  .list-head h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: 2px;
+    color: #fff; margin: 0;
+  }
+  .list-count {
+    font-size: 12px; color: var(--dc-dim);
+    border: 1px solid var(--dc-line); border-radius: 30px;
+    padding: 4px 14px; letter-spacing: 1px;
+  }
+  .list-count b { color: var(--dc-gold); }
+
+  /* ---------- 留言卡片 ---------- */
+  .msg-board { display: flex; flex-direction: column; gap: 16px; }
+  .msg-card {
+    background: var(--dc-panel);
+    border: 1px solid var(--dc-line);
+    border-left: 3px solid var(--dc-line);
+    border-radius: 14px;
+    padding: 18px 18px 12px;
+    animation: msgIn .45s cubic-bezier(.2,.7,.3,1) both;
+  }
+  .msg-card.hot { border-left-color: var(--dc-gold); }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .msg-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .avatar {
+    width: 40px; height: 40px; flex: 0 0 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px;
+    color: #07121f;
+    border: 1px solid rgba(240, 185, 11, 0.4);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.18);
+  }
+  .msg-who { flex: 1; min-width: 0; }
+  .msg-name { font-size: 14px; font-weight: 700; color: var(--dc-text); }
+  .msg-meta { font-size: 11px; color: var(--dc-dim); margin-top: 2px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .msg-time { letter-spacing: .5px; }
+  .msg-badge {
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dc-cyan);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 30px; padding: 1px 8px;
+  }
+  .msg-body { color: #c9d6ee; font-size: 14px; line-height: 1.8; margin: 0 0 6px 52px; word-break: break-word; }
+  .msg-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 2px 0 10px 52px; }
+  .tag {
+    font-size: 11px; color: var(--dc-gold);
+    background: rgba(240, 185, 11, 0.08);
+    border: 1px solid rgba(240, 185, 11, 0.28);
+    border-radius: 30px; padding: 2px 10px; letter-spacing: .5px;
+  }
+  .msg-actions {
+    display: flex; align-items: center; gap: 8px;
+    border-top: 1px solid var(--dc-line);
+    padding-top: 10px; margin-top: 4px;
+  }
+  .act-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--dc-line);
+    color: var(--dc-dim);
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color .2s, border-color .2s, background .2s;
+  }
+  .act-btn:hover { color: var(--dc-text); border-color: var(--dc-cyan); }
+  .act-btn .num { font-weight: 700; }
+  .act-like.liked {
+    color: var(--dc-gold);
+    border-color: rgba(240, 185, 11, 0.55);
+    background: rgba(240, 185, 11, 0.08);
+  }
+  .act-like.liked .num { color: var(--dc-gold); }
+  .act-reply.open { color: var(--dc-cyan); border-color: var(--dc-cyan); }
+
+  /* ---------- 回复 ---------- */
+  .reply-box { display: none; margin: 6px 0 0 52px; }
+  .reply-box.open { display: block; animation: msgIn .3s ease both; }
+  .reply-box .dev-textarea { min-height: 56px; margin-bottom: 8px; }
+  .reply-foot { display: flex; gap: 10px; justify-content: flex-end; }
+  .btn-mini {
+    font-size: 12px; padding: 7px 14px; border-radius: 8px;
+    cursor: pointer; border: 1px solid var(--dc-line);
+    background: rgba(255,255,255,0.03); color: var(--dc-dim);
+    transition: all .2s;
+  }
+  .btn-mini:hover { color: var(--dc-text); border-color: var(--dc-cyan); }
+  .btn-mini.primary {
+    background: linear-gradient(135deg, #f0b90b, #f5c518);
+    color: #0a0d18; font-weight: 700; border: none;
+  }
+  .btn-mini.primary:hover { box-shadow: 0 0 16px rgba(240,185,11,0.6); }
+  .reply-list { list-style: none; margin: 10px 0 0 52px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .reply-item {
+    background: rgba(5, 6, 13, 0.55);
+    border: 1px solid rgba(120,160,255,0.10);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 13px; line-height: 1.7; color: #bfcbe6;
+  }
+  .reply-item b { color: var(--dc-cyan); font-weight: 600; }
+  .reply-item .reply-time { float: right; font-size: 10px; color: var(--dc-dim); margin-top: 2px; }
+
+  .msg-empty {
+    text-align: center; color: var(--dc-dim); padding: 50px 0; font-size: 15px;
+    border: 1px dashed var(--dc-line); border-radius: 14px;
+  }
+
+  /* ---------- 响应式（对齐 facade-v2 断点 768 / 480） ---------- */
+  @media (max-width: 768px) {
+    .dev-hero { padding: 78px 16px 30px; }
+    .dev-hero h1 { font-size: 28px; }
+    .composer-foot { flex-direction: column; align-items: stretch; }
+    .btn-pulse { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .board-wrap { padding: 0 14px; }
+    .msg-body, .msg-tags, .reply-box, .reply-list { margin-left: 0; }
+    .composer .composer-field { flex-direction: column; align-items: stretch; }
+    .msg-card { padding: 14px 12px 10px; }
+    .msg-actions { flex-wrap: wrap; }
+    .avatar { width: 34px; height: 34px; flex-basis: 34px; font-size: 13px; }
+  }
+</style>
+</head>
+<body data-page="developers">
+
+<main id="app">
+
+  <!-- ===== Hero ===== -->
+  <section class="dev-hero">
+    <span class="badge">⌨️ Dev Command · 程序员指挥部</span>
+    <h1>程序员指挥部 · <span class="gold">Dev Command</span></h1>
+    <p class="dev-tagline">
+      未来新兴力量的 <span class="cyan">开发者聚集地</span>。<br>
+      从 <span class="cyan">L5 清算结算</span> 到 <span class="cyan">AI 智能体 / 合约审计 / 爬虫 / 语音</span>，
+      你的每个信号都注入源·ORIGIN 的进化协议。
+    </p>
+  </section>
+
+  <section class="board-section">
+    <div class="board-wrap">
+
+      <!-- ===== 留言发布区 ===== -->
+      <div class="composer">
+        <div class="composer-title"><span class="sig">▲</span> 发送信号 / SEND SIGNAL</div>
+        <textarea id="msgText" class="dev-textarea" maxlength="500" placeholder="输入你的留言…（技术分享 / 需求 / 求助 / 想法）"></textarea>
+        <div class="composer-field">
+          <label for="msgName">昵称</label>
+          <input id="msgName" class="dev-input" type="text" maxlength="20" placeholder="留空则显示「匿名信号」">
+        </div>
+        <div class="composer-foot">
+          <span class="composer-hint"><b id="charCount">0</b> / 500</span>
+          <button id="publishBtn" class="btn-pulse" type="button">🚀 发射信号 / 发布留言</button>
+        </div>
+      </div>
+
+      <!-- ===== 留言列表头 ===== -->
+      <div class="list-head" style="margin-top:34px">
+        <h2>▸ 接收到的信号</h2>
+        <span class="list-count">SIGNALS <b id="msgCount">0</b></span>
+      </div>
+
+      <!-- ===== 留言列表区 ===== -->
+      <div class="msg-board" id="msgBoard"></div>
+      <p class="msg-empty" id="msgEmpty" style="display:none">暂无信号，发送第一条吧 🚀</p>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 内置示例数据（科技风） ================= */
+  var seed = [
+    {
+      name: 'L5·算力先知',
+      time: '2026-08-28 10:42',
+      badge: 'L5 结算',
+      text: '刚刚把 AgentAgreement 的 9 态协议状态机跑通全量测试。ECDSA 签名 + 修订链在链上结算时像齿轮咬合一样顺滑，L5 这层真是智能体经济的结算神经中枢。',
+      tags: ['#L5结算', '#智能体', '#Solidity'],
+      likes: 12, liked: false, hot: true,
+      replies: [
+        { name: '合约审计员·Z', time: '11:05', text: '赞！9 态状态机我审过，边界处理很干净，不容易出重入。' }
+      ]
+    },
+    {
+      name: '爬虫之王',
+      time: '2026-08-28 09:18',
+      badge: '数据采集',
+      text: 'Scrapling 的自适应选择器太好用了，反反爬 + MCP 直连 AI，采集效率直接翻倍。有没有人想过把它和 L5 结算接到一起，按条计价卖数据？',
+      tags: ['#爬虫', '#MCP', '#数据资产'],
+      likes: 8, liked: false, hot: false,
+      replies: []
+    },
+    {
+      name: '合约审计员·Z',
+      time: '2026-08-27 22:30',
+      badge: '合约审计',
+      text: 'Scout Audit 引擎接进来跑了一遍 L5 三件套，没抓到高危漏洞，只有两个 low 级提示。这波「先审计后上线」的流程建议全站推广，安全才是协议的地基。',
+      tags: ['#合约审计', '#安全', '#ScoutAudit'],
+      likes: 15, liked: false, hot: true,
+      replies: [
+        { name: 'L5·算力先知', time: '23:12', text: '同意，「先审计后上线」应该写进标准。' },
+        { name: '匿名信号', time: '07:49', text: '能不能出一份审计 checklist 模板？' }
+      ]
+    },
+    {
+      name: '语音哥',
+      time: '2026-08-27 17:06',
+      badge: '语音',
+      text: 'Pipecat + Index-TTS 组合拳亲测丝滑，实时语音 Agent 已经能和我正常对话了。下一步想对接 L5 结算，让语音代理按次收费变现。',
+      tags: ['#语音Agent', '#TTS', '#变现'],
+      likes: 7, liked: false, hot: false,
+      replies: []
+    },
+    {
+      name: 'Agent 工程师·K',
+      time: '2026-08-27 14:22',
+      badge: 'AI 智能体',
+      text: '把 CrewAI 的 Agent/Task/Crew 编了个多智能体结算流水线，配合 L5Delegation 的周期预算做授权消费，调度起来非常顺手。开源→提纯→封装这套真的能打。',
+      tags: ['#Agent框架', '#多智能体', '#Delegation'],
+      likes: 11, liked: false, hot: false,
+      replies: [
+        { name: '匿名信号', time: '15:01', text: '求部署教程，想用在生产环境。' }
+      ]
+    },
+    {
+      name: '未知航行员',
+      time: '2026-08-26 20:55',
+      badge: '想法',
+      text: '总觉得「权力来自创新，而非资本」这句话不该只是主页 slogan。我们能不能搞个开发者贡献排行，让给协议贡献代码的人直接获得链上声誉？',
+      tags: ['#治理', '#贡献榜', '#Orbit'],
+      likes: 19, liked: false, hot: true,
+      replies: [
+        { name: 'L5·算力先知', time: '21:33', text: '强烈支持，L5 身份层本来就有排行榜 + 推荐分润，正好接上！' }
+      ]
+    }
+  ];
+
+  /* 当前留言列表（时间倒序），新发布插到最前 */
+  var messages = [];
+  var msgSeq = 1;
+  var replySeq = 1;
+
+  /* 头像颜色池（深色底 + 金/青描边，字色深底） */
+  var AVATAR_COLORS = ['#00d4ff', '#f0b90b', '#4ade80', '#c084fc', '#fb7185', '#38bdf8'];
+  function avatarColorFor(name) {
+    var n = 0;
+    for (var i = 0; i < name.length; i++) { n += name.charCodeAt(i); }
+    return AVATAR_COLORS[n % AVATAR_COLORS.length];
+  }
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function nowTime() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+      ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function normName(n) { return (n || '').trim() || '匿名信号'; }
+  function firstChar(n) { return esc((n || '匿').charAt(0).toUpperCase()); }
+
+  /* ================= 渲染 ================= */
+  function renderBoard() {
+    var board = document.getElementById('msgBoard');
+    var empty = document.getElementById('msgEmpty');
+    var count = document.getElementById('msgCount');
+
+    count.textContent = messages.length;
+
+    if (!messages.length) {
+      board.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    board.innerHTML = messages.map(function (m) {
+      var avatarColor = avatarColorFor(m.name);
+      var tags = m.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('');
+      var likeClass = m.liked ? 'liked' : '';
+      var replies = (m.replies || []).map(function (r) {
+        return '<li class="reply-item"><b>' + esc(r.name) + '</b>' +
+          ' <span class="reply-time">' + esc(r.time) + '</span><br>' + esc(r.text) + '</li>';
+      }).join('');
+
+      return '' +
+        '<div class="msg-card' + (m.hot ? ' hot' : '') + '" data-id="' + m.id + '">' +
+          '<div class="msg-head">' +
+            '<span class="avatar" style="background:' + avatarColor + '">' + firstChar(m.name) + '</span>' +
+            '<div class="msg-who">' +
+              '<div class="msg-name">' + esc(m.name) + '</div>' +
+              '<div class="msg-meta">' +
+                '<span class="msg-time">' + esc(m.time) + '</span>' +
+                (m.badge ? '<span class="msg-badge">' + esc(m.badge) + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<p class="msg-body">' + esc(m.text) + '</p>' +
+          (tags ? '<div class="msg-tags">' + tags + '</div>' : '') +
+          '<div class="msg-actions">' +
+            '<button class="act-btn act-like ' + likeClass + '" data-act="like" data-id="' + m.id + '">' +
+              '<span class="heart">❤️</span> <span class="num">' + (m.likes || 0) + '</span>' +
+            '</button>' +
+            '<button class="act-btn act-reply" data-act="toggle" data-id="' + m.id + '">' +
+              '<span>💬</span> 回复' +
+            '</button>' +
+            (m.replies && m.replies.length ? '<span style="font-size:11px;color:var(--dc-dim)">↳ ' + m.replies.length + ' 条回复</span>' : '') +
+          '</div>' +
+          (m.replies && m.replies.length ? '<ul class="reply-list">' + replies + '</ul>' : '') +
+          '<div class="reply-box" data-box="' + m.id + '">' +
+            '<textarea class="dev-textarea" maxlength="200" placeholder="写下你的回复…"></textarea>' +
+            '<div class="reply-foot">' +
+              '<button class="btn-mini" data-act="cancel" data-id="' + m.id + '">取消</button>' +
+              '<button class="btn-mini primary" data-act="reply" data-id="' + m.id + '">发送回复</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+
+    // 初始化各卡片的回复框/按钮状态
+    messages.forEach(function (m) {
+      var card = board.querySelector('.msg-card[data-id="' + m.id + '"]');
+      if (!card) return;
+      var toggle = card.querySelector('.act-reply');
+      var box = card.querySelector('[data-box="' + m.id + '"]');
+      if (toggle) toggle.classList.toggle('open', !!m._open);
+      if (box) box.classList.toggle('open', !!m._open);
+      if (box && m._open) {
+        var ta = box.querySelector('.dev-textarea');
+        if (ta) ta.focus();
+      }
+    });
+  }
+
+  /* ================= 事件委托：点赞 / 回复展开 / 取消 / 提交回复 ================= */
+  function bindBoard() {
+    var board = document.getElementById('msgBoard');
+    board.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-act]');
+      if (!btn) return;
+      var act = btn.getAttribute('data-act');
+      var id = parseInt(btn.getAttribute('data-id'), 10);
+      var msg = findMsg(id);
+      if (!msg) return;
+
+      if (act === 'like') {
+        msg.liked = !msg.liked;
+        msg.likes += (msg.liked ? 1 : -1);
+        renderBoard();
+      } else if (act === 'toggle') {
+        msg._open = !msg._open;
+        renderBoard();
+      } else if (act === 'cancel') {
+        msg._open = false;
+        renderBoard();
+      }
+    });
+
+    // 提交回复（用 submit 事件绑定每个卡片上的回复框）
+    board.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-act="reply"]');
+      if (!btn) return;
+      var id = parseInt(btn.getAttribute('data-id'), 10);
+      var msg = findMsg(id);
+      if (!msg) return;
+      var box = board.querySelector('[data-box="' + id + '"]');
+      var ta = box ? box.querySelector('.dev-textarea') : null;
+      var text = (ta ? ta.value : '').trim();
+      if (!text) return;
+      msg.replies = msg.replies || [];
+      msg.replies.push({ name: '我呢', time: '刚刚', text: text });
+      if (ta) ta.value = '';
+      msg._open = true;
+      renderBoard();
+    });
+  }
+
+  function findMsg(id) {
+    for (var i = 0; i < messages.length; i++) { if (messages[i].id === id) return messages[i]; }
+    return null;
+  }
+
+  /* ================= 发布留言 ================= */
+  function bindComposer() {
+    var text = document.getElementById('msgText');
+    var name = document.getElementById('msgName');
+    var btn = document.getElementById('publishBtn');
+    var count = document.getElementById('charCount');
+
+    function updateCount() { count.textContent = text.value.length; }
+    text.addEventListener('input', updateCount);
+
+    btn.addEventListener('click', function () {
+      var body = text.value.trim();
+      if (!body) { text.focus(); return; }
+      var who = normName(name.value);
+      var msg = {
+        id: msgSeq++,
+        name: who,
+        time: nowTime(),
+        badge: '新信号',
+        text: body,
+        tags: [],
+        likes: 0, liked: false, hot: true,
+        replies: [],
+        _open: false
+      };
+      messages.unshift(msg);   // 追加到列表顶部
+      text.value = '';
+      name.value = '';
+      updateCount();
+      renderBoard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ================= init（示例数据按时间倒序） ================= */
+  function boot() {
+    messages = seed.map(function (s) {
+      s.id = msgSeq++;
+      return s;
+    });
+    // 时间倒序（示例已近到远，保持）
+    renderBoard();
+    bindBoard();
+    bindComposer();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>
