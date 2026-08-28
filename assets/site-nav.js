@@ -13,7 +13,7 @@
 
   
   // HKBTX 金色香港 BTC 交易所地址（集中配置：本地预览 / 部署后换线上域名）
-  var HKBTX_URL = 'http://127.0.0.1:8800/';
+  var HKBTX_URL = 'https://source-origin.github.io/hkbtx/';
 
   var NAV =  [
     { id: 'home',     label: '首页',        href: 'index.html' },
