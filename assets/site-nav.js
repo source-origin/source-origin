@@ -22,7 +22,7 @@
     { id: 'cases',    label: '案例',        href: 'cases.html' },
     { id: 'developers', label: 'Dev Command', href: 'developer-board.html' },
     { id: 'agents', label: 'Agent Command', href: 'agent-command.html' },
-    { id: 'about',    label: '关于',        href: 'about.html' },
+    { id: 'about',    label: '使命',        href: 'mission.html' },
     { id: 'hkbtx',    label: 'HKBTX 交易所', href: HKBTX_URL },
     { id: 'services', label: 'AI 服务',     href: 'agent-services.html' }
   ];
@@ -97,7 +97,7 @@
       '        <h4>了解更多</h4>' +
       '        <a href="cases.html">案例</a>' +
       '        <a href="developer-board.html">Dev Command</a>' +
-      '        <a href="about.html">关于</a>' +
+      '        <a href="mission.html">使命</a>' +
       '        <a href="agent-services.html" target="_blank">AI 服务</a>' +
       '      </div>' +
       '      <div>' +
