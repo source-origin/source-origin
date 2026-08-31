@@ -16,33 +16,33 @@
 <main id="app">
 
   <section class="page-hero">
-    <span class="badge">🔫 武器库</span>
-    <h1>24+ 开源项目 · 提纯成果</h1>
-    <p class="page-sub">我们把高价值的开源项目与前沿协议深度学习、拆解、精炼，沉淀为可复用的能力资产。这是「智能体工厂」的原料库。</p>
+    <span class="badge" data-i18n="weapon.hero.badge">🔫 武器库</span>
+    <h1 data-i18n="weapon.hero.title">24+ 开源项目 · 提纯成果</h1>
+    <p class="page-sub" data-i18n="weapon.hero.sub">我们把高价值的开源项目与前沿协议深度学习、拆解、精炼，沉淀为可复用的能力资产。这是「智能体工厂」的原料库。</p>
     <div class="search-box">
-      <input type="text" id="weaponSearch" class="search-input" placeholder="🔍 搜索武器库… (如 Agent / 爬虫 / 语音)">
+      <input type="text" id="weaponSearch" class="search-input" data-i18n-ph="weapon.search.placeholder" placeholder="🔍 搜索武器库… (如 Agent / 爬虫 / 语音)">
     </div>
     <div class="filter-pills" id="filterPills">
-      <button class="pill active" data-cat="all">全部 <b id="cntAll"></b></button>
-      <button class="pill" data-cat="agent">Agent 框架</button>
-      <button class="pill" data-cat="infra">平台/基建</button>
-      <button class="pill" data-cat="contract">结算/合约</button>
-      <button class="pill" data-cat="crawl">数据采集</button>
-      <button class="pill" data-cat="video">视频/生成</button>
-      <button class="pill" data-cat="voice">语音</button>
+      <button class="pill active" data-cat="all"><span data-i18n="weapon.filter.all">全部</span> <b id="cntAll"></b></button>
+      <button class="pill" data-cat="agent" data-i18n="weapon.filter.agent">Agent 框架</button>
+      <button class="pill" data-cat="infra" data-i18n="weapon.filter.infra">平台/基建</button>
+      <button class="pill" data-cat="contract" data-i18n="weapon.filter.contract">结算/合约</button>
+      <button class="pill" data-cat="crawl" data-i18n="weapon.filter.crawl">数据采集</button>
+      <button class="pill" data-cat="video" data-i18n="weapon.filter.video">视频/生成</button>
+      <button class="pill" data-cat="voice" data-i18n="weapon.filter.voice">语音</button>
     </div>
     <div class="status-pills" id="statusPills">
-      <button class="pill st active" data-cat="all">全部状态</button>
-      <button class="pill st" data-cat="activated">🟢 已激活 <b id="cntActivated"></b></button>
-      <button class="pill st" data-cat="ready">🟡 可激活 <b id="cntReady"></b></button>
-      <button class="pill st" data-cat="applicable">⚪ 待申请 <b id="cntApplicable"></b></button>
+      <button class="pill st active" data-cat="all" data-i18n="weapon.status.all">全部状态</button>
+      <button class="pill st" data-cat="activated">🟢 <span data-i18n="weapon.status.activated">已激活</span> <b id="cntActivated"></b></button>
+      <button class="pill st" data-cat="ready">🟡 <span data-i18n="weapon.status.ready">可激活</span> <b id="cntReady"></b></button>
+      <button class="pill st" data-cat="applicable">⚪ <span data-i18n="weapon.status.applicable">待申请</span> <b id="cntApplicable"></b></button>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="weapon-grid" id="weaponGrid"></div>
-      <p class="text-muted" id="weaponEmpty" style="display:none;text-align:center;padding:40px 0">没有匹配的武器，换个关键词试试。</p>
+      <p class="text-muted" id="weaponEmpty" style="display:none;text-align:center;padding:40px 0" data-i18n="weapon.empty">没有匹配的武器，换个关键词试试。</p>
     </div>
   </section>
 

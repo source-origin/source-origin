@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Undying Network · Global Developer Beta Invitation — on-chain reform that irrevocably locks developer rights and rebuilds open-source production relations.">
+<title>Undying Network · Global Developer Beta | Source·ORIGIN</title>
+<style>
+  :root{--bg:#0a0e1a;--card:#111827;--line:#1f2937;--cyan:#00d4ff;--blue:#7890ff;--green:#34d399;--gold:#f5c518;--text:#e5e7eb;--dim:#9ca3af}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:"Bai Jamjuree","Noto Sans SC",-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.7}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{color:#66e6ff}
+
+  .uwrap{max-width:1040px;margin:0 auto;padding:56px 22px 90px}
+
+  /* Hero */
+  .hero{text-align:center;padding:34px 0 26px}
+  .hero .badge{display:inline-block;background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.35);border-radius:30px;padding:6px 18px;font-size:13px;letter-spacing:2px;font-weight:600}
+  .hero h1{font-size:46px;margin:22px 0 12px;font-weight:800;letter-spacing:3px;
+    background:linear-gradient(90deg,var(--cyan),var(--blue));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .subtitle{max-width:820px;margin:0 auto;color:#cfe0ff;font-size:17px;line-height:1.9}
+
+  /* Section shell */
+  section{margin-top:54px}
+  .sec-head{text-align:center;margin-bottom:26px}
+  .sec-head h2{font-size:26px;color:#fff;display:inline-flex;align-items:center;gap:12px}
+  .sec-head h2::before,.sec-head h2::after{content:'';width:26px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan))}
+  .sec-head h2::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+  .sec-head p{color:var(--dim);font-size:14px;margin-top:8px;letter-spacing:1px}
+
+  /* Intro narrative */
+  .intro-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px}
+  .intro-card p{color:#d7e2ff;font-size:15.5px}
+  .intro-card p + p{margin-top:14px}
+  .intro-card .strong{font-weight:700;color:#fff}
+  .intro-card .bottleneck{margin-top:14px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(245,197,24,.06);border-radius:8px;color:#ffe9b8;font-size:14.5px}
+
+  /* Solution lead */
+  .sec-lead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 26px;text-align:center;font-size:16.5px;color:#e8f0ff;margin-bottom:18px}
+  .sec-lead b{color:var(--cyan)}
+
+  /* Capability cards */
+  .caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .cap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 22px 58px;position:relative;transition:.2s}
+  .cap:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,212,255,.08)}
+  .cap .check{position:absolute;left:18px;top:20px;width:26px;height:26px;border-radius:50%;background:rgba(0,212,255,.15);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .cap h3{font-size:17px;color:#fff;margin-bottom:8px}
+  .cap p{font-size:13.5px;color:var(--dim)}
+  .cap p b{color:var(--cyan)}
+
+  /* Compliance */
+  .compliance{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.28);border-radius:14px;padding:20px 24px;font-size:14px;color:#c6f6dc}
+  .compliance b{color:var(--green)}
+
+  /* Tracks */
+  .tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .track{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;cursor:pointer;transition:.2s;position:relative}
+  .track:hover{border-color:var(--cyan);transform:translateY(-3px)}
+  .track .dot{font-size:20px}
+  .track .tag{display:inline-block;margin-left:8px;font-size:11px;border-radius:20px;padding:3px 12px;vertical-align:middle}
+  .track.seed .tag{background:rgba(52,211,153,.14);color:var(--green);border:1px solid rgba(52,211,153,.35)}
+  .track.contrib .tag{background:rgba(245,197,24,.14);color:#fde68a;border:1px solid rgba(245,197,24,.35)}
+  .track.obs .tag{background:rgba(120,144,255,.14);color:#b8c6ff;border:1px solid rgba(120,144,255,.35)}
+  .track h3{font-size:18px;color:#fff;margin:12px 0 10px}
+  .track .roles{font-size:13px;color:var(--dim);margin-bottom:6px}
+  .track .priv-title{font-size:12px;color:var(--cyan);font-weight:700;margin-bottom:4px}
+  .track ul{list-style:none;padding:0}
+  .track li{font-size:13px;color:var(--dim);padding-left:14px;position:relative}
+  .track li::before{content:'·';position:absolute;left:2px;color:var(--cyan)}
+
+  /* CTA hint */
+  .cta-hint{text-align:center;color:var(--gold);font-size:14px;margin:34px 0 4px;letter-spacing:1px}
+
+  /* Form */
+  .form-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;max-width:640px;margin:0 auto}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13.5px;color:#b9c7ef;margin-bottom:7px;font-weight:600}
+  .field input,.field select,.field textarea{width:100%;background:#0f172a;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:#e5e7eb;font-size:14px;font-family:inherit;transition:.2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.12)}
+  .field textarea{min-height:96px;resize:vertical}
+  .form-msg{display:none;padding:12px 16px;border-radius:10px;font-size:14px;margin-top:14px}
+  .form-msg.ok{display:block;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:#c6f6dc}
+  .form-msg.err{display:block;background:rgba(255,154,154,.12);border:1px solid rgba(255,154,154,.35);color:#ffc4c4}
+
+  /* CTA */
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:18px 0 10px}
+  .btn{display:inline-block;padding:14px 30px;border-radius:34px;font-weight:700;font-size:15px;transition:.2s;text-align:center}
+  .btn-primary{background:linear-gradient(90deg,var(--cyan),var(--blue));color:#0a0e1a}
+  .btn-primary:hover{box-shadow:0 8px 30px rgba(0,212,255,.4);color:#0a0e1a;transform:translateY(-2px)}
+  .btn-ghost{border:1px solid rgba(120,144,255,.5);color:#cfe0ff}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* Footer slogan */
+  .finale{text-align:center;margin-top:64px;padding-top:34px;border-top:1px solid var(--line)}
+  .finale .slogan{font-size:19px;font-weight:700;background:linear-gradient(90deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.7}
+  .finale .slogan-line2{margin-top:6px}
+  .finale .sub{color:var(--dim);font-size:13px;margin-top:10px;letter-spacing:2px}
+
+  @media (max-width:640px){.hero h1{font-size:30px}.uwrap{padding:34px 16px 60px}}
+</style>
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+</head>
+<body data-page="undying" style="padding-top:56px">
+<div class="uwrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <span class="badge" data-i18n="undying.badge">Global Developer Beta Invitation</span>
+    <h1 data-i18n="undying.title">Undying Network・Global Developer Beta Invitation</h1>
+    <p class="subtitle">The open-source revolution has already begun, yet most innovations remain trapped within centralized off-chain ledgers. Only Undying Network leverages blockchain to permanently lock creators' rights — making contributions <strong>indestructible, inalienable, and tamper-proof</strong>.</p>
+  </header>
+
+  <!-- ============ Ecosystem Preface ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secIntroTitle">Ecosystem Preface</h2>
+      <p data-i18n="undying.secIntroSub">Rewriting two decades of open-source rules</p>
+    </div>
+    <div class="intro-card">
+      <p>For twenty years, open-source has been an unspoken form of exploitation. Countless developers contribute code, architectures, AI-agents, documentation and technical breakthroughs, forming the foundation of the global internet and AI industry. Nevertheless, commercial gains, platform valuations and capital dividends are overwhelmingly captured by centralized platforms and investors.</p>
+      <p><strong>Developers do most of the work and receive the least reward.</strong> Contributions lack formal on-chain attestation, verifiable credentials and enforced distribution mechanisms. Revenue sharing depends entirely on personal relationships, licenses and moral restraint. Records can be altered, contributions erased, and rights left unprotected.</p>
+      <p>Around the world, many teams are waking up and rebuilding open-source production relationships: implementing repository mirroring, contribution metrics, value tagging and contribution accounting.</p>
+      <p class="bottleneck"><strong>Yet nearly all face one critical limitation: They can calculate your value, but they cannot lock in your rewards.</strong> All metrics, weights and allocations run inside centralized databases, subject to modification, reset or reversal at any time.</p>
+    </div>
+  </section>
+
+  <!-- ============ The Complete Solution ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secSolutionTitle">The Complete Solution</h2>
+      <p data-i18n="undying.secSolutionSub">Off-chain for precise value computation; on-chain for permanent rights anchoring</p>
+    </div>
+    <div class="sec-lead"><b>Off-chain for precise value computation; on-chain for permanent rights anchoring.</b> Instead of rebuilding everything from scratch, we supply the final missing puzzle piece for the open-source revolution.</div>
+    <div class="caps">
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap1.title">Full Mirror of Global Open-Source Repositories</h3><p>Preserve complete code, commit history, PR records and contribution graphs, permanently recording every developer's work.</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap2.title">AI-Powered Multi-Dimensional Value Tagging System</h3><p>Automatically tag every line of code, every iteration and innovation across four dimensions: <b>technical value, commercial value, social value and ecosystem value</b> — to quantify real-world merit.</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap3.title">Objective Intelligent Valuation Engine</h3><p>Calculates project and contribution valuation based on statistical weight, ecosystem dependency, industry influence and code quality, free from arbitrary human intervention.</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap4.title">Blockchain-Enabled Permanent Attestation</h3><p>Contribution fingerprints, contributor identities and right credentials are written on-chain. Records cannot be tampered with; achievements cannot be erased; rights persist indefinitely.</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap5.title">Smart-Contract-Driven Automatic Revenue Distribution</h3><p>Commercial returns are no longer discretionary handouts from platforms. On-chain smart contracts distribute rewards strictly according to verified contribution weights. <b>Creators earn returns; builders gain equity.</b></p></div>
+    </div>
+  </section>
+
+  <!-- ============ Compliance Note ============ -->
+  <section>
+    <div class="sec-head"><h2 data-i18n="undying.secComplianceTitle">Compliance Note</h2></div>
+    <div class="compliance">
+      This beta focuses purely on <b>technical attestation, value evaluation and ecosystem credentialing</b>. All credentials serve as internal contribution proof within the ecosystem. <b>No fundraising, no speculative trading, no secondary-market operations.</b> This is a technical reconstruction of open-source production relationships.
+    </div>
+  </section>
+
+  <!-- ============ Three-Tier Global Developer Beta Access ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secTracksTitle">Three-Tier Global Developer Beta Access</h2>
+      <p data-i18n="undying.secTracksSub">Choose your identity and join the build</p>
+    </div>
+    <div class="tracks">
+      <div class="track seed" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🟢</span><span class="tag" data-i18n="undying.trackSeedTag">Whitelist priority access</span></div>
+        <h3 data-i18n="undying.trackSeedTitle">Core Seed Builders</h3>
+        <p class="roles">For high-star GitHub maintainers, AI-agent developers, ecosystem architects, Solidity protocol developers, open-source toolchain authors.</p>
+        <div class="priv-title">Privileges:</div>
+        <ul>
+          <li>Early access and deploy your own projects for the on-chain attestation pilot</li>
+          <li>Participate in core DAO governance to shape ecosystem rules</li>
+          <li>Highest-tier weight for contribution revenue sharing</li>
+        </ul>
+      </div>
+      <div class="track contrib" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🟡</span><span class="tag" data-i18n="undying.trackContributorTag">Application-review access</span></div>
+        <h3 data-i18n="undying.trackContributorTitle">Official Contributors</h3>
+        <p class="roles">For full-stack engineers, frontend &amp; backend developers, security auditors, AI-agent tuners, prompt engineers, documentation contributors, community operators.</p>
+        <div class="priv-title">Privileges:</div>
+        <ul>
+          <li>Full access to the Undying Network code hosting &amp; evaluation system</li>
+          <li>Auto-tagging, auto-attestation and continuous weight accumulation for all contributions</li>
+          <li>Permanent membership within the ecosystem contribution reward pool</li>
+        </ul>
+      </div>
+      <div class="track obs" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🔵</span><span class="tag" data-i18n="undying.trackObserverTag">Open registration, read-only</span></div>
+        <h3 data-i18n="undying.trackObserverTitle">Ecosystem Observers</h3>
+        <p class="roles">For technical researchers, enterprise tech leads, industry analysts, tech investors.</p>
+        <div class="priv-title">Privileges:</div>
+        <ul>
+          <li>Browse mirrored global open-source repositories</li>
+          <li>Access standardized AI-driven project evaluation reports</li>
+          <li>Join industry discussions and ecosystem observation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <p class="cta-hint">Global limited beta slots. Approved applicants receive exclusive Undying Network beta access credentials.</p>
+  <div class="cta-row">
+    <a href="#apply" class="btn btn-primary" data-i18n="undying.ctaApply">Submit Global Beta Application</a>
+    <a href="whitepaper.html" class="btn btn-ghost" data-i18n="undying.ctaPaper">Read Technical Whitepaper</a>
+    <a href="index.html" class="btn btn-ghost" data-i18n="undying.ctaRepo">Visit Source-ORIGIN GitHub Repository</a>
+  </div>
+
+  <!-- ============ Application Form ============ -->
+  <section id="apply">
+    <div class="sec-head">
+      <h2 data-i18n="undying.secFormTitle">Beta Application</h2>
+      <p data-i18n="undying.secFormSub">Submit now to join the first wave of builders</p>
+    </div>
+    <div class="form-card">
+      <form id="betaForm" novalidate>
+        <div class="field">
+          <label for="f_github">GitHub profile URL *</label>
+          <input type="text" id="f_github" name="github" placeholder="https://github.com/yourname" required>
+        </div>
+        <div class="field">
+          <label for="f_stack">Core technical skills *</label>
+          <input type="text" id="f_stack" name="stack" placeholder="e.g. Go / Rust / AI Agent / Solidity / Frontend" required>
+        </div>
+        <div class="field">
+          <label for="f_project">Links to representative open-source projects</label>
+          <input type="text" id="f_project" name="project" placeholder="https://github.com/you/awesome-project">
+        </div>
+        <div class="field">
+          <label for="f_type">Applicant role *</label>
+          <select id="f_type" name="type" required>
+            <option value="">Select your applicant role</option>
+            <option value="seed" data-i18n="undying.form.typeSeed">Seed Builder</option>
+            <option value="contributor" data-i18n="undying.form.typeContributor">Official Contributor</option>
+            <option value="observer" data-i18n="undying.form.typeObserver">Ecosystem Observer</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_bio">Short statement: What value will you bring to the Undying Network ecosystem? *</label>
+          <textarea id="f_bio" name="bio" placeholder="One sentence on your background and the value you can bring to the Undying Network…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;border:none;cursor:pointer" data-i18n="undying.form.submit">Submit Application</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ Footer Slogan ============ -->
+  <div class="finale">
+    <div class="slogan">Code lives forever; contributions never perish; builders shall not be exploited.</div>
+    <div class="slogan slogan-line2">Undying Network — Reimagining production relations for humanity's digital civilization.</div>
+    <div class="sub" data-i18n="common.motto">Power comes from innovation, not capital</div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('betaForm');
+  var msg = document.getElementById('formMsg');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var github = form.github.value.trim();
+    var stack = form.stack.value.trim();
+    var type = form.type.value.trim();
+    var bio = form.bio.value.trim();
+    var project = form.project.value.trim();
+
+    msg.className = 'form-msg';
+    if (!github || !stack || !type || !bio) {
+      msg.classList.add('err');
+      msg.textContent = (window.__ORIGIN_I18N__ ? window.__ORIGIN_I18N__.t('undying.form.required') : 'Please fill in all required fields.');
+      return;
+    }
+
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = '⏳ ...';
+    msg.classList.remove('ok', 'err');
+
+    // Mapped to /api/inquiry field shape (contact required)
+    var payload = {
+      name: stack,
+      contact: github,
+      service: type,
+      message: 'Applicant type: ' + type + '\nProject: ' + (project || '(none)') + '\nAbout: ' + bio
+    };
+
+    fetch('/api/inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        msg.classList.add(res.ok ? 'ok' : 'err');
+        var i18n = window.__ORIGIN_I18N__;
+        msg.textContent = res.ok
+          ? (i18n ? i18n.t('undying.form.success') : '🎉 Application submitted!')
+          : (res.d && res.d.error) || (i18n ? i18n.t('undying.form.error') : 'Submission failed. Please try again later.');
+      })
+      .catch(function () {
+        var i18n = window.__ORIGIN_I18N__;
+        msg.classList.add('err');
+        msg.textContent = i18n ? i18n.t('undying.form.error') : 'Submission failed. Please try again later.';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        var i18n = window.__ORIGIN_I18N__;
+        btn.textContent = i18n ? i18n.t('undying.form.submit') : 'Submit Application';
+      });
+  });
+})();
+</script>
+</body>
+</html>

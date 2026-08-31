@@ -684,3 +684,23 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
   color: #f0b90b !important;
   text-shadow: 0 0 12px rgba(247,147,26,0.6);
 }
+
+
+/* ===== AI 智能体军团 ===== */
+.army{padding:70px 0}
+.army-lead{display:flex;justify-content:center;gap:26px;margin:36px 0 46px;flex-wrap:wrap}
+.army .lead{text-align:center;background:var(--card,#111827);border:1px solid var(--gold,#F7931A);border-radius:16px;padding:20px 30px;min-width:150px;transition:.25s}
+.army .lead:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(247,147,26,.15)}
+.army .lead .ava{font-size:42px;line-height:1;display:block;margin-bottom:8px}
+.army .lead .role{font-size:12px;color:var(--gold,#F7931A);font-weight:700;letter-spacing:1px}
+.army .lead h4{color:#fff;margin-top:6px;font-size:17px}
+.army-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:18px}
+.army .agent{background:var(--card,#111827);border:1px solid var(--line,#1f2937);border-radius:18px;padding:24px 20px;text-align:center;position:relative;transition:.25s;overflow:hidden}
+.army .agent::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold,#F7931A),var(--cyan,#22d3ee));opacity:0;transition:.25s}
+.army .agent:hover{transform:translateY(-6px);border-color:var(--gold,#F7931A);box-shadow:0 12px 30px rgba(247,147,26,.12)}
+.army .agent:hover::before{opacity:1}
+.army .agent .ava{font-size:50px;line-height:1;display:block;margin-bottom:12px}
+.army .agent .role{font-size:11px;color:var(--gold,#F7931A);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+.army .agent h3{font-size:19px;color:#fff;margin-bottom:6px}
+.army .agent p{color:var(--dim,#9ca3af);font-size:13px;line-height:1.6}
+.army .agent .tag{display:inline-block;margin-top:10px;font-size:11px;background:rgba(34,211,238,.1);color:var(--cyan,#22d3ee);border:1px solid rgba(34,211,238,.25);border-radius:20px;padding:3px 12px}

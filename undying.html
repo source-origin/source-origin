@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="不死网络 · 全球开发者内测邀请 — 以区块链链改彻底锁死开发者权益，重构开源生产关系。">
+<title>不死网络 · 全球开发者内测邀请 | 源·ORIGIN</title>
+<style>
+  :root{--bg:#0a0e1a;--card:#111827;--line:#1f2937;--cyan:#00d4ff;--blue:#7890ff;--green:#34d399;--gold:#f5c518;--text:#e5e7eb;--dim:#9ca3af}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:"Bai Jamjuree","Noto Sans SC",-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;line-height:1.7}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{color:#66e6ff}
+
+  .uwrap{max-width:1040px;margin:0 auto;padding:56px 22px 90px}
+
+  /* Hero */
+  .hero{text-align:center;padding:34px 0 26px}
+  .hero .badge{display:inline-block;background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.35);border-radius:30px;padding:6px 18px;font-size:13px;letter-spacing:2px;font-weight:600}
+  .hero h1{font-size:46px;margin:22px 0 12px;font-weight:800;letter-spacing:3px;
+    background:linear-gradient(90deg,var(--cyan),var(--blue));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .subtitle{max-width:780px;margin:0 auto;color:#cfe0ff;font-size:17px;line-height:1.9}
+
+  /* Section shell */
+  section{margin-top:54px}
+  .sec-head{text-align:center;margin-bottom:26px}
+  .sec-head h2{font-size:26px;color:#fff;display:inline-flex;align-items:center;gap:12px}
+  .sec-head h2::before,.sec-head h2::after{content:'';width:26px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan))}
+  .sec-head h2::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+  .sec-head p{color:var(--dim);font-size:14px;margin-top:8px;letter-spacing:1px}
+
+  /* Intro narrative */
+  .intro-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px}
+  .intro-card p{color:#d7e2ff;font-size:15.5px}
+  .intro-card p + p{margin-top:14px}
+  .intro-card .b{color:var(--cyan);font-weight:700}
+  .intro-card .danger{color:#ff9a9a;font-weight:700}
+  .intro-card .strong{font-weight:700;color:#fff}
+  .intro-card .bottleneck{margin-top:14px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(245,197,24,.06);border-radius:8px;color:#ffe9b8;font-size:14.5px}
+
+  /* Solution lead */
+  .sec-lead{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 26px;text-align:center;font-size:17px;color:#e8f0ff;margin-bottom:18px}
+  .sec-lead b{color:var(--cyan)}
+
+  /* Capability cards */
+  .caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .cap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 22px 58px;position:relative;transition:.2s}
+  .cap:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,212,255,.08)}
+  .cap .check{position:absolute;left:18px;top:20px;width:26px;height:26px;border-radius:50%;background:rgba(0,212,255,.15);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .cap h3{font-size:17px;color:#fff;margin-bottom:8px}
+  .cap p{font-size:13.5px;color:var(--dim)}
+  .cap p b{color:var(--cyan)}
+
+  /* Compliance */
+  .compliance{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.28);border-radius:14px;padding:20px 24px;font-size:14px;color:#c6f6dc}
+  .compliance b{color:var(--green)}
+
+  /* Tracks */
+  .tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+  .track{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;cursor:pointer;transition:.2s;position:relative}
+  .track:hover{border-color:var(--cyan);transform:translateY(-3px)}
+  .track .dot{font-size:20px}
+  .track .tag{display:inline-block;margin-left:8px;font-size:11px;border-radius:20px;padding:3px 12px;vertical-align:middle}
+  .track.seed .tag{background:rgba(52,211,153,.14);color:var(--green);border:1px solid rgba(52,211,153,.35)}
+  .track.contrib .tag{background:rgba(245,197,24,.14);color:#fde68a;border:1px solid rgba(245,197,24,.35)}
+  .track.obs .tag{background:rgba(120,144,255,.14);color:#b8c6ff;border:1px solid rgba(120,144,255,.35)}
+  .track h3{font-size:18px;color:#fff;margin:12px 0 10px}
+  .track .roles{font-size:13px;color:var(--dim);margin-bottom:6px}
+  .track .priv-title{font-size:12px;color:var(--cyan);font-weight:700;margin-bottom:4px}
+  .track ul{list-style:none;padding:0}
+  .track li{font-size:13px;color:var(--dim);padding-left:14px;position:relative}
+  .track li::before{content:'·';position:absolute;left:2px;color:var(--cyan)}
+
+  /* CTA hint */
+  .cta-hint{text-align:center;color:var(--gold);font-size:14px;margin:34px 0 4px;letter-spacing:1px}
+
+  /* Form */
+  .form-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;max-width:640px;margin:0 auto}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:13.5px;color:#b9c7ef;margin-bottom:7px;font-weight:600}
+  .field input,.field select,.field textarea{width:100%;background:#0f172a;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:#e5e7eb;font-size:14px;font-family:inherit;transition:.2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.12)}
+  .field textarea{min-height:96px;resize:vertical}
+  .form-msg{display:none;padding:12px 16px;border-radius:10px;font-size:14px;margin-top:14px}
+  .form-msg.ok{display:block;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.35);color:#c6f6dc}
+  .form-msg.err{display:block;background:rgba(255,154,154,.12);border:1px solid rgba(255,154,154,.35);color:#ffc4c4}
+
+  /* CTA */
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:18px 0 10px}
+  .btn{display:inline-block;padding:14px 30px;border-radius:34px;font-weight:700;font-size:15px;transition:.2s;text-align:center}
+  .btn-primary{background:linear-gradient(90deg,var(--cyan),var(--blue));color:#0a0e1a}
+  .btn-primary:hover{box-shadow:0 8px 30px rgba(0,212,255,.4);color:#0a0e1a;transform:translateY(-2px)}
+  .btn-ghost{border:1px solid rgba(120,144,255,.5);color:#cfe0ff}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* Footer slogan */
+  .finale{text-align:center;margin-top:64px;padding-top:34px;border-top:1px solid var(--line)}
+  .finale .slogan{font-size:19px;font-weight:700;background:linear-gradient(90deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.7}
+  .finale .slogan-line2{margin-top:6px}
+  .finale .sub{color:var(--dim);font-size:13px;margin-top:10px;letter-spacing:2px}
+
+  @media (max-width:640px){.hero h1{font-size:32px}.uwrap{padding:34px 16px 60px}}
+</style>
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+</head>
+<body data-page="undying" style="padding-top:56px">
+<div class="uwrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <span class="badge" data-i18n="undying.badge">全球开发者内测邀请</span>
+    <h1 data-i18n="undying.title">不死网络・全球开发者内测邀请</h1>
+    <p class="subtitle">开源革命早已开启，但绝大多数革新仍停留在中心化链下账本。唯有不死网络，以区块链链改彻底锁死权益，让开发者贡献<strong>永不作废、永不被剥夺、永不被篡改</strong>。</p>
+  </header>
+
+  <!-- ============ 生态前言 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secIntroTitle">生态前言</h2>
+      <p data-i18n="undying.secIntroSub">改写开源二十年的底层规则</p>
+    </div>
+    <div class="intro-card">
+      <p>过去二十年的开源，是一场无声的剥削革命。亿万开发者日夜输出代码、架构、智能体、文档与技术创新，撑起了全球互联网与 AI 产业的全部底座。但最终的商业收益、平台估值、资本红利，几乎全部被中心化平台与资本收割。</p>
+      <p><strong>码农干最多的活，分最少的钱。</strong>所有贡献没有确权、没有凭证、没有强制分配机制，收益分配全靠人情、协议与道德约束，数据可篡改、功劳可抹杀、权益无保障。</p>
+      <p>如今全球已有大量团队觉醒，开始重构开源生产关系：实现仓库镜像、贡献度量、价值标签、贡献核算。</p>
+      <p class="bottleneck"><strong>但所有人都卡在同一个致命短板：算得出你的价值，却锁不住你的收益。</strong>所有数据、权重、分配，依然跑在中心化数据库里，随时可被修改、清零、推翻。</p>
+    </div>
+  </section>
+
+  <!-- ============ 终极解决方案 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secSolutionTitle">终极解决方案</h2>
+      <p data-i18n="undying.secSolutionSub">链下精准价值计算 + 链上永久权益固化</p>
+    </div>
+    <div class="sec-lead"><b>链下做精准价值计算，链上做永久权益固化。</b>我们不重复造轮子，我们<b>补全整个开源革命的最后一块底层拼图</b>。</div>
+    <div class="caps">
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap1.title">全量镜像全球开源仓库</h3><p>完整复刻代码、提交历史、PR 记录、贡献图谱，永久留存开发者每一次劳动轨迹。</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap2.title">AI 多维价值标签体系</h3><p>自动为每一行代码、每一次迭代、每一项创新打上：<b>技术价值、商业价值、社会价值、生态价值</b>四维标签，量化真实功劳。</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap3.title">客观智能估值引擎</h3><p>结合数据权重、行业影响力、依赖度、迭代质量，生成不可人为干预的项目与贡献估值。</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap4.title">区块链链改永久存证</h3><p>将贡献指纹、身份权重、权益凭证全部上链。数据不可篡改、功劳不可抹杀、权益永久有效。</p></div>
+      <div class="cap"><span class="check">✔</span><h3 data-i18n="cap5.title">智能合约自动分润</h3><p>商业化收益不再靠平台施舍，由链上合约按真实贡献权重自动分配，彻底实现：<b>创造者得收益，劳动者得股权</b>。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 合规声明 ============ -->
+  <section>
+    <div class="sec-head"><h2 data-i18n="undying.secComplianceTitle">合规声明</h2></div>
+    <div class="compliance">
+      本次内测仅开放<b>技术存证、价值评估、生态确权</b>能力。所有权益凭证为生态内部贡献证明，<b>无募资、无炒作、无二级市场交易</b>，纯技术重构开源生产关系。
+    </div>
+  </section>
+
+  <!-- ============ 三层内测通道 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2 data-i18n="undying.secTracksTitle">三层内测通道</h2>
+      <p data-i18n="undying.secTracksSub">全球开发者・按身份加入共建</p>
+    </div>
+    <div class="tracks">
+      <div class="track seed" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🟢</span><span class="tag" data-i18n="undying.trackSeedTag">白名单优先准入</span></div>
+        <h3 data-i18n="undying.trackSeedTitle">核心种子共建者</h3>
+        <p class="roles">面向 GitHub 高星项目维护者、AI 智能体开发者、Agent 生态建设者、Solidity 底层协议开发者、开源工具链作者。</p>
+        <div class="priv-title">专属权益：</div>
+        <ul>
+          <li>优先入驻、优先部署自有项目进行链改确权试点</li>
+          <li>进入核心 DAO 治理层，主导生态规则制定</li>
+          <li>最高权重贡献分润资格</li>
+        </ul>
+      </div>
+      <div class="track contrib" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🟡</span><span class="tag" data-i18n="undying.trackContributorTag">审核准入</span></div>
+        <h3 data-i18n="undying.trackContributorTitle">官方共建贡献者</h3>
+        <p class="roles">面向全栈开发、前后端工程师、安全审计、智能体调优、提示词工程、文档共建、社区运营。</p>
+        <div class="priv-title">专属权益：</div>
+        <ul>
+          <li>全量使用不死网络代码托管与评估系统</li>
+          <li>所有贡献自动打标、自动确权、自动累计权益权重</li>
+          <li>永久纳入生态共建分润池</li>
+        </ul>
+      </div>
+      <div class="track obs" onclick="this.classList.toggle('open')">
+        <div><span class="dot">🔵</span><span class="tag" data-i18n="undying.trackObserverTag">开放注册</span></div>
+        <h3 data-i18n="undying.trackObserverTitle">生态观察参与者</h3>
+        <p class="roles">面向技术研究者、企业技术负责人、行业分析师、科技投资人。</p>
+        <div class="priv-title">专属权益：</div>
+        <ul>
+          <li>全景浏览全球开源镜像仓库</li>
+          <li>查看标准化 AI 价值评估报告</li>
+          <li>深度参与行业革新交流与生态观察</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <p class="cta-hint">内测名额全球限量开放，审核通过即发放不死网络内测唯一接入凭证</p>
+  <div class="cta-row">
+    <a href="#apply" class="btn btn-primary" data-i18n="undying.ctaApply">立即提交全球内测申请</a>
+    <a href="whitepaper.html" class="btn btn-ghost" data-i18n="undying.ctaPaper">查阅官方技术白皮书</a>
+    <a href="index.html" class="btn btn-ghost" data-i18n="undying.ctaRepo">进入源·ORIGIN开源主仓库</a>
+  </div>
+
+  <!-- ============ 申请表单 ============ -->
+  <section id="apply">
+    <div class="sec-head">
+      <h2 data-i18n="undying.secFormTitle">内测申请表单</h2>
+      <p data-i18n="undying.secFormSub">立即提交，加入第一批共建者</p>
+    </div>
+    <div class="form-card">
+      <form id="betaForm" novalidate>
+        <div class="field">
+          <label for="f_github">GitHub 个人主页账号 *</label>
+          <input type="text" id="f_github" name="github" placeholder="https://github.com/yourname" required>
+        </div>
+        <div class="field">
+          <label for="f_stack">核心擅长技术栈 *</label>
+          <input type="text" id="f_stack" name="stack" placeholder="如：Go / Rust / AI Agent / Solidity / 前端" required>
+        </div>
+        <div class="field">
+          <label for="f_project">个人代表开源项目链接</label>
+          <input type="text" id="f_project" name="project" placeholder="https://github.com/you/awesome-project">
+        </div>
+        <div class="field">
+          <label for="f_type">申请身份类型 *</label>
+          <select id="f_type" name="type" required>
+            <option value="">请选择你的申请身份</option>
+            <option value="seed" data-i18n="undying.form.typeSeed">种子共建者</option>
+            <option value="contributor" data-i18n="undying.form.typeContributor">共建贡献者</option>
+            <option value="observer" data-i18n="undying.form.typeObserver">生态观察者</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_bio">个人简述：你将为不死网络生态带来什么价值 *</label>
+          <textarea id="f_bio" name="bio" placeholder="一句话介绍你的背景与能为不死网络带来的价值……" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;border:none;cursor:pointer" data-i18n="undying.form.submit">提交申请</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 底部 Slogan ============ -->
+  <div class="finale">
+    <div class="slogan">代码永不死，贡献永不灭，劳动者永不被剥削。</div>
+    <div class="slogan slogan-line2">不死网络 —— 重构人类数字文明的全新生产关系。</div>
+    <div class="sub" data-i18n="common.motto">权力来自创新，而非资本</div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('betaForm');
+  var msg = document.getElementById('formMsg');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var github = form.github.value.trim();
+    var stack = form.stack.value.trim();
+    var type = form.type.value.trim();
+    var bio = form.bio.value.trim();
+    var project = form.project.value.trim();
+
+    msg.className = 'form-msg';
+    if (!github || !stack || !type || !bio) {
+      msg.classList.add('err');
+      msg.textContent = (window.__ORIGIN_I18N__ ? window.__ORIGIN_I18N__.t('undying.form.required') : '请完整填写必填字段。');
+      return;
+    }
+
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = '⏳ ...';
+    msg.classList.remove('ok', 'err');
+
+    // 映射到 /api/inquiry 的字段格式（contact 必填）
+    var payload = {
+      name: stack,
+      contact: github,
+      service: type,
+      message: '申请身份类型: ' + type + '\n代表项目: ' + (project || '(无)') + '\n个人简述: ' + bio
+    };
+
+    fetch('/api/inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        msg.classList.add(res.ok ? 'ok' : 'err');
+        var i18n = window.__ORIGIN_I18N__;
+        msg.textContent = res.ok
+          ? (i18n ? i18n.t('undying.form.success') : '🎉 申请已提交！')
+          : (res.d && res.d.error) || (i18n ? i18n.t('undying.form.error') : '提交失败，请稍后再试。');
+      })
+      .catch(function () {
+        var i18n = window.__ORIGIN_I18N__;
+        msg.classList.add('err');
+        msg.textContent = i18n ? i18n.t('undying.form.error') : '提交失败，请稍后再试。';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        var i18n = window.__ORIGIN_I18N__;
+        btn.textContent = i18n ? i18n.t('undying.form.submit') : '提交申请';
+      });
+  });
+})();
+</script>
+</body>
+</html>
