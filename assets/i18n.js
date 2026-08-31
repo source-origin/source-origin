@@ -331,7 +331,7 @@
 
       // ============ 武器库 · weapon-library.html ============
       'weapon.hero.badge': '🔫 武器库',
-      'weapon.hero.title': '24+ 开源项目 · 提纯成果',
+      'weapon.hero.title': '开源项目 · 提纯成果',
       'weapon.hero.sub': '我们把高价值的开源项目与前沿协议深度学习、拆解、精炼，沉淀为可复用的能力资产。这是「智能体工厂」的原料库。',
       'weapon.search.placeholder': '🔍 搜索武器库… (如 Agent / 爬虫 / 语音)',
       'weapon.filter.all': '全部',
@@ -895,7 +895,7 @@
 
       // ============ Arsenal · weapon-library.html ============
       'weapon.hero.badge': '🔫 Arsenal',
-      'weapon.hero.title': '24+ Open-Source Projects · Refined Output',
+      'weapon.hero.title': 'Open-Source Projects · Refined Output',
       'weapon.hero.sub': 'We deeply study, deconstruct and refine high-value open-source projects and frontier protocols into reusable capability assets. This is the raw-materials library of the Agent Factory.',
       'weapon.search.placeholder': '🔍 Search the arsenal… (e.g. Agent / Crawler / Voice)',
       'weapon.filter.all': 'All',
