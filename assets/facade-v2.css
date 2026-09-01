@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    源·ORIGIN Portal — 门面 v3 · 科技未来感主题
    深蓝 #0a0e27 / 金 #f0b90b / 青 #00d4ff
    特性：动态星空粒子 · 网格+扫描线 · 扫光边框
@@ -704,3 +704,20 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
 .army .agent h3{font-size:19px;color:#fff;margin-bottom:6px}
 .army .agent p{color:var(--dim,#9ca3af);font-size:13px;line-height:1.6}
 .army .agent .tag{display:inline-block;margin-top:10px;font-size:11px;background:rgba(34,211,238,.1);color:var(--cyan,#22d3ee);border:1px solid rgba(34,211,238,.25);border-radius:20px;padding:3px 12px}
+
+/* ===== 商城卡图片调大 (源指定 2026-09-01) ===== */
+.shop-card .shop-logo {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: 0 auto 14px auto;
+  box-shadow: 0 6px 20px rgba(240,185,11,.25);
+  border: 2px solid rgba(240,185,11,.5);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.shop-card:hover .shop-logo {
+  transform: scale(1.06);
+  box-shadow: 0 10px 30px rgba(240,185,11,.4);
+}
