@@ -706,7 +706,7 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
 .army .agent .tag{display:inline-block;margin-top:10px;font-size:11px;background:rgba(34,211,238,.1);color:var(--cyan,#22d3ee);border:1px solid rgba(34,211,238,.25);border-radius:20px;padding:3px 12px}
 
 /* ===== 商城卡图片调大 (源指定 2026-09-01) ===== */
-.shop-card .shop-logo {
+.shop-logo {
   display: block;
   width: 96px;
   height: 96px;
@@ -717,7 +717,7 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
   border: 2px solid rgba(240,185,11,.5);
   transition: transform .3s ease, box-shadow .3s ease;
 }
-.shop-card:hover .shop-logo {
+.card:hover .shop-logo {
   transform: scale(1.06);
   box-shadow: 0 10px 30px rgba(240,185,11,.4);
 }
