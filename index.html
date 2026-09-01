@@ -14,6 +14,7 @@
 <body data-page="home">
 <main id="app">
 
+
   <!-- ===== Hero：第一印象 ===== -->
   <section class="hero">
     <div class="hero-bg"></div>
@@ -27,6 +28,13 @@
         <a href="factory.html" class="btn btn-gold" data-i18n="index.hero.ctaFactory">进入智能体工厂</a>
         <a href="agent-services.html" class="btn btn-ghost" target="_blank" data-i18n="index.hero.ctaRequest">提交需求 →</a>
       </div>
+
+      <!-- 展示/体验版声明（纯静态，确保总是显示） -->
+      <div class="deploy-note">
+        <span class="dn-icon">⚡</span>
+        <span class="dn-text">当前门户功能为 <strong>展示 / 体验版</strong>，后续将全面部署至 <strong>源·ORIGIN 不死网络</strong></span>
+      </div>
+
       <div class="hero-stats">
         <div class="hero-stat"><label data-i18n="index.hero.stat1">开源项目提纯入库</label></div>
         <div class="hero-stat"><span class="cyan">5</span><label data-i18n="index.hero.stat2">条产品线</label></div>
@@ -81,9 +89,7 @@
 
   <!-- ===== 我们能帮你得到什么 ===== -->
   <section class="section">
-    <div class="container">
-      <h2 class="section-title" data-i18n="index.section1.title">你能从这里得到什么</h2>
-      <p class="section-subtitle" data-i18n="index.section1.subtitle">我们不是卖代码，是交付「能跑、能变现」的智能体能力。</p>
+        <div class="container">
       <div class="card-grid">
         <div class="card card-hover">
           <div class="card-icon">🤖</div>
@@ -108,6 +114,19 @@
           <h3><span data-i18n="index.card4.titlePrefix">金色香港 BTC 国际交易所 </span><span class="hkbtx-tag">HKBTX</span></h3>
           <p data-i18n="index.card4.desc">全球首个金色主题 BTC 国际交易所 DApp——多链支持、BSC 主网 HLTH 代币、DAO 治理、7 级股东分红。链上基建已部署。</p>
           <a href="#" target="_blank" rel="noopener" data-hkbtx class="card-link hkbtx-link" data-i18n="index.card4.link">进入交易所 →</a>
+        </div>
+        <div class="card card-hover comm-card">
+          <div class="card-icon gold">💬</div>
+          <h3 data-i18n="index.card5.title">源·ORIGIN 通讯</h3>
+          <p data-i18n="index.card5.desc">开源加密、可自部署的团队即时通讯——群聊、私信、实时消息、文件传输，数据完全自持。</p>
+          <a href="http://localhost:8787" target="_blank" rel="noopener" class="card-link comm-link" data-i18n="index.card5.link">进入通讯 →</a>
+        </div>
+        <div class="card card-hover shop-card">
+          <img class="shop-logo" src="assets/hlth-logo.png" alt="HLTH">
+          <h3 data-i18n="index.card6.title">源·ORIGIN 商城</h3>
+          <div class="shop-sub" data-i18n="index.card6.sub">香港乐鹏服装集团</div>
+          <p data-i18n="index.card6.desc">品牌商城管理后台——商品管理、订单、会员、营销插件全栈可用，支持接亚马逊 SP-API 全球铺货。</p>
+          <a href="http://localhost:5173" target="_blank" rel="noopener" class="card-link shop-link" data-i18n="index.card6.link">进入商城 →</a>
         </div>
       </div>
     </div>

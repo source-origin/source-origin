@@ -1192,3 +1192,69 @@ body::before {
   .mission-card { padding: 30px 20px 36px; }
   .future-row { flex-direction: column; gap: 10px; }
 }
+
+
+/* ===== global banner: preview/demo notice ===== */
+.global-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, rgba(240,185,11,.18), rgba(0,212,255,.14), rgba(240,185,11,.18));
+  border-bottom: 1px solid rgba(240,185,11,.45);
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: .02em;
+  color: #f0e6c8;
+  box-sizing: border-box;
+}
+.global-banner .gb-icon { font-size: 16px; flex: 0 0 auto; }
+.global-banner .gb-text { line-height: 1.6; }
+.global-banner .gb-text strong { color: #f0b90b; font-weight: 600; }
+@media (max-width: 640px) {
+  .global-banner { font-size: 12px; padding: 10px 14px; flex-wrap: wrap; }
+}
+
+
+/* ===== deploy note: preview/demo notice (hero区) ===== */
+.deploy-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px auto 0;
+  padding: 12px 22px;
+  background: linear-gradient(90deg, rgba(240,185,11,.16), rgba(0,212,255,.12), rgba(240,185,11,.16));
+  border: 1px solid rgba(240,185,11,.5);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #f0e6c8;
+  text-align: center;
+}
+.deploy-note .dn-icon { font-size: 16px; flex: 0 0 auto; }
+.deploy-note .dn-text strong { color: #f0b90b; font-weight: 600; }
+@media (max-width: 640px) {
+  .deploy-note { font-size: 12px; padding: 10px 14px; flex-wrap: wrap; justify-content: center; }
+}
+
+
+/* ===== shop card: hlth logo + company sub ===== */
+.shop-card .shop-logo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(240,185,11,.35);
+}
+.shop-card .shop-sub {
+  text-align: center;
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: #f0b90b;
+  font-weight: 500;
+}
