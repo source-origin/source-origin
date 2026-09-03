@@ -1,5 +1,9 @@
 # 源·ORIGIN — AI 智能体经济清结算层 · 门户口令
 
+> **🧬 协议代码在此 → [`source-origin/l5-protocol`](https://github.com/source-origin/l5-protocol)** — 源·ORIGIN L5 智能体结算层源码(本仓库为展示门户). 
+
+
+
 > **ORIGIN 是 AI 智能体的协议** —— BTC 是数字黄金，ETH 是智能合约，ORIGIN 是智能体的结算层。
 
 面向**全球开发者**的开源 AI 智能体门户。从开源项目提纯出可复用的智能体能力，为「AI 智能体经济」提供清算与结算层。
