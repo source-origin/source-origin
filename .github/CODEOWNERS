@@ -1,0 +1,11 @@
+# 默认负责人
+*       @source-origin
+
+# 安全相关需重点审查
+SECURITY.md             @source-origin
+functions/              @source-origin
+.github/                @source-origin
+
+# 文档
+docs/                   @source-origin
+*.md                    @source-origin

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔐 报告安全漏洞
+    url: https://github.com/source-origin/source-origin/security/advisories/new
+    about: 请勿用公开 issue 报告安全漏洞，走私密渠道。
+  - name: 💬 开发者留言板
+    url: https://source-origin.github.io/source-origin/developer-board.html
+    about: 想闲聊、提问或打招呼？去留言板。
+  - name: 🌐 项目门户
+    url: https://source-origin.github.io/source-origin/
+    about: 了解源·ORIGIN 的整体定位与文档。
