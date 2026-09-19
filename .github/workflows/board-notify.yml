@@ -1,0 +1,38 @@
+name: board-notify
+
+# 留言板新信号 → 发送邮件到 QQ 邮箱
+# 触发：带 label=board 的 issue 新建 / 打上 board 标签 / 有评论
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  notify:
+    # 只处理带 board 标签的 issue
+    if: contains(github.event.issue.labels.*.name, 'board')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Send mail to QQ
+        env:
+          QQ_USER: ${{ secrets.QQ_USER }}
+          QQ_AUTH: ${{ secrets.QQ_AUTH }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          EV: ${{ github.event_name }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
+        run: python3 .github/scripts/notify_board.py
