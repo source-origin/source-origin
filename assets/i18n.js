@@ -57,6 +57,18 @@
       'board.openAll': '在 GitHub 打开全部',
       'board.srcNote': '留言由 GitHub 真实持久化，确认后本页刷新可见',
 
+      // 首页内嵌留言板区块
+      'index.board.badge': '💬 真实留言板 · GitHub 驱动',
+      'index.board.titlePrefix': '开发者',
+      'index.board.titleCyan': '留言板',
+      'index.board.subtitle': '程序员指挥部 · 技术分享 / 需求 / 求助 / 想法 —— 留言真实持久化，全球可见',
+      'index.board.nameHolder': '你的昵称（可留空 = 匿名）',
+      'index.board.publish': '🚀 发射信号 / 发布留言',
+      'index.board.hint': '留言由 GitHub 真实持久化，确认后本页即时可见',
+      'index.board.openAll': '在 GitHub 打开全部',
+      'index.board.entry': '进入完整留言板 →',
+      'index.board.signals': 'SIGNALS',
+
       // ============ 不死网络 · 全球开发者内测落地页 ============
       'undying.badge': '全球开发者内测邀请',
       'undying.title': '不死网络・全球开发者内测邀请',
@@ -636,6 +648,18 @@
       'board.retry': 'Retry',
       'board.openAll': 'Open all on GitHub',
       'board.srcNote': 'Messages persist on GitHub — refresh this page after submitting',
+
+      // Home-embedded board section
+      'index.board.badge': '💬 Real board · powered by GitHub',
+      'index.board.titlePrefix': 'Developer',
+      'index.board.titleCyan': 'Board',
+      'index.board.subtitle': 'Dev Command · share / ask / help / ideas — messages persist for real, visible worldwide',
+      'index.board.nameHolder': 'Your name (optional = anonymous)',
+      'index.board.publish': '🚀 Send signal / Post',
+      'index.board.hint': 'Messages persist on GitHub — visible here right after you confirm',
+      'index.board.openAll': 'Open all on GitHub',
+      'index.board.entry': 'Open full board →',
+      'index.board.signals': 'SIGNALS',
 
       // ============ Undying Network · Global Dev Beta ============
       'undying.badge': 'Global Developer Beta Invitation',

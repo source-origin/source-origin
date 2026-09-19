@@ -10,6 +10,8 @@
 <script src="assets/i18n.js" defer></script>
 <script src="assets/lang-switcher.js" defer></script>
 <script src="assets/site-nav.js" defer></script>
+<link rel="stylesheet" href="assets/board-embed.css">
+<script src="assets/board-embed.js" defer></script>
 </head>
 <body data-page="home">
 <main id="app">
@@ -163,3 +165,36 @@
     </div>
   </section>
 
+  <!-- ===== 开发者留言板（真实 · GitHub 驱动） ===== -->
+  <section class="section board-embed" id="board">
+    <div class="container">
+      <span class="badge" data-i18n="index.board.badge">💬 真实留言板 · GitHub 驱动</span>
+      <h2 class="section-title"><span data-i18n="index.board.titlePrefix">开发者</span><span class="cyan" data-i18n="index.board.titleCyan">留言板</span></h2>
+      <p class="section-subtitle" data-i18n="index.board.subtitle">程序员指挥部 · 技术分享 / 需求 / 求助 / 想法 —— 留言真实持久化，全球可见</p>
+
+      <div class="board-wrap">
+        <div class="board-composer">
+          <input id="beName" class="be-input" type="text" maxlength="24" autocomplete="off" data-i18n-ph="index.board.nameHolder" placeholder="你的昵称（可留空 = 匿名）">
+          <textarea id="beText" class="be-textarea" maxlength="500" placeholder="输入你的留言…（技术分享 / 需求 / 求助 / 想法）"></textarea>
+          <div class="board-composer-foot">
+            <span class="be-hint"><b id="beCount">0</b> / 500 · <span data-i18n="index.board.hint">留言由 GitHub 真实持久化，确认后本页即时可见</span></span>
+            <button id="bePublish" class="btn btn-gold" type="button" data-i18n="index.board.publish">🚀 发射信号 / 发布留言</button>
+          </div>
+          <div id="beStatus" class="be-status" style="display:none">✅ 已在新标签打开 GitHub 提交页 —— 确认后回到本页刷新即可看到你的留言。</div>
+        </div>
+
+        <div class="board-head">
+          <span class="be-count"><span data-i18n="index.board.signals">SIGNALS</span> <b id="beCount2">0</b></span>
+          <span>
+            <a class="be-link" href="https://github.com/source-origin/source-origin/issues?q=label%3Aboard" target="_blank" rel="noopener" data-i18n="index.board.openAll">在 GitHub 打开全部</a>
+            <a class="be-link" href="developer-board.html" style="margin-left:14px" data-i18n="index.board.entry">进入完整留言板 →</a>
+          </span>
+        </div>
+        <div id="beList" class="board-list"></div>
+        <div id="beEmpty" class="be-empty" style="display:none"><span data-i18n="board.empty">暂无信号，发送第一条吧 🚀</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
