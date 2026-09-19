@@ -6,7 +6,8 @@ board-notify · 留言板新信号 → QQ 邮箱
 凭证来自 repo secrets：QQ_USER / QQ_AUTH / MAIL_TO
 设置方法（QQ 邮箱 → 设置 → 账户 → 开启 SMTP → 生成授权码）
 """
-import os, re, ssl, smtplib, sys
+import os, re, ssl, smtplib, sys, json
+from datetime import datetime, timezone
 from email.mime.text import MIMEText
 from email.header import Header
 from email.utils import formataddr
@@ -28,6 +29,39 @@ BODY = os.environ.get("ISSUE_BODY", "") or ""
 C_BODY = os.environ.get("COMMENT_BODY", "") or ""
 C_AUTHOR = os.environ.get("COMMENT_AUTHOR", "")
 C_URL = os.environ.get("COMMENT_URL", "")
+
+# --- 事件去重 -------------------------------------------------------------
+# 带 label 创建 issue 时，GitHub 会同时派发 opened 与 labeled 两个事件，
+# 若都处理会重复发信。这里读默认注入的事件 payload，对「刚创建」的 labeled
+# 事件直接跳过（opened 已负责通知）；只有事后补标签（issue 已存在一段时间）
+# 的 labeled 事件才发信。
+ACTION = ""
+CREATED_AT = ""
+try:
+    _ev_path = os.environ.get("GITHUB_EVENT_PATH", "")
+    if _ev_path and os.path.exists(_ev_path):
+        with open(_ev_path, "r", encoding="utf-8") as _f:
+            _pl = json.load(_f) or {}
+        ACTION = _pl.get("action", "") or ""
+        CREATED_AT = ((_pl.get("issue") or {}).get("created_at")) or ""
+except Exception:
+    pass
+
+
+def _is_create_burst_label():
+    """判断是否为「创建 issue 时随带标签」触发的 labeled 事件。"""
+    if EV != "issues" or ACTION != "labeled" or not CREATED_AT:
+        return False
+    try:
+        t = datetime.strptime(CREATED_AT, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        return (datetime.now(timezone.utc) - t).total_seconds() < 180
+    except Exception:
+        return False
+
+
+if _is_create_burst_label():
+    print("[skip] labeled 事件与 opened 重复（issue 刚创建）—— 不重复发信")
+    sys.exit(0)
 
 MARK = "<!--origin-board-->"
 
