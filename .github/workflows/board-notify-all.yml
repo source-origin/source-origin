@@ -1,0 +1,39 @@
+name: board-notify-all
+
+# 与 board-notify.yml 互补：负责「非 board 标签」的任意新 issue / 评论。
+# board 标签的帖子仍由 board-notify.yml 负责，二者条件互斥，不会重复。
+# 触发：任意新 issue（opened）/ 任意新评论（created）
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  notify:
+    # 仅处理「未带 board 标签」的 issue，避免与 board-notify.yml 重复发信
+    if: ${{ !contains(github.event.issue.labels.*.name, 'board') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Send mail to QQ
+        env:
+          QQ_USER: ${{ secrets.QQ_USER }}
+          QQ_AUTH: ${{ secrets.QQ_AUTH }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          EV: ${{ github.event_name }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
+        run: python3 .github/scripts/notify_board.py
