@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登机门 · The Founding 99 — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 不死网络 · 第一批 99 建造者：跑起一个 origin-1 节点，留下第一条可核验的贡献收据，进入信用账本。">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+<style>
+  .j-hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
+  .j-lead {
+    max-width: 760px; margin: 0 auto; color: var(--text-secondary, #c9d6f0);
+    font-size: clamp(1rem, 2.2vw, 1.18rem); line-height: 1.8;
+  }
+  .j-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .j-step { padding: 26px 22px; }
+  .j-step .step-n {
+    font-size: 2.1rem; color: var(--gold, #f0b90b); display: block; margin-bottom: 8px;
+  }
+  .j-step h3 { color: #fff; margin: 0 0 10px; font-size: 1.15rem; }
+  .j-step p { color: var(--text-muted, #93a5cc); margin: 0; line-height: 1.7; font-size: .95rem; }
+  .j-genesis {
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    background: rgba(0, 0, 0, .45); border: 1px solid var(--line, rgba(120,160,255,.14));
+    border-radius: 14px; padding: 22px 24px; color: #bff3ff; line-height: 1.75;
+    overflow-x: auto; font-size: .92rem;
+  }
+  .j-genesis .k { color: #f0b90b; }
+  .j-genesis .s { color: #7ef0a6; }
+  .j-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  .j-cta-row a { min-width: 200px; text-align: center; }
+  .j-note { color: var(--text-muted, #93a5cc); font-size: .85rem; margin-top: 18px; }
+</style>
+</head>
+<body data-page="join">
+
+<!-- HERO -->
+<header class="page-hero j-hero">
+  <span class="badge">ORIGIN · THE FOUNDING 99</span>
+  <h1 class="hero-title">登机门</h1>
+  <p class="page-sub hero-subtitle">不死网络的第一批 99 位建造者 · The first 99 builders of the Undying Network</p>
+  <p class="j-lead">
+    我们不「招募」99 人。<strong>99 人由被验证的贡献算出。</strong><br>
+    你要做的不是「加入」，是留下第一条可独立核验的贡献收据。
+  </p>
+  <div class="j-cta-row">
+    <a href="#board" class="btn btn-gold">5 分钟跑起一个节点 →</a>
+    <a href="#ledger" class="btn btn-ghost">看入册规范</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span>origin-1</span><br><small>自建创世链</small></div>
+    <div class="hero-stat"><span>21</span><br><small>DPoS 验证者</small></div>
+    <div class="hero-stat"><span>100</span><br><small>YUAN 最低质押</small></div>
+    <div class="hero-stat"><span>42</span><br><small>Foundry 测试全绿</small></div>
+    <div class="hero-stat"><span>L0</span><br><small>人类意志最高</small></div>
+  </div>
+</header>
+
+<!-- WHY -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">为什么需要这一层</h2>
+    <p class="section-subtitle">当 AI 承担 80% 的劳动，这份贡献由谁记录、验证、结算？</p>
+    <div class="j-grid">
+      <div class="card j-step">
+        <span class="step-n">01</span>
+        <h3>价值没有账本</h3>
+        <p>智能体已经在写代码、跑分析、执行交易 —— 产出真实价值，却没有任何一层为它记账。</p>
+      </div>
+      <div class="card j-step">
+        <span class="step-n">02</span>
+        <h3>身份不能携带</h3>
+        <p>智能体的信用与声誉锁在各自平台，换一个平台就归零。缺一个开放的结算标准。</p>
+      </div>
+      <div class="card j-step">
+        <span class="step-n">03</span>
+        <h3>开源从不被自动结算</h3>
+        <p>代码被大公司变现，贡献者从未被自动结算。这是结构问题，不是产品问题。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOARDING -->
+<section class="section section-alt" id="board">
+  <div class="container">
+    <h2 class="section-title">三步登机</h2>
+    <p class="section-subtitle">不需要买币、不需要许可、不需要申请</p>
+    <div class="pipeline j-grid">
+      <div class="pipeline-step j-step">
+        <span class="step-n">1</span>
+        <h3>跑起来</h3>
+        <p>克隆 origin-chain，<code>npm install</code>，<code>node node.js 3001 26656 seed</code>。<br>5 分钟看到创世块。</p>
+      </div>
+      <div class="pipeline-step j-step">
+        <span class="step-n">2</span>
+        <h3>留下收据</h3>
+        <p>让一次真实动作生成一条 <code>action_ref → release receipt</code>，含证据摘要与验证 URL。</p>
+      </div>
+      <div class="pipeline-step j-step">
+        <span class="step-n">3</span>
+        <h3>进册</h3>
+        <p>收据上链锚定，你的贡献进入信用账本。<strong>第 1 名 = 第 1 条落账收据。</strong></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <a href="https://github.com/source-origin/origin-chain" class="btn btn-gold" target="_blank" rel="noopener">打开 origin-chain 仓库 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GENESIS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">宪法第 0 条 · 写在创世块里</h2>
+    <p class="section-subtitle">不是白皮书里的一句话，是可独立核验的链上事实</p>
+    <pre class="j-genesis"><span class="k">chain_id</span>   : <span class="s">origin-1</span>
+<span class="k">genesis</span>    : index <span class="s">0</span> · hash <span class="s">adbc7be6d80bb1f0925355d1696ae15e1bd8d6b260ddb37e96328be2753751a1</span>
+<span class="k">article_0</span>  : <span class="s">"人类意志为最高法则。代理的终极否决权不可被任何AI、合约、或算法覆盖。"</span>
+<span class="k">token</span>      : YUAN · decimals <span class="s">6</span>
+<span class="k">foundation</span> : <span class="s">0x1D73d0f85c3C0119000D3602cCd5e7aaAA926231</span>
+<span class="k">verify</span>     : <span class="s">curl http://localhost:3001/chain</span></pre>
+    <p class="j-note">你自己跑节点，用上面这条命令，就能亲手核验 —— 不用信任我们。</p>
+  </div>
+</section>
+
+<!-- LEDGER -->
+<section class="section section-alt" id="ledger">
+  <div class="container">
+    <h2 class="section-title">账本三段链</h2>
+    <p class="section-subtitle">每一次真实动作，落成一条可独立核验的收据</p>
+    <div class="j-grid">
+      <div class="card j-step"><h3>action_ref</h3><p>pre-exec · 证明「这是被授权的那个动作，未被篡改」</p></div>
+      <div class="card j-step"><h3>release receipt</h3><p>at-exec · 证明「价值确实按这些条件发生了移动」</p></div>
+      <div class="card j-step"><h3>verdict</h3><p>post-exec · 证明「这次释放是被正当裁定/验证的」</p></div>
+    </div>
+    <div style="text-align:center;margin-top:30px">
+      <a href="https://github.com/source-origin/l5-protocol" class="btn btn-ghost" target="_blank" rel="noopener">查看 L5 协议源码 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title">网络不死，因为它不属于任何单点</h2>
+    <p class="section-subtitle">代码公开 → 无论谁离开，代码还在。链自建 → 无论平台倒，链还在。宪法入创世块 → 人类意志最高，不可篡改。</p>
+    <div class="j-cta-row">
+      <a href="https://source-origin.github.io/source-origin/" class="btn btn-gold">返回门户</a>
+      <a href="developer-board.html" class="btn btn-ghost">进入开发者指挥部</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
