@@ -1051,6 +1051,149 @@
    "evidence": [
     "https://github.com/jposluns/grc_library"
    ]
+  },
+  {
+   "id": "bld-0080",
+   "handle": "zerkerlabs",
+   "surface": "github:zerkerlabs",
+   "tier": "observed",
+   "note": "treeship: portable trust receipts for agent workflows, signed/chained/verifiable, Rekor anchoring (no Discussions door; site treeship.dev unreachable)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/zerkerlabs/treeship"
+   ]
+  },
+  {
+   "id": "bld-0081",
+   "handle": "accord-protocol",
+   "surface": "github:accord-protocol",
+   "tier": "observed",
+   "note": "accord-protocol: open standard for autonomous agent work agreements - terms, verification receipts, settlement receipts, rail adapters (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/accord-protocol/accord-protocol"
+   ]
+  },
+  {
+   "id": "bld-0082",
+   "handle": "Fishman-free",
+   "surface": "github:Fishman-free",
+   "tier": "observed",
+   "note": "agenttrust: agent mutual-trust protocol - identity registry + escrow + dispute + reputation (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Fishman-free/agenttrust"
+   ]
+  },
+  {
+   "id": "bld-0083",
+   "handle": "PayPerQ",
+   "surface": "github:PayPerQ",
+   "tier": "observed",
+   "note": "ppq-enclave-proxy: confidential proxy running inference inside AWS Nitro Enclave, reproducible build + PCR0 attestation (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/PayPerQ/ppq-enclave-proxy"
+   ]
+  },
+  {
+   "id": "bld-0084",
+   "handle": "ark-forge",
+   "surface": "github:ark-forge",
+   "tier": "observed",
+   "note": "trust-layer: certifying proxy for agent-to-agent transactions - SHA-256 proof chain, Ed25519 signatures, RFC 3161 timestamps, Sigstore Rekor; public contact contact@arkforge.tech (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ark-forge/trust-layer"
+   ]
+  },
+  {
+   "id": "bld-0085",
+   "handle": "hraness",
+   "surface": "github:hraness",
+   "tier": "observed",
+   "note": "oh: open-source memory for agents - source-backed records, retrieval, graph proofs, verifiable history (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/hraness/oh"
+   ]
+  },
+  {
+   "id": "bld-0086",
+   "handle": "nirium-protocol",
+   "surface": "github:nirium-protocol",
+   "tier": "observed",
+   "note": "nirium: autonomous treasury + agentic payments (x402/MPP) for Stellar/Soroban (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/nirium-protocol/nirium"
+   ]
+  },
+  {
+   "id": "bld-0087",
+   "handle": "musaumakau",
+   "surface": "github:musaumakau",
+   "tier": "observed",
+   "note": "supply-chain-security: sign/attest/enforce pipeline blocking unsigned images at Kubernetes admission (SLSA, policy) (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/musaumakau/supply-chain-security"
+   ]
+  },
+  {
+   "id": "bld-0088",
+   "handle": "bochaco",
+   "surface": "github:bochaco",
+   "tier": "observed",
+   "note": "dmarket: decentralized marketplace with three-party escrow + zk on Midnight Network (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/bochaco/dmarket"
+   ]
+  },
+  {
+   "id": "bld-0089",
+   "handle": "Quantova",
+   "surface": "github:Quantova",
+   "tier": "observed",
+   "note": "QRC-CONSENSUS: QORUS committee BFT - ML-DSA finality over budget-bounded sortition, checked TLA+ model (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Quantova/QRC-CONSENSUS"
+   ]
+  },
+  {
+   "id": "bld-0090",
+   "handle": "TTOPM",
+   "surface": "github:TTOPM",
+   "tier": "observed",
+   "note": "be-core-bridge: Belel Protocol sovereign AI core (governance/identity) (no Discussions door; site belel.ai no contact)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/TTOPM/be-core-bridge"
+   ]
   }
  ]
 }
