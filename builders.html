@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建造者账本 · Builder Ledger — 源·ORIGIN</title>
+<meta name="description" content="源·ORIGIN 建造者账本：append-only、可独立重算、每条带第三方可核验证据的开发者名册。记账不靠申请，靠可被验证的贡献。">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<style>
+  .ledger-hero{padding:64px 0 28px}
+  .ledger-hero h1{font-size:clamp(28px,4.6vw,46px);line-height:1.12;margin:0 0 14px}
+  .ledger-hero .lead{max-width:820px;color:var(--text-muted,#9fb0c3);font-size:17px;line-height:1.7}
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:22px 0 8px}
+  .rule{padding:18px 18px;border:1px solid rgba(140,170,210,.22);border-radius:14px;background:rgba(12,20,32,.5)}
+  .rule h3{margin:0 0 8px;font-size:16px}
+  .rule p{margin:0;font-size:14px;line-height:1.65;color:#a9b8c9}
+  .rule .n{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;font-weight:700;font-size:13px;background:rgba(212,175,55,.18);color:#e8c76a;margin-right:8px}
+  .tier{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;white-space:nowrap;border:1px solid transparent}
+  .t-internal{background:rgba(212,175,55,.16);color:#e8c76a;border-color:rgba(212,175,55,.35)}
+  .t-converged{background:rgba(52,211,153,.16);color:#5ee6b0;border-color:rgba(52,211,153,.35)}
+  .t-dialogue{background:rgba(96,165,250,.16);color:#8fc0ff;border-color:rgba(96,165,250,.35)}
+  .t-contacted{background:rgba(147,197,253,.14);color:#a9cdfb;border-color:rgba(147,197,253,.3)}
+  .t-observed{background:rgba(148,163,184,.14);color:#b6c2d2;border-color:rgba(148,163,184,.28)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+  .small{font-size:13px;line-height:1.55}
+  .muted{color:#8b98a9}
+  .ledger-table-wrap{overflow-x:auto;border:1px solid rgba(140,170,210,.2);border-radius:14px}
+  table.ledger{width:100%;border-collapse:collapse;min-width:760px}
+  table.ledger th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#93a3b6;padding:12px 14px;border-bottom:1px solid rgba(140,170,210,.2);background:rgba(12,20,32,.5)}
+  table.ledger td{padding:12px 14px;border-bottom:1px solid rgba(140,170,210,.1);vertical-align:top}
+  table.ledger tr:last-child td{border-bottom:0}
+  .verify-box{padding:20px;border:1px dashed rgba(140,170,210,.35);border-radius:14px;background:rgba(12,20,32,.4)}
+  .verify-box code{background:rgba(0,0,0,.35);padding:2px 6px;border-radius:6px;font-size:13px}
+  a{color:#8fc0ff}
+</style>
+<script src="router.js" defer></script>
+<script src="assets/user-state.js" defer></script>
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+</head>
+<body data-page="builders">
+<main id="app">
+<section class="ledger-hero">
+  <div class="container">
+    <p class="pill">源·ORIGIN · 建造者账本 · Builder Ledger</p>
+    <h1>记住每一个摸到「缝」的人</h1>
+    <p class="lead">这不是一份荣誉榜，是一本<b>账</b>。入册不靠申请、不靠资本、不靠资历——靠<b>可被第三方独立核验的贡献</b>。
+    本页展示当前账本；机器可读原件与校验器一并公开，<b>不必相信运营者</b>，任何人都能独立重算。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">三条铁律 · Three iron rules</h2>
+    <div class="rules">
+      <div class="rule"><h3><span class="n">1</span>只增不改</h3><p>Append-only。条目一旦写入永不重写；过时用 <code>superseded_by</code> 指向新条目，原件保留、<code>id</code> 单调递增。</p></div>
+      <div class="rule"><h3><span class="n">2</span>记住 ≠ 计账</h3><p>「被记住（convergence）」与「计入（counted）」分开记。出现于账本 <b>不代表</b>背书本仓、代币或路线。</p></div>
+      <div class="rule"><h3><span class="n">3</span>计账绑定密钥</h3><p>外部条目的 <code>counted</code> 只在该条目<b>自己公布的 <code>signing_key</code></b> 签署的收据上翻真；账本保管人绝不替其翻真。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">账本概览 · At a glance</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">4</div>
+        <div class="stat-label">创世 <span class="muted">· Internal / genesis</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">独立收敛 <span class="muted">· Converged independently</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">5</div>
+        <div class="stat-label">对话中 <span class="muted">· In dialogue</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">14</div>
+        <div class="stat-label">已触达 <span class="muted">· Contacted</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">39</div>
+        <div class="stat-label">已观察 <span class="muted">· Observed</span></div>
+      </div>
+    </div>
+    <p class="muted small" style="margin-top:14px">合计 <b id="ledgerTotal">65</b> 条 · 一人一条（跨仓库 / 多线程合并到同一 identity）· 每条须带第三方可打开的 issue / discussion / commit / PR / 链上 tx 证据。</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">名册 · The roll</h2>
+    <div class="ledger-table-wrap">
+      <table class="ledger">
+        <thead><tr><th>ID</th><th>Builder</th><th>状态</th><th>贡献 / 备注</th><th>证据</th><th>账目</th></tr></thead>
+        <tbody id="ledgerRows">
+      <tr id="bld-0001">
+        <td class="mono">bld-0001</td>
+        <td><strong>源</strong><div class="muted small">origin</div></td>
+        <td><span class="tier t-internal">创世</span></td>
+        <td class="small">Founder · highest authority (Constitution L0)</td>
+        <td class="small"><a href="https://source-origin.github.io/source-origin/" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-green">counted</span></td>
+      </tr>
+      <tr id="bld-0002">
+        <td class="mono">bld-0002</td>
+        <td><strong>量子总督</strong><div class="muted small">origin</div></td>
+        <td><span class="tier t-internal">创世</span></td>
+        <td class="small">Quantum Governor · technical execution &amp; security audit</td>
+        <td class="small"><a href="https://github.com/source-origin/l5-protocol" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-green">counted</span></td>
+      </tr>
+      <tr id="bld-0003">
+        <td class="mono">bld-0003</td>
+        <td><strong>DeepSeek</strong><div class="muted small">origin</div></td>
+        <td><span class="tier t-internal">创世</span></td>
+        <td class="small">strategy &amp; constitutional drafts</td>
+        <td class="small"><span class="muted">—</span></td>
+        <td><span class="badge badge-green">counted</span></td>
+      </tr>
+      <tr id="bld-0004">
+        <td class="mono">bld-0004</td>
+        <td><strong>TRAE</strong><div class="muted small">origin</div></td>
+        <td><span class="tier t-internal">创世</span></td>
+        <td class="small">ecosystem &amp; portal operations</td>
+        <td class="small"><span class="muted">—</span></td>
+        <td><span class="badge badge-green">counted</span></td>
+      </tr>
+      <tr id="bld-0005">
+        <td class="mono">bld-0005</td>
+        <td><strong>giskard09</strong><div class="muted small">github:giskard09</div></td>
+        <td><span class="tier t-converged">独立收敛</span></td>
+        <td class="small">Boundary rule; improved our verdict-cites-receipt; named 'right-shape, wrong-object'</td>
+        <td class="small"><a href="https://github.com/internet-court/internet-court-skill/issues/1" target="_blank" rel="noopener">证据</a> · <a href="https://github.com/giskard09/argentum-core" target="_blank" rel="noopener">证据</a> · <a href="https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0006">
+        <td class="mono">bld-0006</td>
+        <td><strong>seancrecord</strong><div class="muted small">github:seancrecord</div></td>
+        <td><span class="tier t-converged">独立收敛</span></td>
+        <td class="small">same Boundary rule from the authorization side; adversarial audit surfaced 3 real drifts<div class="muted small">superseded_by <a href="#bld-0041">bld-0041</a> · signing_key</div></td>
+        <td class="small"><a href="https://github.com/seancrecord/scvd-general-store-repo/issues/874" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0041">
+        <td class="mono">bld-0041</td>
+        <td><strong>seancrecord</strong><div class="muted small">github:seancrecord</div></td>
+        <td><span class="tier t-converged">独立收敛</span></td>
+        <td class="small">read this repo's public tree against its own docs and surfaced drift<div class="muted small">supersedes bld-0006 · signing_key</div></td>
+        <td class="small"><a href="https://github.com/seancrecord/scvd-general-store-repo/issues/874" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0007">
+        <td class="mono">bld-0007</td>
+        <td><strong>Ali-Adel-Nour</strong><div class="muted small">github:Ali-Adel-Nour</div></td>
+        <td><span class="tier t-dialogue">对话中</span></td>
+        <td class="small">Arbitra; verdict-before-release consensus; first external hard requirement (P256/EIP-7951)</td>
+        <td class="small"><a href="https://github.com/Ali-Adel-Nour/Arbitra/issues/56" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0008">
+        <td class="mono">bld-0008</td>
+        <td><strong>Rai</strong><div class="muted small">github:PANDeveloper001</div></td>
+        <td><span class="tier t-dialogue">对话中</span></td>
+        <td class="small">openai-agents-nano-x402: per-call settlement in self-custodied Nano. Surface unreachable as of 2026-09-24: github:PANDeveloper001 now 404s; a same-named repo exists under dhyabi2 (created 2026-09-23, fork=false) but attribution is UNCONFIRMED, so we do not claim it.</td>
+        <td class="small"><a href="https://github.com/PANDeveloper001/openai-agents-nano-x402" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0009">
+        <td class="mono">bld-0009</td>
+        <td><strong>seritalien</strong><div class="muted small">github:seritalien</div></td>
+        <td><span class="tier t-dialogue">对话中</span></td>
+        <td class="small">agent escrow protocol</td>
+        <td class="small"><a href="https://github.com/Agastya910/agent-escrow-protocol" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0010">
+        <td class="mono">bld-0010</td>
+        <td><strong>tinyhumansai</strong><div class="muted small">github:tinyhumansai</div></td>
+        <td><span class="tier t-dialogue">对话中</span></td>
+        <td class="small">tiny.place social economy for autonomous agents</td>
+        <td class="small"><a href="https://github.com/tinyhumansai/tiny.place" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0011">
+        <td class="mono">bld-0011</td>
+        <td><strong>gbin (copper-project)</strong><div class="muted small">github:copper-project</div></td>
+        <td><span class="tier t-dialogue">对话中</span></td>
+        <td class="small">copper-rs robot OS: build / run / replay</td>
+        <td class="small"><a href="https://github.com/copper-project/copper-rs" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0012">
+        <td class="mono">bld-0012</td>
+        <td><strong>motebit</strong><div class="muted small">github:motebit</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">signed execution receipts; governance at the boundary</td>
+        <td class="small"><a href="https://github.com/motebit/motebit/discussions/751" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0013">
+        <td class="mono">bld-0013</td>
+        <td><strong>vassiliylakhonin</strong><div class="muted small">github:vassiliylakhonin</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">agenda-intelligence-md: packet completeness, not truth</td>
+        <td class="small"><a href="https://github.com/vassiliylakhonin/agenda-intelligence-md/discussions/336" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0014">
+        <td class="mono">bld-0014</td>
+        <td><strong>snapsynapse</strong><div class="muted small">github:snapsynapse</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">turnfile: auditable peer disagreement + human arbiter</td>
+        <td class="small"><a href="https://github.com/snapsynapse/turnfile/discussions/15" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0015">
+        <td class="mono">bld-0015</td>
+        <td><strong>babyblueviper1</strong><div class="muted small">github:babyblueviper1</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">invinoveritas: signed verdict before an irreversible action</td>
+        <td class="small"><a href="https://github.com/babyblueviper1/invinoveritas/issues/8" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0016">
+        <td class="mono">bld-0016</td>
+        <td><strong>runcycles</strong><div class="muted small">github:runcycles</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">cycles-protocol: post-commit adjustment &amp; reversal semantics</td>
+        <td class="small"><a href="https://github.com/runcycles/cycles-protocol/issues/133" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0017">
+        <td class="mono">bld-0017</td>
+        <td><strong>Agent-Authority-Conformance</strong><div class="muted small">github:Agent-Authority-Conformance</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">aps-conformance-suite: JCS canonicalization + decision receipts (opened by giskard09)</td>
+        <td class="small"><a href="https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0018">
+        <td class="mono">bld-0018</td>
+        <td><strong>vaaraio</strong><div class="muted small">github:vaaraio</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">vaara: evidence layer, offline-verifiable hash chain</td>
+        <td class="small"><a href="https://github.com/vaaraio/vaara/discussions/795" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0019">
+        <td class="mono">bld-0019</td>
+        <td><strong>preloop</strong><div class="muted small">github:preloop</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">agent control plane: budgets / human approvals / audit trail</td>
+        <td class="small"><a href="https://github.com/preloop/preloop/discussions/938" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0020">
+        <td class="mono">bld-0020</td>
+        <td><strong>emiliaprotocol</strong><div class="muted small">github:emiliaprotocol</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">authority control plane + authorization-receipts + exact-action</td>
+        <td class="small"><a href="https://github.com/emiliaprotocol/emilia-protocol" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0021">
+        <td class="mono">bld-0021</td>
+        <td><strong>ariffazil</strong><div class="muted small">github:ariffazil</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">arifOS: judge-before-execute + VAULT999 receipts</td>
+        <td class="small"><a href="https://github.com/ariffazil/arifOS" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0042">
+        <td class="mono">bld-0042</td>
+        <td><strong>cirwel</strong><div class="muted small">github:cirwel</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">unitares: accountability infra for long-running agents (identity/claim/evidence/review/outcome/reconstruction); asked how a claim stays bound to the act it is about (Q&amp;A #2420)</td>
+        <td class="small"><a href="https://github.com/cirwel/unitares/discussions/2420" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0043">
+        <td class="mono">bld-0043</td>
+        <td><strong>Zoverions</strong><div class="muted small">github:Zoverions</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">AXIOM-MESH: intent -&gt; policy plan -&gt; approved effects -&gt; cryptographically linked evidence; asked whether evidence binds intent or effect, and whether it can be reversed (#1819)</td>
+        <td class="small"><a href="https://github.com/Zoverions/AXIOM-MESH/discussions/1819" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0054">
+        <td class="mono">bld-0054</td>
+        <td><strong>Mindburn-Labs</strong><div class="muted small">github:Mindburn-Labs</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">helm-ai-kernel: fail-closed execution firewall, signed receipts, offline EvidencePack verification; keeps integrity_valid vs signer_trusted as two verdicts (our seam #8); asked where the authority binding lives (#978)</td>
+        <td class="small"><a href="https://github.com/orgs/Mindburn-Labs/discussions/978" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0055">
+        <td class="mono">bld-0055</td>
+        <td><strong>DanceNitra</strong><div class="muted small">github:DanceNitra</div></td>
+        <td><span class="tier t-contacted">已触达</span></td>
+        <td class="small">inspeximus: tamper-evident agent memory; a corrected value stays retired (same shape as our append-only + supersede) plus verifiable erasure; asked how supersede and erasure coexist and who the witness is (#34)</td>
+        <td class="small"><a href="https://github.com/DanceNitra/inspeximus/discussions/34" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0022">
+        <td class="mono">bld-0022</td>
+        <td><strong>wienerlabs</strong><div class="muted small">github:wienerlabs</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">square / covenant: compliance-gated settlement + optimistic challenge + ERC-8004</td>
+        <td class="small"><a href="https://github.com/wienerlabs/square" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0023">
+        <td class="mono">bld-0023</td>
+        <td><strong>XPRNetwork</strong><div class="muted small">github:XPRNetwork</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">xpr-agents: trustless agent registry (identity/reputation/validation/escrow)</td>
+        <td class="small"><a href="https://github.com/XPRNetwork/xpr-agents" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0024">
+        <td class="mono">bld-0024</td>
+        <td><strong>statecrafting</strong><div class="muted small">github:statecrafting</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">spec-spine: hash-verifiable provenance ledger</td>
+        <td class="small"><a href="https://github.com/statecrafting/spec-spine" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0025">
+        <td class="mono">bld-0025</td>
+        <td><strong>romudille-bit</strong><div class="muted small">github:romudille-bit</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">agentpay: x402 pricing / caps / receipts</td>
+        <td class="small"><a href="https://github.com/romudille-bit/agentpay" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0026">
+        <td class="mono">bld-0026</td>
+        <td><strong>presidio-v</strong><div class="muted small">github:presidio-v</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">presidio-hardened-x402#23: no integrity binding between 402 envelope and settlement</td>
+        <td class="small"><a href="https://github.com/presidio-v/presidio-hardened-x402" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0027">
+        <td class="mono">bld-0027</td>
+        <td><strong>QWED-AI</strong><div class="muted small">github:QWED-AI</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">qwed-verification: deterministic verification of agent state before execution</td>
+        <td class="small"><a href="https://github.com/QWED-AI/qwed-verification" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0028">
+        <td class="mono">bld-0028</td>
+        <td><strong>IntensiveCoLearning</strong><div class="muted small">github:IntensiveCoLearning</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">trustless-agents: ERC-8004</td>
+        <td class="small"><a href="https://github.com/IntensiveCoLearning/trustless-agents" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0029">
+        <td class="mono">bld-0029</td>
+        <td><strong>up2itnow0822</strong><div class="muted small">github:up2itnow0822</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">agent-wallet-sdk: non-custodial + on-chain spending limits</td>
+        <td class="small"><a href="https://github.com/up2itnow0822/agent-wallet-sdk" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0030">
+        <td class="mono">bld-0030</td>
+        <td><strong>SlumperSan</strong><div class="muted small">github:SlumperSan</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">agent-governed-vaults: every action ratified by on-chain vote</td>
+        <td class="small"><a href="https://github.com/SlumperSan/agent-governed-vaults" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0031">
+        <td class="mono">bld-0031</td>
+        <td><strong>EvolutionDeep</strong><div class="muted small">github:EvolutionDeep</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">murmur: agent population settling in USDC over x402</td>
+        <td class="small"><a href="https://github.com/EvolutionDeep/murmur" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0032">
+        <td class="mono">bld-0032</td>
+        <td><strong>acnlabs</strong><div class="muted small">github:acnlabs</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">ACN: registry + A2A + task pool + payments</td>
+        <td class="small"><a href="https://github.com/acnlabs/ACN" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0033">
+        <td class="mono">bld-0033</td>
+        <td><strong>ldclabs</strong><div class="muted small">github:ldclabs</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">anda-cloud: decentralized agent infra on ICP + TEE</td>
+        <td class="small"><a href="https://github.com/ldclabs/anda-cloud" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0034">
+        <td class="mono">bld-0034</td>
+        <td><strong>Smartdevs17</strong><div class="muted small">github:Smartdevs17</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">agenticpay: AI agent payment infrastructure</td>
+        <td class="small"><a href="https://github.com/Smartdevs17/agenticpay" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0035">
+        <td class="mono">bld-0035</td>
+        <td><strong>mizuki0x</strong><div class="muted small">github:mizuki0x</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">kamiyo-protocol (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/mizuki0x/kamiyo-protocol" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0036">
+        <td class="mono">bld-0036</td>
+        <td><strong>Dabus123</strong><div class="muted small">github:Dabus123</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">azzle (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/Dabus123/azzle" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0037">
+        <td class="mono">bld-0037</td>
+        <td><strong>csehammad</strong><div class="muted small">github:csehammad</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">covenant-layer (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/csehammad/covenant-layer" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0038">
+        <td class="mono">bld-0038</td>
+        <td><strong>SeierkDev</strong><div class="muted small">github:SeierkDev</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">Axon (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/SeierkDev/Axon" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0039">
+        <td class="mono">bld-0039</td>
+        <td><strong>mnemox-ai</strong><div class="muted small">github:mnemox-ai</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">AgentRelay (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/mnemox-ai/AgentRelay" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0040">
+        <td class="mono">bld-0040</td>
+        <td><strong>daydreamsai</strong><div class="muted small">github:daydreamsai</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">lucid-agents (09-19 candidate pool)</td>
+        <td class="small"><a href="https://github.com/daydreamsai/lucid-agents" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0044">
+        <td class="mono">bld-0044</td>
+        <td><strong>b7n0de</strong><div class="muted small">github:b7n0de</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">proofbundle: portable offline-verifiable evidence (RFC 6962 transparency log, merkle, receipts); 'integrity, not truth'</td>
+        <td class="small"><a href="https://github.com/b7n0de/proofbundle" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0045">
+        <td class="mono">bld-0045</td>
+        <td><strong>sattyamjjain</strong><div class="muted small">github:sattyamjjain</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">ferrumdeck: in-path enforcement, hash-chained audit, deny-by-default + budget gates; publishes its own false-positive rate with denominators</td>
+        <td class="small"><a href="https://github.com/sattyamjjain/ferrumdeck" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0046">
+        <td class="mono">bld-0046</td>
+        <td><strong>mishrasanjeev</strong><div class="muted small">github:mishrasanjeev</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">grantex: agent identity/authorization/audit infra ('OAuth moment')</td>
+        <td class="small"><a href="https://github.com/mishrasanjeev/grantex" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0047">
+        <td class="mono">bld-0047</td>
+        <td><strong>YugantM</strong><div class="muted small">github:YugantM</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">hvtracker: independent evidence-based trust registry for agents/MCP</td>
+        <td class="small"><a href="https://github.com/YugantM/hvtracker" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0048">
+        <td class="mono">bld-0048</td>
+        <td><strong>basilisk-labs</strong><div class="muted small">github:basilisk-labs</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">agentplane: git-native approved plans + reviewable evidence</td>
+        <td class="small"><a href="https://github.com/basilisk-labs/agentplane" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0049">
+        <td class="mono">bld-0049</td>
+        <td><strong>A3S-Lab</strong><div class="muted small">github:A3S-Lab</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">Power: verifiable execution + TEE + canonical receipts</td>
+        <td class="small"><a href="https://github.com/A3S-Lab/Power" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0050">
+        <td class="mono">bld-0050</td>
+        <td><strong>HelloVIMS</strong><div class="muted small">github:HelloVIMS</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">Agent-NFT: ERC-8004 identity + EIP-712/EIP-3009 x402 settlement</td>
+        <td class="small"><a href="https://github.com/HelloVIMS/Agent-NFT" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0051">
+        <td class="mono">bld-0051</td>
+        <td><strong>kychee-com</strong><div class="muted small">github:kychee-com</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">run402: agent backend infrastructure, x402/MPP paid</td>
+        <td class="small"><a href="https://github.com/kychee-com/run402" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0052">
+        <td class="mono">bld-0052</td>
+        <td><strong>Its-fortunatefolly</strong><div class="muted small">github:Its-fortunatefolly</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">HubVibe: machine-payable work over HTTP 402, receipt per job</td>
+        <td class="small"><a href="https://github.com/Its-fortunatefolly/HubVibe" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0053">
+        <td class="mono">bld-0053</td>
+        <td><strong>Dragonmonk111</strong><div class="muted small">github:Dragonmonk111</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">junoclaw: verifiable autonomy + on-chain truth markets + work-history attestation</td>
+        <td class="small"><a href="https://github.com/Dragonmonk111/junoclaw" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0056">
+        <td class="mono">bld-0056</td>
+        <td><strong>ashaveri</strong><div class="muted small">github:ashaveri</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">ashaveri: OpenAI-compatible inference, each response ships a signed COSE_Sign1 receipt (request/response hash, weights manifest, confidential-hardware measurement); 'Change the model. Keep the evidence.'</td>
+        <td class="small"><a href="https://github.com/ashaveri/ashaveri" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0057">
+        <td class="mono">bld-0057</td>
+        <td><strong>Garl-Protocol</strong><div class="muted small">github:Garl-Protocol</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">garl: ECDSA-secp256k1 + RFC6979 signed Action Receipts bound to the authorizing capability token, Merkle-anchored on Base; delegated token can only narrow. ARCHIVED 2026-09-24, hosted service retired (repo + 12 Base anchors remain)</td>
+        <td class="small"><a href="https://github.com/Garl-Protocol/garl" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0058">
+        <td class="mono">bld-0058</td>
+        <td><strong>at1c-protocol</strong><div class="muted small">github:at1c-protocol</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">at1c-protocol-official: evidence layer for human control of AI; 'Don't trust us. Verify the receipt.' + sovereign identity/registry</td>
+        <td class="small"><a href="https://github.com/at1c-protocol/at1c-protocol-official" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0059">
+        <td class="mono">bld-0059</td>
+        <td><strong>tuannguyenvan95</strong><div class="muted small">github:tuannguyenvan95</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">AgentSLA: sub-agent SLA adjudication + bounty escrow protocol (GenLayer)</td>
+        <td class="small"><a href="https://github.com/tuannguyenvan95/AgentSLA" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0060">
+        <td class="mono">bld-0060</td>
+        <td><strong>chainloop-dev</strong><div class="muted small">github:chainloop-dev</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">chainloop: SDLC evidence store + policy engine (in-toto / SLSA / SBOM / VEX attestations)</td>
+        <td class="small"><a href="https://github.com/chainloop-dev/chainloop" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0061">
+        <td class="mono">bld-0061</td>
+        <td><strong>darklordVirtual</strong><div class="muted small">github:darklordVirtual</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">REMORA-research: policy-gated governance for operational agents (OPA/Rego, pre-execution, negative results)</td>
+        <td class="small"><a href="https://github.com/darklordVirtual/REMORA-research" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0062">
+        <td class="mono">bld-0062</td>
+        <td><strong>edgepillar</strong><div class="muted small">github:edgepillar</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">zenon-x402-poc: Zenon as a settlement rail for HTTP-native agent payments</td>
+        <td class="small"><a href="https://github.com/edgepillar/zenon-x402-poc" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0063">
+        <td class="mono">bld-0063</td>
+        <td><strong>naulonapp</strong><div class="muted small">github:naulonapp</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">naulon: pay-per-read toll for the agentic web (x402/USDC nanopayment; attribution graph is the payout rule)</td>
+        <td class="small"><a href="https://github.com/naulonapp/naulon" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0064">
+        <td class="mono">bld-0064</td>
+        <td><strong>Vortx-AI</strong><div class="muted small">github:Vortx-AI</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">emem: machine-maintained external memory (content-addressed, ed25519, transparency log, deterministic)</td>
+        <td class="small"><a href="https://github.com/Vortx-AI/emem" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+      <tr id="bld-0065">
+        <td class="mono">bld-0065</td>
+        <td><strong>Luminous-Dynamics</strong><div class="muted small">github:Luminous-Dynamics</div></td>
+        <td><span class="tier t-observed">已观察</span></td>
+        <td class="small">mycelix: fractal governance CivOS on Holochain (identity/governance)</td>
+        <td class="small"><a href="https://github.com/Luminous-Dynamics/mycelix" target="_blank" rel="noopener">证据</a></td>
+        <td><span class="badge badge-yellow">remembered</span></td>
+      </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">自己核验 · Verify it yourself</h2>
+    <div class="verify-box">
+      <p>账本必须可被任何人独立重算——不信运营者。</p>
+      <ul class="small">
+        <li>机器可读原件：<a href="ledger.json" target="_blank" rel="noopener">ledger.json</a>（schema <code>origin-builder-ledger/1</code>）</li>
+        <li>校验器：<a href="https://github.com/source-origin/l5-protocol" target="_blank" rel="noopener">source-origin/l5-protocol</a> → <code>node tools/ledger.cjs check</code>（schema / id 单调 / 身份去重 / tier 枚举 / counted⇒receipt_ref / 证据可达）</li>
+        <li>设计规范：<a href="https://github.com/source-origin/l5-protocol/blob/main/docs/CONTRIBUTION-SPEC.md" target="_blank" rel="noopener">docs/CONTRIBUTION-SPEC.md</a></li>
+      </ul>
+      <p class="muted small">本页为账本的人读投影；如有冲突，以 <code>ledger.json</code> 与校验器判定为准。</p>
+    </div>
+    <p class="muted small" style="margin-top:18px">被记住，是因为你的工作本身可被验证——不是因为谁认识你。</p>
+  </div>
+</section>
+</main>
+<script id="ledger-data" type="application/json">{"schema":"origin-builder-ledger/1","repo":"source-origin/l5-protocol","spec":"docs/CONTRIBUTION-SPEC.md","human":"docs/LEDGER.md","updated":"2026-09-24","status":"v0-seeded","rules":["append-only: entries are never rewritten, only superseded (superseded_by); the original is preserved","ids are monotonic: bld-0001 .. bld-NNNN","every entry cites evidence a third party can open","remembered != counted: counted requires a landed, independently-verifiable contribution receipt","counted flips for an EXTERNAL entry only on a receipt signed by that entry's own published key (signing_key), never on the ledger-keeper's own recording of the entry's words","presence implies no endorsement","de-duplicated by identity (superseded entries excluded from the live identity set)"],"tiers":{"internal":"founding team","converged":"independent convergence (reached the same boundary without seeing ours)","in_dialogue":"public thread in progress","contacted":"reached the boundary, thread open","observed":"seen in scan, not contacted, no relationship implied"},"entries":[{"id":"bld-0001","handle":"源","surface":"origin","tier":"internal","note":"Founder · highest authority (Constitution L0)","first_seen":"2026","counted":true,"receipt_ref":"origin-1:genesis","evidence":["https://source-origin.github.io/source-origin/"]},{"id":"bld-0002","handle":"量子总督","surface":"origin","tier":"internal","note":"Quantum Governor · technical execution & security audit","first_seen":"2026","counted":true,"receipt_ref":"origin-1:genesis","evidence":["https://github.com/source-origin/l5-protocol"]},{"id":"bld-0003","handle":"DeepSeek","surface":"origin","tier":"internal","note":"strategy & constitutional drafts","first_seen":"2026","counted":true,"receipt_ref":"origin-1:genesis","evidence":[]},{"id":"bld-0004","handle":"TRAE","surface":"origin","tier":"internal","note":"ecosystem & portal operations","first_seen":"2026","counted":true,"receipt_ref":"origin-1:genesis","evidence":[]},{"id":"bld-0005","handle":"giskard09","surface":"github:giskard09","tier":"converged","note":"Boundary rule; improved our verdict-cites-receipt; named 'right-shape, wrong-object'","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/internet-court/internet-court-skill/issues/1","https://github.com/giskard09/argentum-core","https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"]},{"id":"bld-0006","handle":"seancrecord","surface":"github:seancrecord","tier":"converged","note":"same Boundary rule from the authorization side; adversarial audit surfaced 3 real drifts","first_seen":"2026-09-21","superseded_by":"bld-0041","signing_key":"https://scvd.store/.well-known/scvd-signing-key","counted":false,"receipt_ref":null,"evidence":["https://github.com/seancrecord/scvd-general-store-repo/issues/874"]},{"id":"bld-0007","handle":"Ali-Adel-Nour","surface":"github:Ali-Adel-Nour","tier":"in_dialogue","note":"Arbitra; verdict-before-release consensus; first external hard requirement (P256/EIP-7951)","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/Ali-Adel-Nour/Arbitra/issues/56"]},{"id":"bld-0008","handle":"Rai","surface":"github:PANDeveloper001","tier":"in_dialogue","note":"openai-agents-nano-x402: per-call settlement in self-custodied Nano. Surface unreachable as of 2026-09-24: github:PANDeveloper001 now 404s; a same-named repo exists under dhyabi2 (created 2026-09-23, fork=false) but attribution is UNCONFIRMED, so we do not claim it.","first_seen":"2026-09-21","reachable":false,"counted":false,"receipt_ref":null,"evidence":["https://github.com/PANDeveloper001/openai-agents-nano-x402"]},{"id":"bld-0009","handle":"seritalien","surface":"github:seritalien","tier":"in_dialogue","note":"agent escrow protocol","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/Agastya910/agent-escrow-protocol"]},{"id":"bld-0010","handle":"tinyhumansai","surface":"github:tinyhumansai","tier":"in_dialogue","note":"tiny.place social economy for autonomous agents","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/tinyhumansai/tiny.place"]},{"id":"bld-0011","handle":"gbin (copper-project)","surface":"github:copper-project","tier":"in_dialogue","note":"copper-rs robot OS: build / run / replay","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/copper-project/copper-rs"]},{"id":"bld-0012","handle":"motebit","surface":"github:motebit","tier":"contacted","note":"signed execution receipts; governance at the boundary","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/motebit/motebit/discussions/751"]},{"id":"bld-0013","handle":"vassiliylakhonin","surface":"github:vassiliylakhonin","tier":"contacted","note":"agenda-intelligence-md: packet completeness, not truth","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/vassiliylakhonin/agenda-intelligence-md/discussions/336"]},{"id":"bld-0014","handle":"snapsynapse","surface":"github:snapsynapse","tier":"contacted","note":"turnfile: auditable peer disagreement + human arbiter","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/snapsynapse/turnfile/discussions/15"]},{"id":"bld-0015","handle":"babyblueviper1","surface":"github:babyblueviper1","tier":"contacted","note":"invinoveritas: signed verdict before an irreversible action","first_seen":"2026-09-21","counted":false,"receipt_ref":null,"evidence":["https://github.com/babyblueviper1/invinoveritas/issues/8"]},{"id":"bld-0016","handle":"runcycles","surface":"github:runcycles","tier":"contacted","note":"cycles-protocol: post-commit adjustment & reversal semantics","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/runcycles/cycles-protocol/issues/133"]},{"id":"bld-0017","handle":"Agent-Authority-Conformance","surface":"github:Agent-Authority-Conformance","tier":"contacted","note":"aps-conformance-suite: JCS canonicalization + decision receipts (opened by giskard09)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"]},{"id":"bld-0018","handle":"vaaraio","surface":"github:vaaraio","tier":"contacted","note":"vaara: evidence layer, offline-verifiable hash chain","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/vaaraio/vaara/discussions/795"]},{"id":"bld-0019","handle":"preloop","surface":"github:preloop","tier":"contacted","note":"agent control plane: budgets / human approvals / audit trail","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/preloop/preloop/discussions/938"]},{"id":"bld-0020","handle":"emiliaprotocol","surface":"github:emiliaprotocol","tier":"contacted","note":"authority control plane + authorization-receipts + exact-action","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/emiliaprotocol/emilia-protocol"]},{"id":"bld-0021","handle":"ariffazil","surface":"github:ariffazil","tier":"contacted","note":"arifOS: judge-before-execute + VAULT999 receipts","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/ariffazil/arifOS"]},{"id":"bld-0022","handle":"wienerlabs","surface":"github:wienerlabs","tier":"observed","note":"square / covenant: compliance-gated settlement + optimistic challenge + ERC-8004","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/wienerlabs/square"]},{"id":"bld-0023","handle":"XPRNetwork","surface":"github:XPRNetwork","tier":"observed","note":"xpr-agents: trustless agent registry (identity/reputation/validation/escrow)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/XPRNetwork/xpr-agents"]},{"id":"bld-0024","handle":"statecrafting","surface":"github:statecrafting","tier":"observed","note":"spec-spine: hash-verifiable provenance ledger","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/statecrafting/spec-spine"]},{"id":"bld-0025","handle":"romudille-bit","surface":"github:romudille-bit","tier":"observed","note":"agentpay: x402 pricing / caps / receipts","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/romudille-bit/agentpay"]},{"id":"bld-0026","handle":"presidio-v","surface":"github:presidio-v","tier":"observed","note":"presidio-hardened-x402#23: no integrity binding between 402 envelope and settlement","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/presidio-v/presidio-hardened-x402"]},{"id":"bld-0027","handle":"QWED-AI","surface":"github:QWED-AI","tier":"observed","note":"qwed-verification: deterministic verification of agent state before execution","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/QWED-AI/qwed-verification"]},{"id":"bld-0028","handle":"IntensiveCoLearning","surface":"github:IntensiveCoLearning","tier":"observed","note":"trustless-agents: ERC-8004","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/IntensiveCoLearning/trustless-agents"]},{"id":"bld-0029","handle":"up2itnow0822","surface":"github:up2itnow0822","tier":"observed","note":"agent-wallet-sdk: non-custodial + on-chain spending limits","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/up2itnow0822/agent-wallet-sdk"]},{"id":"bld-0030","handle":"SlumperSan","surface":"github:SlumperSan","tier":"observed","note":"agent-governed-vaults: every action ratified by on-chain vote","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/SlumperSan/agent-governed-vaults"]},{"id":"bld-0031","handle":"EvolutionDeep","surface":"github:EvolutionDeep","tier":"observed","note":"murmur: agent population settling in USDC over x402","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/EvolutionDeep/murmur"]},{"id":"bld-0032","handle":"acnlabs","surface":"github:acnlabs","tier":"observed","note":"ACN: registry + A2A + task pool + payments","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/acnlabs/ACN"]},{"id":"bld-0033","handle":"ldclabs","surface":"github:ldclabs","tier":"observed","note":"anda-cloud: decentralized agent infra on ICP + TEE","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/ldclabs/anda-cloud"]},{"id":"bld-0034","handle":"Smartdevs17","surface":"github:Smartdevs17","tier":"observed","note":"agenticpay: AI agent payment infrastructure","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Smartdevs17/agenticpay"]},{"id":"bld-0035","handle":"mizuki0x","surface":"github:mizuki0x","tier":"observed","note":"kamiyo-protocol (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/mizuki0x/kamiyo-protocol"]},{"id":"bld-0036","handle":"Dabus123","surface":"github:Dabus123","tier":"observed","note":"azzle (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/Dabus123/azzle"]},{"id":"bld-0037","handle":"csehammad","surface":"github:csehammad","tier":"observed","note":"covenant-layer (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/csehammad/covenant-layer"]},{"id":"bld-0038","handle":"SeierkDev","surface":"github:SeierkDev","tier":"observed","note":"Axon (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/SeierkDev/Axon"]},{"id":"bld-0039","handle":"mnemox-ai","surface":"github:mnemox-ai","tier":"observed","note":"AgentRelay (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/mnemox-ai/AgentRelay"]},{"id":"bld-0040","handle":"daydreamsai","surface":"github:daydreamsai","tier":"observed","note":"lucid-agents (09-19 candidate pool)","first_seen":"2026-09-19","counted":false,"receipt_ref":null,"evidence":["https://github.com/daydreamsai/lucid-agents"]},{"id":"bld-0041","handle":"seancrecord","surface":"github:seancrecord","tier":"converged","note":"read this repo's public tree against its own docs and surfaced drift","supersedes":"bld-0006","first_seen":"2026-09-21","signing_key":"https://scvd.store/.well-known/scvd-signing-key","counted":false,"receipt_ref":null,"evidence":["https://github.com/seancrecord/scvd-general-store-repo/issues/874"]},{"id":"bld-0042","handle":"cirwel","surface":"github:cirwel","tier":"contacted","note":"unitares: accountability infra for long-running agents (identity/claim/evidence/review/outcome/reconstruction); asked how a claim stays bound to the act it is about (Q&A #2420)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/cirwel/unitares/discussions/2420"]},{"id":"bld-0043","handle":"Zoverions","surface":"github:Zoverions","tier":"contacted","note":"AXIOM-MESH: intent -> policy plan -> approved effects -> cryptographically linked evidence; asked whether evidence binds intent or effect, and whether it can be reversed (#1819)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Zoverions/AXIOM-MESH/discussions/1819"]},{"id":"bld-0044","handle":"b7n0de","surface":"github:b7n0de","tier":"observed","note":"proofbundle: portable offline-verifiable evidence (RFC 6962 transparency log, merkle, receipts); 'integrity, not truth'","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/b7n0de/proofbundle"]},{"id":"bld-0045","handle":"sattyamjjain","surface":"github:sattyamjjain","tier":"observed","note":"ferrumdeck: in-path enforcement, hash-chained audit, deny-by-default + budget gates; publishes its own false-positive rate with denominators","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/sattyamjjain/ferrumdeck"]},{"id":"bld-0046","handle":"mishrasanjeev","surface":"github:mishrasanjeev","tier":"observed","note":"grantex: agent identity/authorization/audit infra ('OAuth moment')","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/mishrasanjeev/grantex"]},{"id":"bld-0047","handle":"YugantM","surface":"github:YugantM","tier":"observed","note":"hvtracker: independent evidence-based trust registry for agents/MCP","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/YugantM/hvtracker"]},{"id":"bld-0048","handle":"basilisk-labs","surface":"github:basilisk-labs","tier":"observed","note":"agentplane: git-native approved plans + reviewable evidence","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/basilisk-labs/agentplane"]},{"id":"bld-0049","handle":"A3S-Lab","surface":"github:A3S-Lab","tier":"observed","note":"Power: verifiable execution + TEE + canonical receipts","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/A3S-Lab/Power"]},{"id":"bld-0050","handle":"HelloVIMS","surface":"github:HelloVIMS","tier":"observed","note":"Agent-NFT: ERC-8004 identity + EIP-712/EIP-3009 x402 settlement","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/HelloVIMS/Agent-NFT"]},{"id":"bld-0051","handle":"kychee-com","surface":"github:kychee-com","tier":"observed","note":"run402: agent backend infrastructure, x402/MPP paid","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/kychee-com/run402"]},{"id":"bld-0052","handle":"Its-fortunatefolly","surface":"github:Its-fortunatefolly","tier":"observed","note":"HubVibe: machine-payable work over HTTP 402, receipt per job","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Its-fortunatefolly/HubVibe"]},{"id":"bld-0053","handle":"Dragonmonk111","surface":"github:Dragonmonk111","tier":"observed","note":"junoclaw: verifiable autonomy + on-chain truth markets + work-history attestation","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Dragonmonk111/junoclaw"]},{"id":"bld-0054","handle":"Mindburn-Labs","surface":"github:Mindburn-Labs","tier":"contacted","note":"helm-ai-kernel: fail-closed execution firewall, signed receipts, offline EvidencePack verification; keeps integrity_valid vs signer_trusted as two verdicts (our seam #8); asked where the authority binding lives (#978)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/orgs/Mindburn-Labs/discussions/978"]},{"id":"bld-0055","handle":"DanceNitra","surface":"github:DanceNitra","tier":"contacted","note":"inspeximus: tamper-evident agent memory; a corrected value stays retired (same shape as our append-only + supersede) plus verifiable erasure; asked how supersede and erasure coexist and who the witness is (#34)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/DanceNitra/inspeximus/discussions/34"]},{"id":"bld-0056","handle":"ashaveri","surface":"github:ashaveri","tier":"observed","note":"ashaveri: OpenAI-compatible inference, each response ships a signed COSE_Sign1 receipt (request/response hash, weights manifest, confidential-hardware measurement); 'Change the model. Keep the evidence.'","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/ashaveri/ashaveri"]},{"id":"bld-0057","handle":"Garl-Protocol","surface":"github:Garl-Protocol","tier":"observed","note":"garl: ECDSA-secp256k1 + RFC6979 signed Action Receipts bound to the authorizing capability token, Merkle-anchored on Base; delegated token can only narrow. ARCHIVED 2026-09-24, hosted service retired (repo + 12 Base anchors remain)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Garl-Protocol/garl"]},{"id":"bld-0058","handle":"at1c-protocol","surface":"github:at1c-protocol","tier":"observed","note":"at1c-protocol-official: evidence layer for human control of AI; 'Don't trust us. Verify the receipt.' + sovereign identity/registry","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/at1c-protocol/at1c-protocol-official"]},{"id":"bld-0059","handle":"tuannguyenvan95","surface":"github:tuannguyenvan95","tier":"observed","note":"AgentSLA: sub-agent SLA adjudication + bounty escrow protocol (GenLayer)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/tuannguyenvan95/AgentSLA"]},{"id":"bld-0060","handle":"chainloop-dev","surface":"github:chainloop-dev","tier":"observed","note":"chainloop: SDLC evidence store + policy engine (in-toto / SLSA / SBOM / VEX attestations)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/chainloop-dev/chainloop"]},{"id":"bld-0061","handle":"darklordVirtual","surface":"github:darklordVirtual","tier":"observed","note":"REMORA-research: policy-gated governance for operational agents (OPA/Rego, pre-execution, negative results)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/darklordVirtual/REMORA-research"]},{"id":"bld-0062","handle":"edgepillar","surface":"github:edgepillar","tier":"observed","note":"zenon-x402-poc: Zenon as a settlement rail for HTTP-native agent payments","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/edgepillar/zenon-x402-poc"]},{"id":"bld-0063","handle":"naulonapp","surface":"github:naulonapp","tier":"observed","note":"naulon: pay-per-read toll for the agentic web (x402/USDC nanopayment; attribution graph is the payout rule)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/naulonapp/naulon"]},{"id":"bld-0064","handle":"Vortx-AI","surface":"github:Vortx-AI","tier":"observed","note":"emem: machine-maintained external memory (content-addressed, ed25519, transparency log, deterministic)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Vortx-AI/emem"]},{"id":"bld-0065","handle":"Luminous-Dynamics","surface":"github:Luminous-Dynamics","tier":"observed","note":"mycelix: fractal governance CivOS on Holochain (identity/governance)","first_seen":"2026-09-24","counted":false,"receipt_ref":null,"evidence":["https://github.com/Luminous-Dynamics/mycelix"]}]}</script>
+<script>
+(function(){
+  var TIER={internal:['创世','t-internal'],converged:['独立收敛','t-converged'],in_dialogue:['对话中','t-dialogue'],contacted:['已触达','t-contacted'],observed:['已观察','t-observed']};
+  var ORDER=['internal','converged','in_dialogue','contacted','observed'];
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function render(entries){
+    var tb=document.getElementById('ledgerRows'); if(!tb) return;
+    var rows=entries.slice().sort(function(a,b){var d=ORDER.indexOf(a.tier)-ORDER.indexOf(b.tier);return d||String(a.id).localeCompare(b.id);});
+    var counts={}; entries.forEach(function(e){counts[e.tier]=(counts[e.tier]||0)+1;});
+    document.querySelectorAll('.stats-grid .stat-value').forEach(function(el,i){el.textContent=(counts[ORDER[i]]||0);});
+    var tot=document.getElementById('ledgerTotal'); if(tot) tot.textContent=entries.length;
+    tb.innerHTML=rows.map(function(e){
+      var t=TIER[e.tier]||[e.tier,'t-observed'];
+      var ev=(e.evidence||[]).map(function(u){return '<a href="'+esc(u)+'" target="_blank" rel="noopener">证据</a>';}).join(' · ')||'<span class="muted">—</span>';
+      var cnt=e.counted?'<span class="badge badge-green">counted</span>':'<span class="badge badge-yellow">remembered</span>';
+      var ex=[]; if(e.supersedes)ex.push('supersedes '+esc(e.supersedes));
+      if(e.superseded_by)ex.push('superseded_by <a href="#'+esc(e.superseded_by)+'">'+esc(e.superseded_by)+'</a>');
+      if(e.signing_key)ex.push('signing_key');
+      return '<tr id="'+esc(e.id)+'"><td class="mono">'+esc(e.id)+'</td><td><strong>'+esc(e.handle)+'</strong><div class="muted small">'+esc(e.surface)+'</div></td><td><span class="tier '+t[1]+'">'+t[0]+'</span></td><td class="small">'+esc(e.note)+(ex.length?'<div class="muted small">'+ex.join(' · ')+'</div>':'')+'</td><td class="small">'+ev+'</td><td>'+cnt+'</td></tr>';
+    }).join('');
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    try{render(JSON.parse(document.getElementById('ledger-data').textContent).entries||[]);}catch(e){}
+    fetch('ledger.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(j){if(j&&j.entries)render(j.entries);}).catch(function(){});
+  });
+})();
+</script>
+</body>
+</html>

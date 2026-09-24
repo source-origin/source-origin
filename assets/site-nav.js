@@ -20,6 +20,7 @@
     { id: 'factory',  label: '智能体工厂',  href: 'factory.html' },
     { id: 'weapon',   label: '武器库',      href: 'weapon-library.html' },
     { id: 'cases',    label: '案例',        href: 'cases.html' },
+    { id: 'builders', label: '建造者账本', href: 'builders.html' },
     { id: 'developers', label: 'Dev Command', href: 'developer-board.html' },
     { id: 'agents', label: 'Agent Command', href: 'agent-command.html' },
     { id: 'about',    label: '使命',        href: 'mission.html' },
