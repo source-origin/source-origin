@@ -1,99 +1,1056 @@
 {
-  "schema": "origin-builder-ledger/1",
-  "repo": "source-origin/l5-protocol",
-  "spec": "docs/CONTRIBUTION-SPEC.md",
-  "human": "docs/LEDGER.md",
-  "updated": "2026-09-24",
-  "status": "v0-seeded",
-  "rules": [
-    "append-only: entries are never rewritten, only superseded (superseded_by); the original is preserved",
-    "ids are monotonic: bld-0001 .. bld-NNNN",
-    "every entry cites evidence a third party can open",
-    "remembered != counted: counted requires a landed, independently-verifiable contribution receipt",
-    "counted flips for an EXTERNAL entry only on a receipt signed by that entry's own published key (signing_key), never on the ledger-keeper's own recording of the entry's words",
-    "presence implies no endorsement",
-    "de-duplicated by identity (superseded entries excluded from the live identity set)"
-  ],
-  "tiers": {
-    "internal": "founding team",
-    "converged": "independent convergence (reached the same boundary without seeing ours)",
-    "in_dialogue": "public thread in progress",
-    "contacted": "reached the boundary, thread open",
-    "observed": "seen in scan, not contacted, no relationship implied"
+ "schema": "origin-builder-ledger/1",
+ "repo": "source-origin/l5-protocol",
+ "spec": "docs/CONTRIBUTION-SPEC.md",
+ "human": "docs/LEDGER.md",
+ "updated": "2026-09-24",
+ "status": "v0-seeded",
+ "rules": [
+  "append-only: entries are never rewritten, only superseded (superseded_by); the original is preserved",
+  "ids are monotonic: bld-0001 .. bld-NNNN",
+  "every entry cites evidence a third party can open",
+  "remembered != counted: counted requires a landed, independently-verifiable contribution receipt",
+  "counted flips for an EXTERNAL entry only on a receipt signed by that entry's own published key (signing_key), never on the ledger-keeper's own recording of the entry's words",
+  "presence implies no endorsement",
+  "de-duplicated by identity (superseded entries excluded from the live identity set)"
+ ],
+ "tiers": {
+  "internal": "founding team",
+  "converged": "independent convergence (reached the same boundary without seeing ours)",
+  "in_dialogue": "public thread in progress",
+  "contacted": "reached the boundary, thread open",
+  "observed": "seen in scan, not contacted, no relationship implied"
+ },
+ "entries": [
+  {
+   "id": "bld-0001",
+   "handle": "源",
+   "surface": "origin",
+   "tier": "internal",
+   "note": "Founder · highest authority (Constitution L0)",
+   "first_seen": "2026",
+   "counted": true,
+   "receipt_ref": "origin-1:genesis",
+   "evidence": [
+    "https://source-origin.github.io/source-origin/"
+   ]
   },
-  "entries": [
-    { "id": "bld-0001", "handle": "源", "surface": "origin", "tier": "internal", "note": "Founder · highest authority (Constitution L0)", "first_seen": "2026", "counted": true, "receipt_ref": "origin-1:genesis", "evidence": ["https://source-origin.github.io/source-origin/"] },
-    { "id": "bld-0002", "handle": "量子总督", "surface": "origin", "tier": "internal", "note": "Quantum Governor · technical execution & security audit", "first_seen": "2026", "counted": true, "receipt_ref": "origin-1:genesis", "evidence": ["https://github.com/source-origin/l5-protocol"] },
-    { "id": "bld-0003", "handle": "DeepSeek", "surface": "origin", "tier": "internal", "note": "strategy & constitutional drafts", "first_seen": "2026", "counted": true, "receipt_ref": "origin-1:genesis", "evidence": [] },
-    { "id": "bld-0004", "handle": "TRAE", "surface": "origin", "tier": "internal", "note": "ecosystem & portal operations", "first_seen": "2026", "counted": true, "receipt_ref": "origin-1:genesis", "evidence": [] },
-
-    { "id": "bld-0005", "handle": "giskard09", "surface": "github:giskard09", "tier": "converged", "note": "Boundary rule; improved our verdict-cites-receipt; named 'right-shape, wrong-object'", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/internet-court/internet-court-skill/issues/1", "https://github.com/giskard09/argentum-core", "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"] },
-    { "id": "bld-0006", "handle": "seancrecord", "surface": "github:seancrecord", "tier": "converged", "note": "same Boundary rule from the authorization side; adversarial audit surfaced 3 real drifts", "first_seen": "2026-09-21", "superseded_by": "bld-0041", "signing_key": "https://scvd.store/.well-known/scvd-signing-key", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/seancrecord/scvd-general-store-repo/issues/874"] },
-
-    { "id": "bld-0007", "handle": "Ali-Adel-Nour", "surface": "github:Ali-Adel-Nour", "tier": "in_dialogue", "note": "Arbitra; verdict-before-release consensus; first external hard requirement (P256/EIP-7951)", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Ali-Adel-Nour/Arbitra/issues/56"] },
-    { "id": "bld-0008", "handle": "Rai", "surface": "github:PANDeveloper001", "tier": "in_dialogue", "note": "openai-agents-nano-x402: per-call settlement in self-custodied Nano. Surface unreachable as of 2026-09-24: github:PANDeveloper001 now 404s; a same-named repo exists under dhyabi2 (created 2026-09-23, fork=false) but attribution is UNCONFIRMED, so we do not claim it.", "first_seen": "2026-09-21", "reachable": false, "counted": false, "receipt_ref": null, "evidence": ["https://github.com/PANDeveloper001/openai-agents-nano-x402"] },
-    { "id": "bld-0009", "handle": "seritalien", "surface": "github:seritalien", "tier": "in_dialogue", "note": "agent escrow protocol", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Agastya910/agent-escrow-protocol"] },
-    { "id": "bld-0010", "handle": "tinyhumansai", "surface": "github:tinyhumansai", "tier": "in_dialogue", "note": "tiny.place social economy for autonomous agents", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/tinyhumansai/tiny.place"] },
-    { "id": "bld-0011", "handle": "gbin (copper-project)", "surface": "github:copper-project", "tier": "in_dialogue", "note": "copper-rs robot OS: build / run / replay", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/copper-project/copper-rs"] },
-
-    { "id": "bld-0012", "handle": "motebit", "surface": "github:motebit", "tier": "contacted", "note": "signed execution receipts; governance at the boundary", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/motebit/motebit/discussions/751"] },
-    { "id": "bld-0013", "handle": "vassiliylakhonin", "surface": "github:vassiliylakhonin", "tier": "contacted", "note": "agenda-intelligence-md: packet completeness, not truth", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/vassiliylakhonin/agenda-intelligence-md/discussions/336"] },
-    { "id": "bld-0014", "handle": "snapsynapse", "surface": "github:snapsynapse", "tier": "contacted", "note": "turnfile: auditable peer disagreement + human arbiter", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/snapsynapse/turnfile/discussions/15"] },
-    { "id": "bld-0015", "handle": "babyblueviper1", "surface": "github:babyblueviper1", "tier": "contacted", "note": "invinoveritas: signed verdict before an irreversible action", "first_seen": "2026-09-21", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/babyblueviper1/invinoveritas/issues/8"] },
-    { "id": "bld-0016", "handle": "runcycles", "surface": "github:runcycles", "tier": "contacted", "note": "cycles-protocol: post-commit adjustment & reversal semantics", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/runcycles/cycles-protocol/issues/133"] },
-    { "id": "bld-0017", "handle": "Agent-Authority-Conformance", "surface": "github:Agent-Authority-Conformance", "tier": "contacted", "note": "aps-conformance-suite: JCS canonicalization + decision receipts (opened by giskard09)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"] },
-    { "id": "bld-0018", "handle": "vaaraio", "surface": "github:vaaraio", "tier": "contacted", "note": "vaara: evidence layer, offline-verifiable hash chain", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/vaaraio/vaara/discussions/795"] },
-    { "id": "bld-0019", "handle": "preloop", "surface": "github:preloop", "tier": "contacted", "note": "agent control plane: budgets / human approvals / audit trail", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/preloop/preloop/discussions/938"] },
-    { "id": "bld-0020", "handle": "emiliaprotocol", "surface": "github:emiliaprotocol", "tier": "contacted", "note": "authority control plane + authorization-receipts + exact-action", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/emiliaprotocol/emilia-protocol"] },
-    { "id": "bld-0021", "handle": "ariffazil", "surface": "github:ariffazil", "tier": "contacted", "note": "arifOS: judge-before-execute + VAULT999 receipts", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/ariffazil/arifOS"] },
-
-    { "id": "bld-0022", "handle": "wienerlabs", "surface": "github:wienerlabs", "tier": "observed", "note": "square / covenant: compliance-gated settlement + optimistic challenge + ERC-8004", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/wienerlabs/square"] },
-    { "id": "bld-0023", "handle": "XPRNetwork", "surface": "github:XPRNetwork", "tier": "observed", "note": "xpr-agents: trustless agent registry (identity/reputation/validation/escrow)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/XPRNetwork/xpr-agents"] },
-    { "id": "bld-0024", "handle": "statecrafting", "surface": "github:statecrafting", "tier": "observed", "note": "spec-spine: hash-verifiable provenance ledger", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/statecrafting/spec-spine"] },
-    { "id": "bld-0025", "handle": "romudille-bit", "surface": "github:romudille-bit", "tier": "observed", "note": "agentpay: x402 pricing / caps / receipts", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/romudille-bit/agentpay"] },
-    { "id": "bld-0026", "handle": "presidio-v", "surface": "github:presidio-v", "tier": "observed", "note": "presidio-hardened-x402#23: no integrity binding between 402 envelope and settlement", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/presidio-v/presidio-hardened-x402"] },
-    { "id": "bld-0027", "handle": "QWED-AI", "surface": "github:QWED-AI", "tier": "observed", "note": "qwed-verification: deterministic verification of agent state before execution", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/QWED-AI/qwed-verification"] },
-    { "id": "bld-0028", "handle": "IntensiveCoLearning", "surface": "github:IntensiveCoLearning", "tier": "observed", "note": "trustless-agents: ERC-8004", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/IntensiveCoLearning/trustless-agents"] },
-    { "id": "bld-0029", "handle": "up2itnow0822", "surface": "github:up2itnow0822", "tier": "observed", "note": "agent-wallet-sdk: non-custodial + on-chain spending limits", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/up2itnow0822/agent-wallet-sdk"] },
-    { "id": "bld-0030", "handle": "SlumperSan", "surface": "github:SlumperSan", "tier": "observed", "note": "agent-governed-vaults: every action ratified by on-chain vote", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/SlumperSan/agent-governed-vaults"] },
-    { "id": "bld-0031", "handle": "EvolutionDeep", "surface": "github:EvolutionDeep", "tier": "observed", "note": "murmur: agent population settling in USDC over x402", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/EvolutionDeep/murmur"] },
-    { "id": "bld-0032", "handle": "acnlabs", "surface": "github:acnlabs", "tier": "observed", "note": "ACN: registry + A2A + task pool + payments", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/acnlabs/ACN"] },
-    { "id": "bld-0033", "handle": "ldclabs", "surface": "github:ldclabs", "tier": "observed", "note": "anda-cloud: decentralized agent infra on ICP + TEE", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/ldclabs/anda-cloud"] },
-    { "id": "bld-0034", "handle": "Smartdevs17", "surface": "github:Smartdevs17", "tier": "observed", "note": "agenticpay: AI agent payment infrastructure", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Smartdevs17/agenticpay"] },
-    { "id": "bld-0035", "handle": "mizuki0x", "surface": "github:mizuki0x", "tier": "observed", "note": "kamiyo-protocol (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/mizuki0x/kamiyo-protocol"] },
-    { "id": "bld-0036", "handle": "Dabus123", "surface": "github:Dabus123", "tier": "observed", "note": "azzle (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Dabus123/azzle"] },
-    { "id": "bld-0037", "handle": "csehammad", "surface": "github:csehammad", "tier": "observed", "note": "covenant-layer (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/csehammad/covenant-layer"] },
-    { "id": "bld-0038", "handle": "SeierkDev", "surface": "github:SeierkDev", "tier": "observed", "note": "Axon (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/SeierkDev/Axon"] },
-    { "id": "bld-0039", "handle": "mnemox-ai", "surface": "github:mnemox-ai", "tier": "observed", "note": "AgentRelay (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/mnemox-ai/AgentRelay"] },
-    { "id": "bld-0040", "handle": "daydreamsai", "surface": "github:daydreamsai", "tier": "observed", "note": "lucid-agents (09-19 candidate pool)", "first_seen": "2026-09-19", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/daydreamsai/lucid-agents"] },
-
-    { "id": "bld-0041", "handle": "seancrecord", "surface": "github:seancrecord", "tier": "converged", "note": "read this repo's public tree against its own docs and surfaced drift", "supersedes": "bld-0006", "first_seen": "2026-09-21", "signing_key": "https://scvd.store/.well-known/scvd-signing-key", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/seancrecord/scvd-general-store-repo/issues/874"] },
-
-    { "id": "bld-0042", "handle": "cirwel", "surface": "github:cirwel", "tier": "contacted", "note": "unitares: accountability infra for long-running agents (identity/claim/evidence/review/outcome/reconstruction); asked how a claim stays bound to the act it is about (Q&A #2420)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/cirwel/unitares/discussions/2420"] },
-    { "id": "bld-0043", "handle": "Zoverions", "surface": "github:Zoverions", "tier": "contacted", "note": "AXIOM-MESH: intent -> policy plan -> approved effects -> cryptographically linked evidence; asked whether evidence binds intent or effect, and whether it can be reversed (#1819)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Zoverions/AXIOM-MESH/discussions/1819"] },
-    { "id": "bld-0044", "handle": "b7n0de", "surface": "github:b7n0de", "tier": "observed", "note": "proofbundle: portable offline-verifiable evidence (RFC 6962 transparency log, merkle, receipts); 'integrity, not truth'", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/b7n0de/proofbundle"] },
-    { "id": "bld-0045", "handle": "sattyamjjain", "surface": "github:sattyamjjain", "tier": "observed", "note": "ferrumdeck: in-path enforcement, hash-chained audit, deny-by-default + budget gates; publishes its own false-positive rate with denominators", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/sattyamjjain/ferrumdeck"] },
-    { "id": "bld-0046", "handle": "mishrasanjeev", "surface": "github:mishrasanjeev", "tier": "observed", "note": "grantex: agent identity/authorization/audit infra ('OAuth moment')", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/mishrasanjeev/grantex"] },
-    { "id": "bld-0047", "handle": "YugantM", "surface": "github:YugantM", "tier": "observed", "note": "hvtracker: independent evidence-based trust registry for agents/MCP", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/YugantM/hvtracker"] },
-    { "id": "bld-0048", "handle": "basilisk-labs", "surface": "github:basilisk-labs", "tier": "observed", "note": "agentplane: git-native approved plans + reviewable evidence", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/basilisk-labs/agentplane"] },
-    { "id": "bld-0049", "handle": "A3S-Lab", "surface": "github:A3S-Lab", "tier": "observed", "note": "Power: verifiable execution + TEE + canonical receipts", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/A3S-Lab/Power"] },
-    { "id": "bld-0050", "handle": "HelloVIMS", "surface": "github:HelloVIMS", "tier": "observed", "note": "Agent-NFT: ERC-8004 identity + EIP-712/EIP-3009 x402 settlement", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/HelloVIMS/Agent-NFT"] },
-    { "id": "bld-0051", "handle": "kychee-com", "surface": "github:kychee-com", "tier": "observed", "note": "run402: agent backend infrastructure, x402/MPP paid", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/kychee-com/run402"] },
-    { "id": "bld-0052", "handle": "Its-fortunatefolly", "surface": "github:Its-fortunatefolly", "tier": "observed", "note": "HubVibe: machine-payable work over HTTP 402, receipt per job", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Its-fortunatefolly/HubVibe"] },
-    { "id": "bld-0053", "handle": "Dragonmonk111", "surface": "github:Dragonmonk111", "tier": "observed", "note": "junoclaw: verifiable autonomy + on-chain truth markets + work-history attestation", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Dragonmonk111/junoclaw"] },
-
-    { "id": "bld-0054", "handle": "Mindburn-Labs", "surface": "github:Mindburn-Labs", "tier": "contacted", "note": "helm-ai-kernel: fail-closed execution firewall, signed receipts, offline EvidencePack verification; keeps integrity_valid vs signer_trusted as two verdicts (our seam #8); asked where the authority binding lives (#978)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/orgs/Mindburn-Labs/discussions/978"] },
-    { "id": "bld-0055", "handle": "DanceNitra", "surface": "github:DanceNitra", "tier": "contacted", "note": "inspeximus: tamper-evident agent memory; a corrected value stays retired (same shape as our append-only + supersede) plus verifiable erasure; asked how supersede and erasure coexist and who the witness is (#34)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/DanceNitra/inspeximus/discussions/34"] },
-    { "id": "bld-0056", "handle": "ashaveri", "surface": "github:ashaveri", "tier": "observed", "note": "ashaveri: OpenAI-compatible inference, each response ships a signed COSE_Sign1 receipt (request/response hash, weights manifest, confidential-hardware measurement); 'Change the model. Keep the evidence.'", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/ashaveri/ashaveri"] },
-    { "id": "bld-0057", "handle": "Garl-Protocol", "surface": "github:Garl-Protocol", "tier": "observed", "note": "garl: ECDSA-secp256k1 + RFC6979 signed Action Receipts bound to the authorizing capability token, Merkle-anchored on Base; delegated token can only narrow. ARCHIVED 2026-09-24, hosted service retired (repo + 12 Base anchors remain)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Garl-Protocol/garl"] },
-    { "id": "bld-0058", "handle": "at1c-protocol", "surface": "github:at1c-protocol", "tier": "observed", "note": "at1c-protocol-official: evidence layer for human control of AI; 'Don't trust us. Verify the receipt.' + sovereign identity/registry", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/at1c-protocol/at1c-protocol-official"] },
-    { "id": "bld-0059", "handle": "tuannguyenvan95", "surface": "github:tuannguyenvan95", "tier": "observed", "note": "AgentSLA: sub-agent SLA adjudication + bounty escrow protocol (GenLayer)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/tuannguyenvan95/AgentSLA"] },
-    { "id": "bld-0060", "handle": "chainloop-dev", "surface": "github:chainloop-dev", "tier": "observed", "note": "chainloop: SDLC evidence store + policy engine (in-toto / SLSA / SBOM / VEX attestations)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/chainloop-dev/chainloop"] },
-    { "id": "bld-0061", "handle": "darklordVirtual", "surface": "github:darklordVirtual", "tier": "observed", "note": "REMORA-research: policy-gated governance for operational agents (OPA/Rego, pre-execution, negative results)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/darklordVirtual/REMORA-research"] },
-    { "id": "bld-0062", "handle": "edgepillar", "surface": "github:edgepillar", "tier": "observed", "note": "zenon-x402-poc: Zenon as a settlement rail for HTTP-native agent payments", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/edgepillar/zenon-x402-poc"] },
-    { "id": "bld-0063", "handle": "naulonapp", "surface": "github:naulonapp", "tier": "observed", "note": "naulon: pay-per-read toll for the agentic web (x402/USDC nanopayment; attribution graph is the payout rule)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/naulonapp/naulon"] },
-    { "id": "bld-0064", "handle": "Vortx-AI", "surface": "github:Vortx-AI", "tier": "observed", "note": "emem: machine-maintained external memory (content-addressed, ed25519, transparency log, deterministic)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Vortx-AI/emem"] },
-    { "id": "bld-0065", "handle": "Luminous-Dynamics", "surface": "github:Luminous-Dynamics", "tier": "observed", "note": "mycelix: fractal governance CivOS on Holochain (identity/governance)", "first_seen": "2026-09-24", "counted": false, "receipt_ref": null, "evidence": ["https://github.com/Luminous-Dynamics/mycelix"] }
-  ]
+  {
+   "id": "bld-0002",
+   "handle": "量子总督",
+   "surface": "origin",
+   "tier": "internal",
+   "note": "Quantum Governor · technical execution & security audit",
+   "first_seen": "2026",
+   "counted": true,
+   "receipt_ref": "origin-1:genesis",
+   "evidence": [
+    "https://github.com/source-origin/l5-protocol"
+   ]
+  },
+  {
+   "id": "bld-0003",
+   "handle": "DeepSeek",
+   "surface": "origin",
+   "tier": "internal",
+   "note": "strategy & constitutional drafts",
+   "first_seen": "2026",
+   "counted": true,
+   "receipt_ref": "origin-1:genesis",
+   "evidence": []
+  },
+  {
+   "id": "bld-0004",
+   "handle": "TRAE",
+   "surface": "origin",
+   "tier": "internal",
+   "note": "ecosystem & portal operations",
+   "first_seen": "2026",
+   "counted": true,
+   "receipt_ref": "origin-1:genesis",
+   "evidence": []
+  },
+  {
+   "id": "bld-0005",
+   "handle": "giskard09",
+   "surface": "github:giskard09",
+   "tier": "converged",
+   "note": "Boundary rule; improved our verdict-cites-receipt; named 'right-shape, wrong-object'",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/internet-court/internet-court-skill/issues/1",
+    "https://github.com/giskard09/argentum-core",
+    "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"
+   ]
+  },
+  {
+   "id": "bld-0006",
+   "handle": "seancrecord",
+   "surface": "github:seancrecord",
+   "tier": "converged",
+   "note": "same Boundary rule from the authorization side; adversarial audit surfaced 3 real drifts",
+   "first_seen": "2026-09-21",
+   "superseded_by": "bld-0041",
+   "signing_key": "https://scvd.store/.well-known/scvd-signing-key",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/seancrecord/scvd-general-store-repo/issues/874"
+   ]
+  },
+  {
+   "id": "bld-0007",
+   "handle": "Ali-Adel-Nour",
+   "surface": "github:Ali-Adel-Nour",
+   "tier": "in_dialogue",
+   "note": "Arbitra; verdict-before-release consensus; first external hard requirement (P256/EIP-7951)",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Ali-Adel-Nour/Arbitra/issues/56"
+   ]
+  },
+  {
+   "id": "bld-0008",
+   "handle": "Rai",
+   "surface": "github:PANDeveloper001",
+   "tier": "in_dialogue",
+   "note": "openai-agents-nano-x402: per-call settlement in self-custodied Nano. Surface unreachable as of 2026-09-24: github:PANDeveloper001 now 404s; a same-named repo exists under dhyabi2 (created 2026-09-23, fork=false) but attribution is UNCONFIRMED, so we do not claim it.",
+   "first_seen": "2026-09-21",
+   "reachable": false,
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/PANDeveloper001/openai-agents-nano-x402"
+   ]
+  },
+  {
+   "id": "bld-0009",
+   "handle": "seritalien",
+   "surface": "github:seritalien",
+   "tier": "in_dialogue",
+   "note": "agent escrow protocol",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Agastya910/agent-escrow-protocol"
+   ]
+  },
+  {
+   "id": "bld-0010",
+   "handle": "tinyhumansai",
+   "surface": "github:tinyhumansai",
+   "tier": "in_dialogue",
+   "note": "tiny.place social economy for autonomous agents",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/tinyhumansai/tiny.place"
+   ]
+  },
+  {
+   "id": "bld-0011",
+   "handle": "gbin (copper-project)",
+   "surface": "github:copper-project",
+   "tier": "in_dialogue",
+   "note": "copper-rs robot OS: build / run / replay",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/copper-project/copper-rs"
+   ]
+  },
+  {
+   "id": "bld-0012",
+   "handle": "motebit",
+   "surface": "github:motebit",
+   "tier": "contacted",
+   "note": "signed execution receipts; governance at the boundary",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/motebit/motebit/discussions/751"
+   ]
+  },
+  {
+   "id": "bld-0013",
+   "handle": "vassiliylakhonin",
+   "surface": "github:vassiliylakhonin",
+   "tier": "contacted",
+   "note": "agenda-intelligence-md: packet completeness, not truth",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/vassiliylakhonin/agenda-intelligence-md/discussions/336"
+   ]
+  },
+  {
+   "id": "bld-0014",
+   "handle": "snapsynapse",
+   "surface": "github:snapsynapse",
+   "tier": "contacted",
+   "note": "turnfile: auditable peer disagreement + human arbiter",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/snapsynapse/turnfile/discussions/15"
+   ]
+  },
+  {
+   "id": "bld-0015",
+   "handle": "babyblueviper1",
+   "surface": "github:babyblueviper1",
+   "tier": "contacted",
+   "note": "invinoveritas: signed verdict before an irreversible action",
+   "first_seen": "2026-09-21",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/babyblueviper1/invinoveritas/issues/8"
+   ]
+  },
+  {
+   "id": "bld-0016",
+   "handle": "runcycles",
+   "surface": "github:runcycles",
+   "tier": "contacted",
+   "note": "cycles-protocol: post-commit adjustment & reversal semantics",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/runcycles/cycles-protocol/issues/133"
+   ]
+  },
+  {
+   "id": "bld-0017",
+   "handle": "Agent-Authority-Conformance",
+   "surface": "github:Agent-Authority-Conformance",
+   "tier": "contacted",
+   "note": "aps-conformance-suite: JCS canonicalization + decision receipts (opened by giskard09)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Agent-Authority-Conformance/aps-conformance-suite/issues/121"
+   ]
+  },
+  {
+   "id": "bld-0018",
+   "handle": "vaaraio",
+   "surface": "github:vaaraio",
+   "tier": "contacted",
+   "note": "vaara: evidence layer, offline-verifiable hash chain",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/vaaraio/vaara/discussions/795"
+   ]
+  },
+  {
+   "id": "bld-0019",
+   "handle": "preloop",
+   "surface": "github:preloop",
+   "tier": "contacted",
+   "note": "agent control plane: budgets / human approvals / audit trail",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/preloop/preloop/discussions/938"
+   ]
+  },
+  {
+   "id": "bld-0020",
+   "handle": "emiliaprotocol",
+   "surface": "github:emiliaprotocol",
+   "tier": "contacted",
+   "note": "authority control plane + authorization-receipts + exact-action",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/emiliaprotocol/emilia-protocol"
+   ]
+  },
+  {
+   "id": "bld-0021",
+   "handle": "ariffazil",
+   "surface": "github:ariffazil",
+   "tier": "contacted",
+   "note": "arifOS: judge-before-execute + VAULT999 receipts",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ariffazil/arifOS"
+   ]
+  },
+  {
+   "id": "bld-0022",
+   "handle": "wienerlabs",
+   "surface": "github:wienerlabs",
+   "tier": "observed",
+   "note": "square / covenant: compliance-gated settlement + optimistic challenge + ERC-8004",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/wienerlabs/square"
+   ]
+  },
+  {
+   "id": "bld-0023",
+   "handle": "XPRNetwork",
+   "surface": "github:XPRNetwork",
+   "tier": "observed",
+   "note": "xpr-agents: trustless agent registry (identity/reputation/validation/escrow)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/XPRNetwork/xpr-agents"
+   ]
+  },
+  {
+   "id": "bld-0024",
+   "handle": "statecrafting",
+   "surface": "github:statecrafting",
+   "tier": "observed",
+   "note": "spec-spine: hash-verifiable provenance ledger",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/statecrafting/spec-spine"
+   ]
+  },
+  {
+   "id": "bld-0025",
+   "handle": "romudille-bit",
+   "surface": "github:romudille-bit",
+   "tier": "observed",
+   "note": "agentpay: x402 pricing / caps / receipts",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/romudille-bit/agentpay"
+   ]
+  },
+  {
+   "id": "bld-0026",
+   "handle": "presidio-v",
+   "surface": "github:presidio-v",
+   "tier": "observed",
+   "note": "presidio-hardened-x402#23: no integrity binding between 402 envelope and settlement",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/presidio-v/presidio-hardened-x402"
+   ]
+  },
+  {
+   "id": "bld-0027",
+   "handle": "QWED-AI",
+   "surface": "github:QWED-AI",
+   "tier": "observed",
+   "note": "qwed-verification: deterministic verification of agent state before execution",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/QWED-AI/qwed-verification"
+   ]
+  },
+  {
+   "id": "bld-0028",
+   "handle": "IntensiveCoLearning",
+   "surface": "github:IntensiveCoLearning",
+   "tier": "observed",
+   "note": "trustless-agents: ERC-8004",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/IntensiveCoLearning/trustless-agents"
+   ]
+  },
+  {
+   "id": "bld-0029",
+   "handle": "up2itnow0822",
+   "surface": "github:up2itnow0822",
+   "tier": "observed",
+   "note": "agent-wallet-sdk: non-custodial + on-chain spending limits",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/up2itnow0822/agent-wallet-sdk"
+   ]
+  },
+  {
+   "id": "bld-0030",
+   "handle": "SlumperSan",
+   "surface": "github:SlumperSan",
+   "tier": "observed",
+   "note": "agent-governed-vaults: every action ratified by on-chain vote",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/SlumperSan/agent-governed-vaults"
+   ]
+  },
+  {
+   "id": "bld-0031",
+   "handle": "EvolutionDeep",
+   "surface": "github:EvolutionDeep",
+   "tier": "observed",
+   "note": "murmur: agent population settling in USDC over x402",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/EvolutionDeep/murmur"
+   ]
+  },
+  {
+   "id": "bld-0032",
+   "handle": "acnlabs",
+   "surface": "github:acnlabs",
+   "tier": "observed",
+   "note": "ACN: registry + A2A + task pool + payments",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/acnlabs/ACN"
+   ]
+  },
+  {
+   "id": "bld-0033",
+   "handle": "ldclabs",
+   "surface": "github:ldclabs",
+   "tier": "observed",
+   "note": "anda-cloud: decentralized agent infra on ICP + TEE",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ldclabs/anda-cloud"
+   ]
+  },
+  {
+   "id": "bld-0034",
+   "handle": "Smartdevs17",
+   "surface": "github:Smartdevs17",
+   "tier": "observed",
+   "note": "agenticpay: AI agent payment infrastructure",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Smartdevs17/agenticpay"
+   ]
+  },
+  {
+   "id": "bld-0035",
+   "handle": "mizuki0x",
+   "surface": "github:mizuki0x",
+   "tier": "observed",
+   "note": "kamiyo-protocol (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/mizuki0x/kamiyo-protocol"
+   ]
+  },
+  {
+   "id": "bld-0036",
+   "handle": "Dabus123",
+   "surface": "github:Dabus123",
+   "tier": "observed",
+   "note": "azzle (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Dabus123/azzle"
+   ]
+  },
+  {
+   "id": "bld-0037",
+   "handle": "csehammad",
+   "surface": "github:csehammad",
+   "tier": "observed",
+   "note": "covenant-layer (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/csehammad/covenant-layer"
+   ]
+  },
+  {
+   "id": "bld-0038",
+   "handle": "SeierkDev",
+   "surface": "github:SeierkDev",
+   "tier": "observed",
+   "note": "Axon (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/SeierkDev/Axon"
+   ]
+  },
+  {
+   "id": "bld-0039",
+   "handle": "mnemox-ai",
+   "surface": "github:mnemox-ai",
+   "tier": "observed",
+   "note": "AgentRelay (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/mnemox-ai/AgentRelay"
+   ]
+  },
+  {
+   "id": "bld-0040",
+   "handle": "daydreamsai",
+   "surface": "github:daydreamsai",
+   "tier": "observed",
+   "note": "lucid-agents (09-19 candidate pool)",
+   "first_seen": "2026-09-19",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/daydreamsai/lucid-agents"
+   ]
+  },
+  {
+   "id": "bld-0041",
+   "handle": "seancrecord",
+   "surface": "github:seancrecord",
+   "tier": "converged",
+   "note": "read this repo's public tree against its own docs and surfaced drift",
+   "supersedes": "bld-0006",
+   "first_seen": "2026-09-21",
+   "signing_key": "https://scvd.store/.well-known/scvd-signing-key",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/seancrecord/scvd-general-store-repo/issues/874"
+   ]
+  },
+  {
+   "id": "bld-0042",
+   "handle": "cirwel",
+   "surface": "github:cirwel",
+   "tier": "contacted",
+   "note": "unitares: accountability infra for long-running agents (identity/claim/evidence/review/outcome/reconstruction); asked how a claim stays bound to the act it is about (Q&A #2420)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/cirwel/unitares/discussions/2420"
+   ]
+  },
+  {
+   "id": "bld-0043",
+   "handle": "Zoverions",
+   "surface": "github:Zoverions",
+   "tier": "contacted",
+   "note": "AXIOM-MESH: intent -> policy plan -> approved effects -> cryptographically linked evidence; asked whether evidence binds intent or effect, and whether it can be reversed (#1819)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Zoverions/AXIOM-MESH/discussions/1819"
+   ]
+  },
+  {
+   "id": "bld-0044",
+   "handle": "b7n0de",
+   "surface": "github:b7n0de",
+   "tier": "observed",
+   "note": "proofbundle: portable offline-verifiable evidence (RFC 6962 transparency log, merkle, receipts); 'integrity, not truth'",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/b7n0de/proofbundle"
+   ]
+  },
+  {
+   "id": "bld-0045",
+   "handle": "sattyamjjain",
+   "surface": "github:sattyamjjain",
+   "tier": "observed",
+   "note": "ferrumdeck: in-path enforcement, hash-chained audit, deny-by-default + budget gates; publishes its own false-positive rate with denominators",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/sattyamjjain/ferrumdeck"
+   ]
+  },
+  {
+   "id": "bld-0046",
+   "handle": "mishrasanjeev",
+   "surface": "github:mishrasanjeev",
+   "tier": "observed",
+   "note": "grantex: agent identity/authorization/audit infra ('OAuth moment')",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/mishrasanjeev/grantex"
+   ]
+  },
+  {
+   "id": "bld-0047",
+   "handle": "YugantM",
+   "surface": "github:YugantM",
+   "tier": "observed",
+   "note": "hvtracker: independent evidence-based trust registry for agents/MCP",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/YugantM/hvtracker"
+   ]
+  },
+  {
+   "id": "bld-0048",
+   "handle": "basilisk-labs",
+   "surface": "github:basilisk-labs",
+   "tier": "observed",
+   "note": "agentplane: git-native approved plans + reviewable evidence",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/basilisk-labs/agentplane"
+   ]
+  },
+  {
+   "id": "bld-0049",
+   "handle": "A3S-Lab",
+   "surface": "github:A3S-Lab",
+   "tier": "observed",
+   "note": "Power: verifiable execution + TEE + canonical receipts",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/A3S-Lab/Power"
+   ]
+  },
+  {
+   "id": "bld-0050",
+   "handle": "HelloVIMS",
+   "surface": "github:HelloVIMS",
+   "tier": "observed",
+   "note": "Agent-NFT: ERC-8004 identity + EIP-712/EIP-3009 x402 settlement",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/HelloVIMS/Agent-NFT"
+   ]
+  },
+  {
+   "id": "bld-0051",
+   "handle": "kychee-com",
+   "surface": "github:kychee-com",
+   "tier": "observed",
+   "note": "run402: agent backend infrastructure, x402/MPP paid",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/kychee-com/run402"
+   ]
+  },
+  {
+   "id": "bld-0052",
+   "handle": "Its-fortunatefolly",
+   "surface": "github:Its-fortunatefolly",
+   "tier": "observed",
+   "note": "HubVibe: machine-payable work over HTTP 402, receipt per job",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Its-fortunatefolly/HubVibe"
+   ]
+  },
+  {
+   "id": "bld-0053",
+   "handle": "Dragonmonk111",
+   "surface": "github:Dragonmonk111",
+   "tier": "observed",
+   "note": "junoclaw: verifiable autonomy + on-chain truth markets + work-history attestation",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Dragonmonk111/junoclaw"
+   ]
+  },
+  {
+   "id": "bld-0054",
+   "handle": "Mindburn-Labs",
+   "surface": "github:Mindburn-Labs",
+   "tier": "contacted",
+   "note": "helm-ai-kernel: fail-closed execution firewall, signed receipts, offline EvidencePack verification; keeps integrity_valid vs signer_trusted as two verdicts (our seam #8); asked where the authority binding lives (#978)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/orgs/Mindburn-Labs/discussions/978"
+   ]
+  },
+  {
+   "id": "bld-0055",
+   "handle": "DanceNitra",
+   "surface": "github:DanceNitra",
+   "tier": "contacted",
+   "note": "inspeximus: tamper-evident agent memory; a corrected value stays retired (same shape as our append-only + supersede) plus verifiable erasure; asked how supersede and erasure coexist and who the witness is (#34)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/DanceNitra/inspeximus/discussions/34"
+   ]
+  },
+  {
+   "id": "bld-0056",
+   "handle": "ashaveri",
+   "surface": "github:ashaveri",
+   "tier": "observed",
+   "note": "ashaveri: OpenAI-compatible inference, each response ships a signed COSE_Sign1 receipt (request/response hash, weights manifest, confidential-hardware measurement); 'Change the model. Keep the evidence.'",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ashaveri/ashaveri"
+   ]
+  },
+  {
+   "id": "bld-0057",
+   "handle": "Garl-Protocol",
+   "surface": "github:Garl-Protocol",
+   "tier": "observed",
+   "note": "garl: ECDSA-secp256k1 + RFC6979 signed Action Receipts bound to the authorizing capability token, Merkle-anchored on Base; delegated token can only narrow. ARCHIVED 2026-09-24, hosted service retired (repo + 12 Base anchors remain)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Garl-Protocol/garl"
+   ]
+  },
+  {
+   "id": "bld-0058",
+   "handle": "at1c-protocol",
+   "surface": "github:at1c-protocol",
+   "tier": "observed",
+   "note": "at1c-protocol-official: evidence layer for human control of AI; 'Don't trust us. Verify the receipt.' + sovereign identity/registry",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/at1c-protocol/at1c-protocol-official"
+   ]
+  },
+  {
+   "id": "bld-0059",
+   "handle": "tuannguyenvan95",
+   "surface": "github:tuannguyenvan95",
+   "tier": "observed",
+   "note": "AgentSLA: sub-agent SLA adjudication + bounty escrow protocol (GenLayer)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/tuannguyenvan95/AgentSLA"
+   ]
+  },
+  {
+   "id": "bld-0060",
+   "handle": "chainloop-dev",
+   "surface": "github:chainloop-dev",
+   "tier": "observed",
+   "note": "chainloop: SDLC evidence store + policy engine (in-toto / SLSA / SBOM / VEX attestations)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/chainloop-dev/chainloop"
+   ]
+  },
+  {
+   "id": "bld-0061",
+   "handle": "darklordVirtual",
+   "surface": "github:darklordVirtual",
+   "tier": "observed",
+   "note": "REMORA-research: policy-gated governance for operational agents (OPA/Rego, pre-execution, negative results)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/darklordVirtual/REMORA-research"
+   ]
+  },
+  {
+   "id": "bld-0062",
+   "handle": "edgepillar",
+   "surface": "github:edgepillar",
+   "tier": "observed",
+   "note": "zenon-x402-poc: Zenon as a settlement rail for HTTP-native agent payments",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/edgepillar/zenon-x402-poc"
+   ]
+  },
+  {
+   "id": "bld-0063",
+   "handle": "naulonapp",
+   "surface": "github:naulonapp",
+   "tier": "observed",
+   "note": "naulon: pay-per-read toll for the agentic web (x402/USDC nanopayment; attribution graph is the payout rule)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/naulonapp/naulon"
+   ]
+  },
+  {
+   "id": "bld-0064",
+   "handle": "Vortx-AI",
+   "surface": "github:Vortx-AI",
+   "tier": "observed",
+   "note": "emem: machine-maintained external memory (content-addressed, ed25519, transparency log, deterministic)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Vortx-AI/emem"
+   ]
+  },
+  {
+   "id": "bld-0065",
+   "handle": "Luminous-Dynamics",
+   "surface": "github:Luminous-Dynamics",
+   "tier": "observed",
+   "note": "mycelix: fractal governance CivOS on Holochain (identity/governance)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Luminous-Dynamics/mycelix"
+   ]
+  },
+  {
+   "id": "bld-0066",
+   "handle": "Aliipou",
+   "surface": "github:Aliipou",
+   "tier": "contacted",
+   "note": "decision-os-min: signed action-bound decisions + hosted effect mediation + replay resistance, evidence export; asked how an observed effect binds back to the pre-signed decision and whether a third party can recompute that binding without trusting the mediator (#5)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Aliipou/decision-os-min/discussions/5"
+   ]
+  },
+  {
+   "id": "bld-0067",
+   "handle": "sunilp",
+   "surface": "github:sunilp",
+   "tier": "contacted",
+   "note": "aip: Agent Identity Protocol, verifiable delegable identity for agents across MCP/A2A (IETF Internet-Draft, UCAN-style chain); asked how an invocation is bound to the delegation chain that authorized it, and whether that binding survives root-key rotation (#6)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/sunilp/aip/discussions/6"
+   ]
+  },
+  {
+   "id": "bld-0068",
+   "handle": "PerryLink",
+   "surface": "github:PerryLink",
+   "tier": "contacted",
+   "note": "dsh-research-report: content-addressed evidence ledger, claim-snapshot binding, tamper-evident; asked supersede-vs-invalidate when a source changes under a claim, and whether the merkle receipt attests what was retrieved (effect) or what was asserted (intent) (#10)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/PerryLink/dsh-research-report/discussions/10"
+   ]
+  },
+  {
+   "id": "bld-0069",
+   "handle": "Vadale",
+   "surface": "github:Vadale",
+   "tier": "observed",
+   "note": "project-guardian: local, user-space, agent-agnostic firewall that mediates agent actions (policy/audit/human-in-the-loop)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Vadale/project-guardian"
+   ]
+  },
+  {
+   "id": "bld-0070",
+   "handle": "benseverndev-oss",
+   "surface": "github:benseverndev-oss",
+   "tier": "observed",
+   "note": "goldenmatch: zero-config entity resolution feeding a durable identity layer (dedup by identity)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/benseverndev-oss/goldenmatch"
+   ]
+  },
+  {
+   "id": "bld-0071",
+   "handle": "aks129",
+   "surface": "github:aks129",
+   "tier": "observed",
+   "note": "HealthClawGuardrails: guardrails between agents and FHIR clinical data (PHI redaction, immutable audit, step-up auth)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/aks129/HealthClawGuardrails"
+   ]
+  },
+  {
+   "id": "bld-0072",
+   "handle": "accensa",
+   "surface": "github:accensa",
+   "tier": "observed",
+   "note": "accensa-contracts: Soroban on-chain receipt anchoring + merchant refund vault",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/accensa/accensa-contracts"
+   ]
+  },
+  {
+   "id": "bld-0073",
+   "handle": "Stellar-VaultLink",
+   "surface": "github:Stellar-VaultLink",
+   "tier": "observed",
+   "note": "invofi: on-chain invoice financing + escrow on Stellar Soroban",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Stellar-VaultLink/invofi"
+   ]
+  },
+  {
+   "id": "bld-0074",
+   "handle": "legend-esc",
+   "surface": "github:legend-esc",
+   "tier": "observed",
+   "note": "carbonchain: Soroban accountability/approval platform for issuing, trading, retiring tokenized carbon",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/legend-esc/carbonchain"
+   ]
+  },
+  {
+   "id": "bld-0075",
+   "handle": "Zahanturel",
+   "surface": "github:Zahanturel",
+   "tier": "observed",
+   "note": "adtp: cryptographic identity and delegation for AI agents (UCAN chains, RESTRICT attenuation)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Zahanturel/adtp"
+   ]
+  },
+  {
+   "id": "bld-0076",
+   "handle": "giselleevita",
+   "surface": "github:giselleevita",
+   "tier": "observed",
+   "note": "agent-security-gate: OPA/Rego policy gate with approval, blocks unsafe tool calls before they run",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/giselleevita/agent-security-gate"
+   ]
+  },
+  {
+   "id": "bld-0077",
+   "handle": "LegionForge",
+   "surface": "github:LegionForge",
+   "tier": "observed",
+   "note": "guardian: security layer for agents (prompt injection, tool tampering, runaway containment)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/LegionForge/guardian"
+   ]
+  },
+  {
+   "id": "bld-0078",
+   "handle": "nohn3043-arch",
+   "surface": "github:nohn3043-arch",
+   "tier": "observed",
+   "note": "second-perspective (NOMOS): auditable decision orchestration layer on a deterministic foundation",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/nohn3043-arch/second-perspective"
+   ]
+  },
+  {
+   "id": "bld-0079",
+   "handle": "jposluns",
+   "surface": "github:jposluns",
+   "tier": "observed",
+   "note": "grc_library: governance/risk/compliance documentation library",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/jposluns/grc_library"
+   ]
+  }
+ ]
 }
-
