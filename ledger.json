@@ -1194,6 +1194,188 @@
    "evidence": [
     "https://github.com/TTOPM/be-core-bridge"
    ]
+  },
+  {
+   "id": "bld-0091",
+   "handle": "vouch-protocol",
+   "surface": "github:vouch-protocol",
+   "tier": "contacted",
+   "note": "vouch: open standard for identity & provenance of AI agents (W3C VC + Data Integrity eddsa-jcs-2022, Multikey, ML-DSA-ready, C2PA/DIF/LF member); asked where the action->credential binding lives and whether it survives signing-key rotation (#428)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/vouch-protocol/vouch/discussions/428"
+   ]
+  },
+  {
+   "id": "bld-0092",
+   "handle": "sipyourdrink-ltd",
+   "surface": "github:sipyourdrink-ltd",
+   "tier": "contacted",
+   "note": "bernstein: open-source governance layer for AI agents - declarative rules, attested execution, audit trail; asked whether the attestation is over the decision or over the effect that lands, and whether a third party can recompute the rule-fired->action binding without trusting the orchestrator (#6240)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/sipyourdrink-ltd/bernstein/discussions/6240"
+   ]
+  },
+  {
+   "id": "bld-0093",
+   "handle": "MRSKYWAY",
+   "surface": "github:MRSKYWAY",
+   "tier": "contacted",
+   "note": "zkcg-public: proof-backed RWA compliance gateway - public Halo2/zkVM proof programs over normalized facts + signed on-chain settlement attestation; asked whether there is a signed chain raw-evidence->normalized-facts->decision whatsoever a third party can walk, given the honest scope note that proofs do not cover raw KYC/AML evidence truth (#4)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/MRSKYWAY/zkcg-public/discussions/4"
+   ]
+  },
+  {
+   "id": "bld-0094",
+   "handle": "jeremylongshore",
+   "surface": "github:jeremylongshore",
+   "tier": "observed",
+   "note": "irsb: on-chain guardrails for AI agents - EIP-7702 spend limits, cryptographic execution receipts, dispute, delegation (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/jeremylongshore/irsb"
+   ]
+  },
+  {
+   "id": "bld-0095",
+   "handle": "letsseal",
+   "surface": "github:letsseal",
+   "tier": "observed",
+   "note": "letsseal: open standard for proving a file is real, unaltered and sealed (transparency, credential, signature, timestamp)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/letsseal/letsseal"
+   ]
+  },
+  {
+   "id": "bld-0096",
+   "handle": "BlockRunAI",
+   "surface": "github:BlockRunAI",
+   "tier": "observed",
+   "note": "Franklin: AI agent with a wallet that spends USDC autonomously over x402 to get work done (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/BlockRunAI/Franklin"
+   ]
+  },
+  {
+   "id": "bld-0097",
+   "handle": "CreativeMayhemLtd",
+   "surface": "github:CreativeMayhemLtd",
+   "tier": "observed",
+   "note": "provcheck: local-first C2PA content-credentials verifier + creator toolkit (neural-watermark cross-check) (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/CreativeMayhemLtd/provcheck"
+   ]
+  },
+  {
+   "id": "bld-0098",
+   "handle": "cybermax4200",
+   "surface": "github:cybermax4200",
+   "tier": "observed",
+   "note": "stellar-did-credit: decentralized identity + credit-scoring protocol on Stellar (own your financial history) (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/cybermax4200/stellar-did-credit"
+   ]
+  },
+  {
+   "id": "bld-0099",
+   "handle": "noah-pi",
+   "surface": "github:noah-pi",
+   "tier": "observed",
+   "note": "sourcekit-open: cryptographic camera app - signs each photo/video at capture with device attestation (content provenance / credential / enclave)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/noah-pi/sourcekit-open"
+   ]
+  },
+  {
+   "id": "bld-0100",
+   "handle": "forgesworn",
+   "surface": "github:forgesworn",
+   "tier": "observed",
+   "note": "toll-booth: L402 (macaroon) middleware monetising any API; server side of a machine-to-machine payment stack with 402-mcp as the agent client (Lightning/Cashu/NWC, cryptographically final payments)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/forgesworn/toll-booth"
+   ]
+  },
+  {
+   "id": "bld-0101",
+   "handle": "kanywst",
+   "surface": "github:kanywst",
+   "tier": "observed",
+   "note": "omega: SPIFFE-compatible workload identity + OpenID AuthZEN 1.0 authorization in a single agent (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/kanywst/omega"
+   ]
+  },
+  {
+   "id": "bld-0102",
+   "handle": "ThinkWatchProject",
+   "surface": "github:ThinkWatchProject",
+   "tier": "observed",
+   "note": "ThinkWatch: enterprise AI bastion host for secure AI API + MCP access - unified proxying + audit (no Discussions door)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ThinkWatchProject/ThinkWatch"
+   ]
+  },
+  {
+   "id": "bld-0103",
+   "handle": "Han-1413141",
+   "surface": "github:Han-1413141",
+   "tier": "observed",
+   "note": "dsh-cost-meter: cost/token-usage tracking with sessions, model costs and budgets (metering/budget for agent harnesses)",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Han-1413141/dsh-cost-meter"
+   ]
+  },
+  {
+   "id": "bld-0104",
+   "handle": "lukeb-aidev",
+   "surface": "github:lukeb-aidev",
+   "tier": "observed",
+   "note": "cohesix: research OS for edge AI fleets - kernel-enforced capabilities + generated role/policy/ticket/lifecycle checks + evidence layer (\"what was allowed, which policy governed it, what evidence remains\")",
+   "first_seen": "2026-09-24",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/lukeb-aidev/cohesix"
+   ]
   }
  ]
 }
