@@ -3,7 +3,7 @@
  "repo": "source-origin/l5-protocol",
  "spec": "docs/CONTRIBUTION-SPEC.md",
  "human": "docs/LEDGER.md",
- "updated": "2026-09-24",
+ "updated": "2026-09-25",
  "status": "v0-seeded",
  "rules": [
   "append-only: entries are never rewritten, only superseded (superseded_by); the original is preserved",
@@ -1375,6 +1375,149 @@
    "receipt_ref": null,
    "evidence": [
     "https://github.com/lukeb-aidev/cohesix"
+   ]
+  },
+  {
+   "id": "bld-0105",
+   "handle": "Sorcha-Platform",
+   "surface": "github:Sorcha-Platform",
+   "tier": "contacted",
+   "note": "Sorcha: decentralised register platform for multi-party data-flow orchestration - declarative JSON blueprints, signed append-only registers, Merkle-tree \"dockets\", DID addressing; asked whether a docket proof attests the transaction (effect) or the workflow decision that produced it, and whether the sealed record commits which blueprint version was in force (#1716)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Sorcha-Platform/Sorcha/discussions/1716"
+   ]
+  },
+  {
+   "id": "bld-0106",
+   "handle": "ehelbig1",
+   "surface": "github:ehelbig1",
+   "tier": "contacted",
+   "note": "talos: verifiable agent execution runtime - credential-free WASM workers, signed cross-process data plane (HMAC-SHA256), capability lattice, signed JobRequest/JobResult; asked whether a JobResult commits the request hash so a passive observer can bind it offline, and whether replay-finality is knowable only while verifier state is live (verify vs verify_no_replay) (#942)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/ehelbig1/talos/discussions/942"
+   ]
+  },
+  {
+   "id": "bld-0107",
+   "handle": "archetech",
+   "surface": "github:archetech",
+   "tier": "contacted",
+   "note": "archon: peer-to-peer decentralized identity platform, reference impl of did:cid; full credential lifecycle (issue/bind/publish/reveal/revoke); asked how a credential-use is tied to a point in time given revoke exists - status-list/accumulator reference vs monotonic \"revoked at T\", i.e. whether historical verification is decidable off the evidence alone (#1282)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/archetech/archon/discussions/1282"
+   ]
+  },
+  {
+   "id": "bld-0108",
+   "handle": "delphisecurity",
+   "surface": "github:delphisecurity",
+   "tier": "contacted",
+   "note": "xaidr: in-process runtime security sensor for AI agents - 3-state verdict, local YAML authorization policy engine, cross-process delegation provenance over W3C Trace Context; asked whether the emitted event is a signed tamper-evident receipt binding the verdict to the action or observational telemetry, and what the anchor is for attacks split across two agents (#29)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/delphisecurity/xaidr/discussions/29"
+   ]
+  },
+  {
+   "id": "bld-0109",
+   "handle": "JuanLunaIA",
+   "surface": "github:JuanLunaIA",
+   "tier": "observed",
+   "note": "aegis-latent-core: AI governance and evidence gateway for multi-provider LLM applications (FastAPI, OPA-style policy, audit)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/JuanLunaIA/aegis-latent-core"
+   ]
+  },
+  {
+   "id": "bld-0110",
+   "handle": "berkmancenter",
+   "surface": "github:berkmancenter",
+   "tier": "observed",
+   "note": "keyring-wallet: open-source digital wallet for user-controlled identity; exchange verifiable credentials",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/berkmancenter/keyring-wallet"
+   ]
+  },
+  {
+   "id": "bld-0111",
+   "handle": "Sphereon-Opensource",
+   "surface": "github:Sphereon-Opensource",
+   "tier": "observed",
+   "note": "Identity-Development-Kit: open-source multiplatform identity development kit (verifiable credentials, Kotlin)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/Sphereon-Opensource/Identity-Development-Kit"
+   ]
+  },
+  {
+   "id": "bld-0112",
+   "handle": "bastani-inc",
+   "surface": "github:bastani-inc",
+   "tier": "observed",
+   "note": "atomic: verifiable coding-agent runtime - define the agent process in natural language with verifiable approval",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/bastani-inc/atomic"
+   ]
+  },
+  {
+   "id": "bld-0113",
+   "handle": "akaion-ai",
+   "surface": "github:akaion-ai",
+   "tier": "observed",
+   "note": "annona: sovereign execution kernel for AI agents - decides where each step runs, per-step policy",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/akaion-ai/annona"
+   ]
+  },
+  {
+   "id": "bld-0114",
+   "handle": "karagozemin",
+   "surface": "github:karagozemin",
+   "tier": "observed",
+   "note": "Sub-Rosa: embeddable sealed-market infrastructure for Stellar - confidential bids/matching with verifiable receipt",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/karagozemin/Sub-Rosa"
+   ]
+  },
+  {
+   "id": "bld-0115",
+   "handle": "notboatanchor",
+   "surface": "github:notboatanchor",
+   "tier": "observed",
+   "note": "gif: governance runtime for AI tool invocation - enforces persona scope and combination policy (audit)",
+   "first_seen": "2026-09-25",
+   "counted": false,
+   "receipt_ref": null,
+   "evidence": [
+    "https://github.com/notboatanchor/gif"
    ]
   }
  ]
