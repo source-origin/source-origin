@@ -1,0 +1,34 @@
+name: outreach-mail
+
+# 受控外发邮件：仅 repo 写权限者可 dispatch。
+# 凭证来自 repo secrets：QQ_USER / QQ_AUTH（QQ SMTP 授权码）。
+on:
+  workflow_dispatch:
+    inputs:
+      to:
+        description: Recipient email
+        required: true
+      subject:
+        description: Subject
+        required: true
+      body:
+        description: Plain-text body
+        required: true
+      reply_to:
+        description: Optional Reply-To
+        required: false
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send mail
+        env:
+          QQ_USER: ${{ secrets.QQ_USER }}
+          QQ_AUTH: ${{ secrets.QQ_AUTH }}
+          TO: ${{ github.event.inputs.to }}
+          SUBJECT: ${{ github.event.inputs.subject }}
+          BODY: ${{ github.event.inputs.body }}
+          REPLY_TO: ${{ github.event.inputs.reply_to }}
+        run: python3 .github/scripts/send_mail.py
