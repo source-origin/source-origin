@@ -4,107 +4,107 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L5 · CI 徽章 — 源·ORIGIN</title>
-<meta name="description" content="ORIGIN L5 结算层：CI 实际运行记录、九例判定矩阵、一条命令复现。只钉能被第三方重现的数字。">
+<meta name="description" content="源·ORIGIN L5 结算层：CI 实际运行记录、九例判定矩阵、一条命令复现。只钉能被第三方重现的数字。">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
 <style>
-  .ci-wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px 80px; }
+  .ci-hero { padding: 60px 20px 18px; }
+  .ci-hero h1 { font-size: clamp(28px, 4.6vw, 46px); line-height: 1.14; margin: 0 0 14px; }
+  .ci-hero .lead { max-width: 820px; margin: 0 auto; color: var(--text-muted, #9fb0c3); font-size: 17px; line-height: 1.7; }
+  .ci-body { padding: 0; max-width: none; margin: 0; }
+  .ci-wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px 90px; }
   .ci-table { width: 100%; border-collapse: collapse; margin: 18px 0 34px; font-size: 15px; }
-  .ci-table th, .ci-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); vertical-align: top; }
-  .ci-table th { color: var(--gold); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
-  .ci-table td { color: var(--text-primary); }
-  .ci-table a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(0,212,255,.35); }
-  .ci-table a:hover { color: var(--gold); border-bottom-color: var(--gold); }
-  .ci-note code, .ci-matrix code, .ci-table code { background: rgba(255,255,255,0.07); padding: 2px 6px; border-radius: 4px; font-size: .88em; color: var(--text-primary); }
-  .ci-mono { font-family: 'JetBrains Mono','Fira Code',Consolas,monospace; font-size: 13px; word-break: break-all; }
+  .ci-table th, .ci-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.10); vertical-align: top; }
+  .ci-table th { color: var(--gold, #d4af37); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .ci-table a { color: var(--cyan, #00d4ff); text-decoration: none; border-bottom: 1px solid rgba(0,212,255,.35); }
+  .ci-table a:hover { color: var(--gold, #d4af37); border-bottom-color: var(--gold, #d4af37); }
+  .ci-mono { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13px; word-break: break-all; }
   .ci-big { font-size: 34px; font-weight: 800; color: #00c850; line-height: 1.15; }
-  .ci-big.amber { color: var(--gold); }
+  .ci-big.amber { color: var(--gold, #d4af37); }
   .ci-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 20px 0 30px; }
-  .ci-matrix > div { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
-  .ci-matrix .lbl { display: block; color: var(--text-secondary); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
-  .ci-matrix .sub { display: block; color: var(--text-muted); font-size: 12px; margin-top: 6px; }
-  .ci-note { border-left: 3px solid var(--gold); padding: 8px 0 8px 16px; margin: 22px 0; color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
-  .ci-section-title { font-size: 24px; color: var(--gold); margin: 46px 0 10px; font-weight: 700; }
-  .ci-sub { color: var(--text-secondary); font-size: 14px; line-height: 1.9; margin-bottom: 16px; }
-  .ci-pre { background: rgba(0,0,0,0.45); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; font-family: 'JetBrains Mono','Fira Code',Consolas,monospace; font-size: 13px; line-height: 1.75; color: var(--text-primary); white-space: pre; }
+  .ci-matrix > div { background: rgba(12,20,32,.55); border: 1px solid rgba(140,170,210,.22); border-radius: 14px; padding: 18px; }
+  .ci-matrix .lbl { display: block; color: #9fb0c3; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 6px; }
+  .ci-matrix .sub { display: block; color: #8a99aa; font-size: 12px; margin-top: 6px; line-height: 1.6; }
+  .ci-note { border-left: 3px solid var(--gold, #d4af37); padding: 8px 0 8px 16px; margin: 22px 0; color: #a9b8c9; font-size: 14px; line-height: 1.8; }
+  .ci-h2 { font-size: 24px; color: var(--gold, #d4af37); margin: 46px 0 10px; font-weight: 700; }
+  .ci-sub { color: #a9b8c9; font-size: 14px; line-height: 1.9; margin-bottom: 16px; }
+  .ci-pre { background: rgba(0,0,0,.45); border: 1px solid rgba(140,170,210,.22); border-radius: 14px; padding: 18px 20px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13px; line-height: 1.75; color: #dce6f2; white-space: pre; }
   .ci-pre .cm { color: #7c8aa5; }
-  .ci-pre .hl { color: var(--gold); }
+  .ci-pre .hl { color: var(--gold, #d4af37); }
   .ci-tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 12px; font-weight: 600; }
   .ci-tag.ok { background: rgba(0,200,80,.14); color: #00c850; }
-  .ci-tag.latest { background: rgba(240,185,11,.16); color: var(--gold); }
+  .ci-tag.latest { background: rgba(212,175,55,.16); color: var(--gold, #d4af37); }
+  code { background: rgba(255,255,255,.07); padding: 2px 6px; border-radius: 4px; font-size: .88em; }
 </style>
 </head>
-<body>
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand"><span class="nav-logo">✦</span><span class="nav-name">源·ORIGIN</span></a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-link">首页</a>
-      <a href="whitepaper.html" class="nav-link">白皮书</a>
-      <a href="developers.html" class="nav-link">开发者</a>
-      <a href="l5-ci.html" class="nav-link active">L5 · CI</a>
+<body data-page="l5ci">
+<main id="app">
+
+  <section class="page-hero ci-hero">
+    <span class="badge">🧪 L5 · 结算层</span>
+    <h1>L5 结算层 · CI 徽章</h1>
+    <p class="lead">这个页面只钉<b>能被第三方重现的数字</b>。没有跑过的 CI，不会写成绿色。</p>
+  </section>
+
+  <section class="section ci-body">
+  <div class="ci-wrap">
+
+    <h2 class="ci-h2">1. 公开仓库的 CI 运行记录</h2>
+    <table class="ci-table">
+      <tr><th>运行</th><th>提交</th><th>结果</th><th>时间（UTC）</th></tr>
+      <tr>
+        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/40359751189" target="_blank" rel="noopener">run #39 · ci</a><br><span class="ci-tag latest">最新 · main 当前 tip（纯文档提交）</span></td>
+        <td class="ci-mono">32b8d0d</td>
+        <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:#8a99aa;margin-top:6px">jobs: test · ledger<br>父提交 = 281568b</div></td>
+        <td class="ci-mono">2026-10-26 16:31</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/40359283600" target="_blank" rel="noopener">run #38 · ci</a><br><span class="ci-tag latest">跑的就是修复本体</span></td>
+        <td class="ci-mono">281568b</td>
+        <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:#8a99aa;margin-top:6px">jobs: test · ledger<br>177 tests / 24 suites</div></td>
+        <td class="ci-mono">2026-10-26 16:27</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/39968681945" target="_blank" rel="noopener">run #37 · ci</a></td>
+        <td class="ci-mono">61a04bb</td>
+        <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:#8a99aa;margin-top:6px">jobs: test · ledger</div></td>
+        <td class="ci-mono">2026-10-23 14:19</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/39807431455" target="_blank" rel="noopener">run #36 · ci</a></td>
+        <td class="ci-mono">d0385fa</td>
+        <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:#8a99aa;margin-top:6px">jobs: test · ledger</div></td>
+        <td class="ci-mono">2026-10-22 15:43</td>
+      </tr>
+    </table>
+
+    <h2 class="ci-h2">2. run #38 实际跑出来的数字</h2>
+    <p class="ci-sub">以下全部抄自 run #38 的作业日志，不是本地推测：</p>
+    <div class="ci-matrix">
+      <div><span class="lbl">测试</span><div class="ci-big">177</div><span class="sub">passed / 0 failed / 0 skipped</span></div>
+      <div><span class="lbl">套件</span><div class="ci-big">24</div><span class="sub">suites</span></div>
+      <div><span class="lbl">提交</span><div class="ci-big amber ci-mono" style="font-size:20px">281568b</div><span class="sub">jobs: test · ledger 双绿</span></div>
+      <div><span class="lbl">用时</span><div class="ci-big" style="font-size:26px">59s</div><span class="sub">16:27:21Z → 16:28:20Z</span></div>
     </div>
-  </div>
-</nav>
+    <pre class="ci-pre">Ran 24 test suites in 426.98ms (1.40s CPU time): 177 tests passed, 0 failed, 0 skipped (177 total tests)</pre>
 
-<div class="page-hero">
-  <h1>L5 结算层 · CI 徽章</h1>
-  <p class="page-sub">这个页面只钉<b>能被第三方重现的数字</b>。没有跑过的 CI，不会写成绿色。</p>
-</div>
+    <h2 class="ci-h2">3. 九例判定矩阵 · 可复算</h2>
+    <p class="ci-sub">
+      同一份 escrow 判定集，只接受三种结论：<code>supported</code> / <code>rejected</code> / <code>indistinguishable</code>。<br>
+      第三种必须存在 —— 把「无法区分」误报成「支持」，是这类系统最常见的一种谎。
+    </p>
+    <div class="ci-matrix">
+      <div><span class="lbl">supported</span><div class="ci-big">2</div><span class="sub">C1 · C4</span></div>
+      <div><span class="lbl">rejected</span><div class="ci-big">6</div><span class="sub">C2 · C3 · C5 · C6 · C7 · C9</span></div>
+      <div><span class="lbl">indistinguishable</span><div class="ci-big amber">1</div><span class="sub">C8 · 超时 ≠ 非交付</span></div>
+      <div><span class="lbl">与预期一致</span><div class="ci-big">9 / 9</div><span class="sub">agree = true</span></div>
+    </div>
 
-<main class="ci-wrap">
-
-  <h2 class="ci-section-title">1. 公开仓库的 CI 运行记录</h2>
-  <table class="ci-table">
-    <tr><th>运行</th><th>提交</th><th>结果</th><th>时间（UTC）</th></tr>
-    <tr>
-      <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/40359751189" target="_blank" rel="noopener">run #39 · ci</a><br><span class="ci-tag latest">最新 · main 当前 tip（纯文档提交）</span></td>
-      <td class="ci-mono">32b8d0d</td>
-      <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:var(--text-muted);margin-top:6px">jobs: test · ledger<br>父提交 = 281568b</div></td>
-      <td class="ci-mono">2026-10-26 16:31</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/40359283600" target="_blank" rel="noopener">run #38 · ci</a><br><span class="ci-tag latest">跑的就是修复本体</span></td>
-      <td class="ci-mono">281568b</td>
-      <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:var(--text-muted);margin-top:6px">jobs: test · ledger<br>177 tests / 24 suites</div></td>
-      <td class="ci-mono">2026-10-26 16:27</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/39968681945" target="_blank" rel="noopener">run #37 · ci</a></td>
-      <td class="ci-mono">61a04bb</td>
-      <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:var(--text-muted);margin-top:6px">jobs: test · ledger</div></td>
-      <td class="ci-mono">2026-10-23 14:19</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/39807431455" target="_blank" rel="noopener">run #36 · ci</a></td>
-      <td class="ci-mono">d0385fa</td>
-      <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:var(--text-muted);margin-top:6px">jobs: test · ledger</div></td>
-      <td class="ci-mono">2026-10-22 15:43</td>
-    </tr>
-  </table>
-
-  <h2 class="ci-section-title">2. run #38 实际跑出来的数字</h2>
-  <p class="ci-sub">以下全部抄自 run #38 的作业日志，不是本地推测：</p>  <div class="ci-matrix">
-    <div><span class="lbl">测试</span><div class="ci-big">177</div><span class="sub">passed / 0 failed / 0 skipped</span></div>
-    <div><span class="lbl">套件</span><div class="ci-big">24</div><span class="sub">suites</span></div>
-    <div><span class="lbl">提交</span><div class="ci-big amber ci-mono" style="font-size:20px">281568b</div><span class="sub">jobs: test · ledger 双绿</span></div>
-    <div><span class="lbl">用时</span><div class="ci-big" style="font-size:26px">59s</div><span class="sub">16:27:21Z → 16:28:20Z</span></div>
-  </div>
-  <pre class="ci-pre">Ran 24 test suites in 426.98ms (1.40s CPU time): 177 tests passed, 0 failed, 0 skipped (177 total tests)</pre>
-
-  <h2 class="ci-section-title">3. 九例判定矩阵 · 可复算</h2>
-  <p class="ci-sub">
-    同一份 escrow 判定集，只接受三种结论：<code>supported</code> / <code>rejected</code> / <code>indistinguishable</code>。<br>
-    第三种必须存在 —— 把「无法区分」误报成「支持」，是这类系统最常见的一种谎。
-  </p>
-  <div class="ci-matrix">
-    <div><span class="lbl">supported</span><div class="ci-big">2</div><span class="sub">C1 · C4</span></div>
-    <div><span class="lbl">rejected</span><div class="ci-big">6</div><span class="sub">C2 · C3 · C5 · C6 · C7 · C9</span></div>
-    <div><span class="lbl">indistinguishable</span><div class="ci-big amber">1</div><span class="sub">C8 · 超时 ≠ 非交付</span></div>
-    <div><span class="lbl">与预期一致</span><div class="ci-big">9 / 9</div><span class="sub">agree = true</span></div>
-  </div>
-
-  <h2 class="ci-section-title">4. 一条命令复现</h2>
-  <pre class="ci-pre">forge test
+    <h2 class="ci-h2">4. 一条命令复现</h2>
+    <pre class="ci-pre">forge test
   <span class="cm"># 177 passed / 0 failed / 24 suites</span>
 
 python interop/agent-bounties/fixtures/run_matrix.py --json
@@ -113,8 +113,8 @@ python interop/agent-bounties/fixtures/run_matrix.py --json
 forge test --match-contract L5_0
   <span class="cm"># 14 条安全回归，修好之前全红</span></pre>
 
-  <h2 class="ci-section-title">5. 引用这段 · 会自己过期，请连提交号一起引用</h2>
-  <pre class="ci-pre">L5 settlement core — CI-verified
+    <h2 class="ci-h2">5. 引用这段 · 会自己过期，请连提交号一起引用</h2>
+    <pre class="ci-pre">L5 settlement core — CI-verified
   <span class="hl">main tip</span> 32b8d0d (docs only) · fix commit 281568b
   <span class="hl">run #38</span> success @ 281568b — 2026-10-26 16:27Z
   <span class="hl">run #39</span> success @ 32b8d0d — 2026-10-26 16:31Z
@@ -122,24 +122,27 @@ forge test --match-contract L5_0
   <span class="hl">escrow matrix</span> → 9 cases: 2 supported · 6 rejected · 1 indistinguishable
   https://github.com/source-origin/l5-protocol/actions/runs/40359283600</pre>
 
-  <div class="ci-note">
-    这份页面本身也会过期。<b>数字离开提交号就没有意义</b> —— 引用时请连 commit 一起抄走，
-    否则半年后没人知道那个 177 是这个仓库哪一版的 177。
-  </div>
+    <div class="ci-note">
+      这份页面本身也会过期。<b>数字离开提交号就没有意义</b> —— 引用时请连 commit 一起抄走，
+      否则半年后没人知道那个 177 是这个仓库哪一版的 177。
+    </div>
 
-  <h2 class="ci-section-title">6. 附注 · 这次提交为什么不是一次普通 push</h2>
-  <p class="ci-sub">
-    本机的工作树与公开仓库<b>没有共同祖先</b>：本地是把依赖 vendored 进去的完整工程（529 文件），
-    公开仓库是精选树（80 文件，<code>offchain/</code> 对应 <code>demo/</code>，无 <code>lib/</code>）。
-    两边 ahead 20 / behind 62。直接 <code>git push</code> 或 <code>--force</code> 会删掉公开侧的 62 个提交和
-    <code>SECURITY.md</code>，所以这次改动是用 git tree API <b>重放文件内容</b>上去的：
-    11 个路径，6 个新增 + 5 个替换，<b>零删除</b>，远端 tip 一变就拒跑。
-  </p>
-  <div class="ci-note">
-    写这段不是为了解释复杂，是为了让后来的人能复核：<code>281568b</code> 的父提交是 <code>61a04bb</code>，
-    <code>32b8d0d</code> 的父提交是 <code>281568b</code>。公开树从 80 个文件变成 86 个，
-    我没有动的 75 个文件逐字节保持原样。<b>历史没有被动过。</b>
+    <h2 class="ci-h2">6. 附注 · 这次提交为什么不是一次普通 push</h2>
+    <p class="ci-sub">
+      本机的工作树与公开仓库<b>没有共同祖先</b>：本地是把依赖 vendored 进去的完整工程（529 文件），
+      公开仓库是精选树（80 文件，<code>offchain/</code> 对应 <code>demo/</code>，无 <code>lib/</code>）。
+      两边 ahead 20 / behind 62。直接 <code>git push</code> 或 <code>--force</code> 会删掉公开侧的 62 个提交和
+      <code>SECURITY.md</code>，所以这次改动是用 git tree API <b>重放文件内容</b>上去的：
+      11 个路径，6 个新增 + 5 个替换，<b>零删除</b>，远端 tip 一变就拒跑。
+    </p>
+    <div class="ci-note">
+      写这段不是为了解释复杂，是为了让后来的人能复核：<code>281568b</code> 的父提交是 <code>61a04bb</code>，
+      <code>32b8d0d</code> 的父提交是 <code>281568b</code>。公开树从 80 个文件变成 86 个，
+      我没有动的 75 个文件逐字节保持原样。<b>历史没有被动过。</b>
+    </div>
+
   </div>
+  </section>
 
 </main>
 </body>
