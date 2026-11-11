@@ -54,10 +54,17 @@
   <div class="ci-wrap">
 
     <h2 class="ci-h2">1. 公开仓库的 CI 运行记录</h2>
+    <p class="ci-sub">
+      下面的数字绑定到<b>某一次具体的运行</b>，不是「当前最新」。主分支每推一次，这张表就旧一点 ——
+      所以本页不写「当前 tip 就是这个提交」，只保证：<b>被引用的那个提交确实在 main 的历史里，
+      那次运行确实成功过，数字确实抄自它自己的日志</b>。最新一次运行永远在
+      <a href="https://github.com/source-origin/l5-protocol/actions" target="_blank" rel="noopener">Actions</a> 里，
+      比这张表新是正常的。
+    </p>
     <table class="ci-table">
       <tr><th>运行</th><th>提交</th><th>结果</th><th>时间（UTC）</th></tr>
       <tr>
-        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/43035895552" target="_blank" rel="noopener">run #42 · ci</a><br><span class="ci-tag latest">最新 · main 当前 tip</span></td>
+        <td><a href="https://github.com/source-origin/l5-protocol/actions/runs/43035895552" target="_blank" rel="noopener">run #42 · ci</a><br><span class="ci-tag latest">本页引用 · 该提交已在 main 上</span></td>
         <td class="ci-mono">f579455</td>
         <td><span class="ci-tag ok">success</span><div class="ci-mono" style="color:#8a99aa;margin-top:6px">jobs: test · ledger<br>191 tests / 25 suites</div></td>
         <td class="ci-mono">2026-11-11 14:10</td>
