@@ -68,7 +68,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-pro .badge,
+.hero-pro .hero-brand,
 .hero-pro .hero-title,
 .hero-pro .hero-pos,
 .hero-pro .hero-lead,
@@ -79,14 +79,14 @@
   animation: hpRise 0.75s cubic-bezier(0.22, 0.8, 0.28, 1) both;
 }
 
-.hero-pro .badge        { animation-delay: 0.05s; }
-.hero-pro .hero-title   { animation-delay: 0.14s; }
+.hero-pro .hero-title   { animation-delay: 0.05s; }
+.hero-pro .hero-brand   { animation-delay: 0.16s; }
 .hero-pro .hero-pos     { animation-delay: 0.24s; }
 .hero-pro .hero-lead    { animation-delay: 0.33s; }
-.hero-pro .ladder       { animation-delay: 0.44s; }
-.hero-pro .hero-actions { animation-delay: 0.56s; }
-.hero-pro .deploy-note  { animation-delay: 0.64s; }
-.hero-pro .hero-stats   { animation-delay: 0.72s; }
+.hero-pro .ladder       { animation-delay: 0.28s; }
+.hero-pro .hero-actions { animation-delay: 0.4s; }
+.hero-pro .deploy-note  { animation-delay: 0.5s; }
+.hero-pro .hero-stats   { animation-delay: 0.58s; }
 
 /* ---------- 徽章 ---------- */
 .hero-pro .badge {
@@ -204,6 +204,47 @@
 .hero-pro .hero-lead .hero-tail b {
   color: #e8f4ff;
   font-weight: 700;
+}
+
+/* ---------- 品牌线（主标下方，大字） ---------- */
+.hero-pro .hero-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 26px auto 0;
+  font-size: clamp(1.3rem, 3.6vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  color: #dbe8ff;
+  text-shadow: 0 0 22px rgba(0, 212, 255, 0.28);
+}
+
+.hero-pro .hero-brand span {
+  white-space: nowrap;
+}
+
+.hero-pro .hero-brand .brand-accent {
+  letter-spacing: 0.04em;
+  background: linear-gradient(120deg, #ffd75e, #f0b90b 40%, #00d4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(240, 185, 11, 0.38));
+}
+
+/* 分隔符：发光圆点 */
+.hero-pro .hero-brand .brand-sep {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 0.85em;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.8);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.75);
+  flex: 0 0 auto;
 }
 
 /* ---------- 三段式定位锤：BTC / ETH / ORIGIN ---------- */
@@ -437,6 +478,8 @@
 
 .hero-pro .hero-stat span {
   display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
   font-size: clamp(1.5rem, 3.4vw, 1.92rem);
   font-weight: 900;
   line-height: 1.1;
@@ -551,6 +594,30 @@
     width: 16px;
     height: 2px;
     border-radius: 2px;
+  }
+
+  .hero-pro .hero-brand {
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    gap: 0 0;
+    margin-top: 20px;
+    padding: 0 4px;
+  }
+
+  .hero-pro .hero-brand .brand-sep {
+    margin: 0 0.5em;
+    width: 5px;
+    height: 5px;
+  }
+
+  /* 第二个分隔点改用不可见的强制换行位，避免行尾悬挂一个孤点 */
+  .hero-pro .hero-brand .brand-sep:nth-of-type(2) {
+    flex-basis: 100%;
+    width: 0;
+    height: 0;
+    margin: 0;
+    background: none;
+    box-shadow: none;
   }
 
   .hero-pro .hero-actions { margin-top: 30px; width: 100%; }
