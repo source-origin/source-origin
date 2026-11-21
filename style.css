@@ -1259,3 +1259,103 @@ body::before {
   color: #f0b90b;
   font-weight: 500;
 }
+
+
+/* ===== 一条链 · 四层底座（2026-11-21 新增） ===== */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+.stack-card {
+  position: relative;
+  padding: 22px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.stack-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 212, 255, .3);
+  box-shadow: 0 0 26px rgba(0, 212, 255, .14);
+}
+.stack-card .stack-num {
+  font-family: "Orbitron", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(0, 212, 255, .55);
+}
+.stack-card .layer {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--g2);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.stack-card h3 {
+  font-size: 1rem;
+  margin: 7px 0 8px;
+  color: #fff;
+  line-height: 1.45;
+}
+.stack-card p {
+  font-size: 12.5px;
+  line-height: 1.78;
+  color: var(--text-faint);
+  margin: 0;
+}
+.stack-card .stack-tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 9px;
+  font-size: 10.5px;
+  letter-spacing: .5px;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 185, 11, .38);
+  color: var(--g2);
+  background: rgba(240, 185, 11, .07);
+}
+
+.duo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+.duo-item {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(240,185,11,.05), rgba(0,212,255,.05));
+}
+.duo-item .role {
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  color: var(--g2);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.duo-item h4 {
+  margin: 7px 0 7px;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.duo-item p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.78;
+  color: var(--text-faint);
+}
+
+@media (max-width: 980px) {
+  .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .stack-grid { grid-template-columns: 1fr; }
+  .duo { grid-template-columns: 1fr; }
+  .stack-card { padding: 18px 16px; }
+}
