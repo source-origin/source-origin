@@ -1,0 +1,584 @@
+/* ============================================================
+   源·ORIGIN · Hero Pro
+   门面层：把「BTC / ETH / ORIGIN」的排比做成视觉主体
+   加载顺序：style.css → facade-v2.css → hero-pro.css（本文件最后）
+   ============================================================ */
+
+/* ---------- 画布 ---------- */
+.hero.hero-pro {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 88px 24px 64px;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-pro .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    radial-gradient(48% 42% at 50% 18%, rgba(240, 185, 11, 0.16), transparent 70%),
+    radial-gradient(56% 48% at 18% 62%, rgba(0, 212, 255, 0.14), transparent 72%),
+    radial-gradient(52% 44% at 84% 66%, rgba(155, 89, 255, 0.10), transparent 74%);
+}
+
+/* 细网格：让画面有"工程感"，而不是纯黑 */
+.hero-pro .hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 42%, #000 0%, rgba(0, 0, 0, 0.65) 42%, transparent 76%);
+  -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 0%, rgba(0, 0, 0, 0.65) 42%, transparent 76%);
+  pointer-events: none;
+}
+
+/* 一条自上天际垂落的光带 */
+.hero-pro::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  width: 1px;
+  height: 58%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.55), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-pro .hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- 入场动画 ---------- */
+@keyframes hpRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-pro .badge,
+.hero-pro .hero-title,
+.hero-pro .hero-pos,
+.hero-pro .hero-lead,
+.hero-pro .ladder,
+.hero-pro .hero-actions,
+.hero-pro .deploy-note,
+.hero-pro .hero-stats {
+  animation: hpRise 0.75s cubic-bezier(0.22, 0.8, 0.28, 1) both;
+}
+
+.hero-pro .badge        { animation-delay: 0.05s; }
+.hero-pro .hero-title   { animation-delay: 0.14s; }
+.hero-pro .hero-pos     { animation-delay: 0.24s; }
+.hero-pro .hero-lead    { animation-delay: 0.33s; }
+.hero-pro .ladder       { animation-delay: 0.44s; }
+.hero-pro .hero-actions { animation-delay: 0.56s; }
+.hero-pro .deploy-note  { animation-delay: 0.64s; }
+.hero-pro .hero-stats   { animation-delay: 0.72s; }
+
+/* ---------- 徽章 ---------- */
+.hero-pro .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #cfe9ff;
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.26);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.14), inset 0 0 18px rgba(0, 212, 255, 0.06);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+
+.hero-pro .badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00d4ff;
+  box-shadow: 0 0 10px #00d4ff;
+  animation: hpPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hpPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.78); }
+}
+
+/* ---------- 主标 ---------- */
+.hero-pro .hero-title {
+  margin: 26px 0 0;
+  font-size: clamp(2.9rem, 8.4vw, 6.2rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.02;
+  color: #f5c518;
+  text-shadow:
+    0 0 18px rgba(245, 197, 24, 0.55),
+    0 0 56px rgba(245, 197, 24, 0.28),
+    0 0 120px rgba(245, 197, 24, 0.12);
+}
+
+.hero-pro .hero-title .gold {
+  color: inherit;
+  text-shadow: inherit;
+}
+
+/* ---------- 定位句：开源智能体提纯工厂 ---------- */
+.hero-pro .hero-pos {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin: 22px 0 0;
+  font-size: clamp(1.02rem, 2.5vw, 1.42rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+  color: #eaf6ff;
+  text-shadow: 0 0 22px rgba(0, 212, 255, 0.35);
+}
+
+.hero-pro .hero-pos::before,
+.hero-pro .hero-pos::after {
+  content: '';
+  width: clamp(28px, 7vw, 88px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8));
+}
+
+.hero-pro .hero-pos::after {
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.8), transparent);
+}
+
+/* ---------- 价值主句 ---------- */
+.hero-pro .hero-lead {
+  max-width: 40rem;
+  margin: 24px auto 0;
+  font-size: clamp(1rem, 2.3vw, 1.24rem);
+  line-height: 1.95;
+  font-weight: 400;
+  color: #b9c6dd;
+  text-wrap: balance;
+}
+
+.hero-pro .hero-lead .hero-key {
+  position: relative;
+  display: inline-block;
+  margin: 0 0.06em;
+  padding: 0;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 1.18em;
+  letter-spacing: 0.06em;
+  background: linear-gradient(120deg, #ffd75e, #f0b90b 42%, #00d4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(240, 185, 11, 0.42));
+}
+
+.hero-pro .hero-lead .hero-tail {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.96em;
+  color: #93a5c2;
+}
+
+.hero-pro .hero-lead .hero-tail b {
+  color: #e8f4ff;
+  font-weight: 700;
+}
+
+/* ---------- 三段式定位锤：BTC / ETH / ORIGIN ---------- */
+.hero-pro .ladder {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  margin: 42px auto 0;
+  width: 100%;
+  max-width: 900px;
+}
+
+.hero-pro .ladder-item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18em;
+  padding: 18px 10px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.022);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-pro .ladder-item .ladder-mark {
+  font-size: 26px;
+  line-height: 1;
+  color: #8b9bb8;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hero-pro .ladder-item .ladder-name {
+  font-size: clamp(0.95rem, 2vw, 1.16rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: #93a3c0;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hero-pro .ladder-item .ladder-desc {
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
+  color: #5d6d88;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.hero-pro .ladder-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-pro .ladder-item:hover .ladder-name { color: #c7d6ea; }
+
+/* 第三个：这一格的视觉权重 = 结论 */
+.hero-pro .ladder-item.is-key {
+  flex: 1.24 1 0;
+  border-color: rgba(240, 185, 11, 0.42);
+  background:
+    linear-gradient(160deg, rgba(240, 185, 11, 0.13), rgba(0, 212, 255, 0.07) 62%, rgba(240, 185, 11, 0.05));
+  box-shadow:
+    0 0 0 1px rgba(240, 185, 11, 0.1),
+    0 10px 42px rgba(240, 185, 11, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  transform: translateY(-4px);
+  animation: hpKey 4.5s ease-in-out infinite;
+}
+
+@keyframes hpKey {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(240, 185, 11, 0.1), 0 10px 42px rgba(240, 185, 11, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.09); }
+  50%      { box-shadow: 0 0 0 1px rgba(240, 185, 11, 0.22), 0 12px 56px rgba(240, 185, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.14); }
+}
+
+.hero-pro .ladder-item.is-key .ladder-mark {
+  color: #ffd75e;
+  text-shadow: 0 0 16px rgba(255, 215, 94, 0.85);
+}
+
+.hero-pro .ladder-item.is-key .ladder-name {
+  font-size: clamp(1.05rem, 2.3vw, 1.32rem);
+  color: #fff;
+  text-shadow: 0 0 20px rgba(240, 185, 11, 0.6), 0 0 42px rgba(240, 185, 11, 0.24);
+}
+
+.hero-pro .ladder-item.is-key .ladder-desc {
+  color: #ffdfa0;
+  font-weight: 600;
+}
+
+.hero-pro .ladder-item.is-key:hover {
+  transform: translateY(-7px);
+  border-color: rgba(240, 185, 11, 0.7);
+}
+
+/* 分隔符：发光圆点，而不是字符 */
+.hero-pro .ladder-sep {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+}
+
+.hero-pro .ladder-sep i {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.75);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.7);
+}
+
+/* ---------- 行动按钮 ---------- */
+.hero-pro .hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.hero-pro .btn-gold {
+  position: relative;
+  padding: 14px 34px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #120d00;
+  background: linear-gradient(120deg, #ffd75e, #f0b90b 55%, #e8a800);
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 94, 0.5),
+    0 8px 30px rgba(240, 185, 11, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.hero-pro .btn-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+  transform: skewX(-18deg);
+  animation: hpSheen 4.2s ease-in-out infinite;
+}
+
+@keyframes hpSheen {
+  0%, 62% { left: -60%; }
+  88%, 100% { left: 120%; }
+}
+
+.hero-pro .btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 94, 0.8),
+    0 12px 44px rgba(240, 185, 11, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.hero-pro .btn-ghost {
+  padding: 14px 30px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #9fe6ff;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.36);
+  transition: all 0.25s ease;
+}
+
+.hero-pro .btn-ghost:hover {
+  color: #e8fbff;
+  background: rgba(0, 212, 255, 0.13);
+  border-color: rgba(0, 212, 255, 0.72);
+  box-shadow: 0 0 28px rgba(0, 212, 255, 0.26);
+  transform: translateY(-3px);
+}
+
+/* ---------- 试运行提示 ---------- */
+.hero-pro .deploy-note {
+  margin-top: 30px;
+  max-width: 46rem;
+}
+
+/* ---------- 数据条 ---------- */
+.hero-pro .hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 720px;
+  margin-top: 44px;
+}
+
+.hero-pro .hero-stat {
+  position: relative;
+  padding: 18px 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.022);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.hero-pro .hero-stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(240, 185, 11, 0.9), transparent);
+}
+
+.hero-pro .hero-stat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(240, 185, 11, 0.28);
+  background: rgba(240, 185, 11, 0.04);
+}
+
+.hero-pro .hero-stat span {
+  display: block;
+  font-size: clamp(1.5rem, 3.4vw, 1.92rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #f0b90b;
+  text-shadow: 0 0 18px rgba(240, 185, 11, 0.5);
+}
+
+.hero-pro .hero-stat span.cyan {
+  color: #38e0ff;
+  text-shadow: 0 0 18px rgba(0, 212, 255, 0.55);
+}
+
+.hero-pro .hero-stat label {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: #7d8ca8;
+}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero-pro .ladder { max-width: 620px; }
+  .hero-pro .ladder-item .ladder-desc { font-size: 11.5px; letter-spacing: 0.06em; }
+}
+
+/* 手机：三段式转竖排，分隔点变成横向短线，避免挤 */
+@media (max-width: 720px) {
+  .hero.hero-pro { padding: 76px 16px 52px; }
+
+  .hero-pro .hero-content { max-width: 100%; }
+
+  .hero-pro .hero-title {
+    font-size: clamp(2.35rem, 12vw, 3.4rem);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-pro .hero-pos {
+    gap: 12px;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-indent: 0.2em;
+  }
+
+  .hero-pro .hero-lead {
+    font-size: 0.97rem;
+    line-height: 1.85;
+    padding: 0 4px;
+  }
+
+  .hero-pro .ladder {
+    flex-direction: column;
+    max-width: 360px;
+    margin-top: 32px;
+    gap: 0;
+  }
+
+  /* 手机：横排行式，图标在左、文字在右 */
+  .hero-pro .ladder-item {
+    flex: 1 1 auto;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 13px 18px;
+    text-align: left;
+  }
+
+  .hero-pro .ladder-item .ladder-mark {
+    flex: 0 0 auto;
+    width: 30px;
+    font-size: 23px;
+    text-align: center;
+  }
+
+  .hero-pro .ladder-item .ladder-name {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-indent: 0;
+  }
+
+  .hero-pro .ladder-item .ladder-desc {
+    margin-left: auto;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+
+  .hero-pro .ladder-item.is-key {
+    flex: 1 1 auto;
+    transform: none;
+  }
+
+  .hero-pro .ladder-item.is-key .ladder-name {
+    font-size: 1.06rem;
+    letter-spacing: 0.1em;
+    text-indent: 0;
+  }
+
+  .hero-pro .ladder-item.is-key:hover { transform: translateY(-2px); }
+
+  .hero-pro .ladder-sep {
+    width: 100%;
+    height: 10px;
+  }
+
+  .hero-pro .ladder-sep i {
+    width: 16px;
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  .hero-pro .hero-actions { margin-top: 30px; width: 100%; }
+  .hero-pro .btn-gold,
+  .hero-pro .btn-ghost { flex: 1 1 auto; text-align: center; }
+
+  .hero-pro .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 32px;
+    max-width: 100%;
+  }
+
+  .hero-pro .hero-stat { padding: 14px 10px 12px; }
+}
+
+@media (max-width: 380px) {
+  .hero-pro .hero-pos { letter-spacing: 0.12em; text-indent: 0.12em; gap: 8px; }
+  .hero-pro .hero-pos::before,
+  .hero-pro .hero-pos::after { width: 18px; }
+}
+
+/* 尊重系统的"减少动效"设定 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-pro *,
+  .hero-pro *::before,
+  .hero-pro *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
