@@ -595,6 +595,8 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
   .nav-links { top: 56px; padding: 10px; gap: 4px; }
   .nav-links a { padding: 13px 14px; font-size: 15px; border-radius: 10px; }
   .nav-links a:active { background: rgba(0,212,255,0.12); }
+  /* 手机端导航：汉堡靠右，与语言切换成组（原先被 space-between 甩到正中） */
+  .nav-toggle { margin-left: auto; flex: 0 0 auto; }
   .nav-toggle {
     width: 44px; height: 44px; display: flex;
     align-items: center; justify-content: center;
@@ -720,4 +722,62 @@ h1, h2, h3, .step-n, .tl-tag, .number, .hero-stat span {
 .card:hover .shop-logo {
   transform: scale(1.06);
   box-shadow: 0 10px 30px rgba(240,185,11,.4);
+}
+/* ============ 导航拥挤修正（2026-11-21） ============ */
+.nav-links { gap: 2px; }
+.nav-links a {
+  white-space: nowrap;
+  padding: 9px 11px;
+  font-size: 13px;
+}
+.nav-links a::after { left: 11px; right: 11px; }
+.nav-inner { gap: 16px; }
+.nav-name { font-size: 17px; letter-spacing: 1px; }
+@media (max-width: 1240px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 66px; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: rgba(5, 8, 18, 0.98);
+    border-bottom: 1px solid var(--line);
+    padding: 8px;
+    gap: 2px;
+    z-index: 200;
+  }
+  .nav-links.show { display: flex; }
+  .nav-links a { width: 100%; padding: 12px 14px; font-size: 14px; }
+  .nav-links a::after { left: 14px; right: 14px; bottom: 6px; }
+}
+
+/* ============ 移动端统计卡 2x2（2026-11-21） ============ */
+/* 390px 下原本 3+1 排布，第三张卡贴右边缘、第四张孤零零居中 */
+@media (max-width: 600px) {
+  /* 注意：移动端有 section{padding:52px 0 !important}，所以横向留白要加在 hero-content 上 */
+  .hero-content { width: 100%; padding-left: 18px; padding-right: 18px; box-sizing: border-box; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    justify-items: stretch;
+    padding: 0;
+    margin-top: 30px;
+  }
+  .hero-stat { padding: 12px 10px; }
+  .hero-stat span { font-size: 25px; }
+  .hero-stat label { font-size: 11px; letter-spacing: 0.5px; }
+  .badge { font-size: 12px; padding: 6px 12px; }
+  .deploy-note { text-align: left; }
+}
+
+/* 手机端：多行标题/徽章按行均衡断行，避免末行只剩一两个字（孤字） */
+@media (max-width: 768px) {
+  .badge, .hero-tagline, .hero-subtitle, .section-subtitle, .deploy-note .dn-text { text-wrap: balance; }
+}
+
+/* 徽章只在「·」处分行，不把「全球接单」这类词从中间劈开 */
+@media (max-width: 768px) {
+  .badge { word-break: keep-all; }
 }

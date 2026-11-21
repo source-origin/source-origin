@@ -1,0 +1,300 @@
+/* ============================================================
+   共建者名录 · 首页区块与独立页（复用原站 token）
+   ============================================================ */
+
+.kindred-grid {
+  display: grid;
+  /* 4 个域：2×2 起，宽屏才排 4 列，避免 3+1 的孤儿卡 */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+@media (min-width: 1500px) {
+  .kindred-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  .kindred-grid { grid-template-columns: 1fr; }
+}
+
+.kindred-col {
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 22px 12px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.kindred-col:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 212, 255, 0.32);
+  box-shadow: 0 0 26px rgba(0, 212, 255, 0.16);
+}
+
+.kindred-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-height: 3.4em;   /* 4 列时让两行标题与一行标题底部对齐，列表起点齐平 */
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #fff;
+  padding-bottom: 12px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(120, 160, 255, 0.12);
+}
+
+.kdot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.kdot.cyan { background: var(--g1); box-shadow: 0 0 10px var(--g1); }
+.kdot.gold { background: var(--g2); box-shadow: 0 0 10px var(--g2); }
+
+.kindred-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.kindred-list li {
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(120, 160, 255, 0.1);
+}
+.kindred-list li:last-child { border-bottom: none; }
+.kindred-list b {
+  display: block;
+  font-family: "Orbitron", "Bai Jamjuree", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--g1);
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.35);
+}
+.kindred-list span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-faint);
+}
+
+.kindred-note {
+  margin-top: 26px;
+  padding: 22px 24px;
+  border: 1px solid rgba(240, 185, 11, 0.28);
+  border-left: 3px solid var(--g2);
+  border-radius: 0 14px 14px 0;
+  background: rgba(240, 185, 11, 0.05);
+}
+.kindred-note p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--text-dim);
+}
+.kindred-note p:last-of-type { margin-bottom: 0; }
+.kindred-note b,
+.kindred-note strong { color: var(--g2); }
+
+.kindred-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+.kindred-links .btn { padding: 10px 22px; font-size: 0.88rem; }
+
+/* ============ 独立页：名录 / 清单 ============ */
+.doc-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 120px 24px 90px;
+  position: relative;
+  z-index: 1;
+}
+.doc-page h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #f5c518;
+  text-shadow: 0 0 16px rgba(245, 197, 24, 0.6), 0 0 40px rgba(245, 197, 24, 0.3);
+  margin: 0 0 12px;
+  letter-spacing: 0.03em;
+}
+.doc-lead {
+  font-size: 1.02rem;
+  color: var(--text-dim);
+  line-height: 1.9;
+  margin: 0 0 14px;
+  max-width: 60rem;
+}
+.doc-page h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: #fff;
+  margin: 56px 0 8px;
+  font-weight: 700;
+  text-shadow: 0 0 26px rgba(0, 212, 255, 0.3);
+  position: relative;
+  padding-bottom: 14px;
+}
+.doc-page h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--g2), var(--g1));
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.4);
+}
+.doc-page h3 {
+  color: var(--g1);
+  font-size: 1.05rem;
+  margin: 28px 0 10px;
+  font-weight: 600;
+}
+.doc-page p {
+  color: var(--text-dim);
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+.doc-page ul {
+  padding-left: 20px;
+  color: var(--text-dim);
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+.doc-page li { margin-bottom: 7px; }
+.doc-page strong { color: #fff; }
+.doc-page a { color: var(--g1); text-decoration-color: rgba(0,212,255,0.35); }
+
+.doc-page blockquote {
+  margin: 20px 0;
+  padding: 16px 22px;
+  border-left: 3px solid var(--g2);
+  border-radius: 0 12px 12px 0;
+  background: rgba(240, 185, 11, 0.06);
+  color: var(--text-dim);
+  font-size: 0.94rem;
+  line-height: 1.9;
+}
+.doc-page blockquote p { margin: 0; }
+
+.doc-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 18px 0 8px;
+  font-size: 0.9rem;
+}
+.doc-table th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--g1);
+  background: rgba(0, 212, 255, 0.07);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+  font-weight: 700;
+}
+.doc-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(120, 160, 255, 0.08);
+  color: var(--text-dim);
+  line-height: 1.65;
+  vertical-align: top;
+}
+.doc-table tr:last-child td { border-bottom: none; }
+.doc-table tbody tr:hover { background: rgba(0, 212, 255, 0.035); }
+.doc-table b { color: var(--g1); font-family: "Orbitron", monospace; }
+
+.pill {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.pill.done { background: rgba(0, 212, 255, 0.12); border: 1px solid rgba(0, 212, 255, 0.4); color: var(--g1); }
+.pill.doing { background: rgba(240, 185, 11, 0.12); border: 1px solid rgba(240, 185, 11, 0.4); color: var(--g2); }
+.pill.todo { background: rgba(92, 111, 153, 0.16); border: 1px solid rgba(92, 111, 153, 0.35); color: var(--text-faint); }
+
+.trial-band {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 12px 22px;
+  background: linear-gradient(90deg, rgba(240,185,11,.16), rgba(0,212,255,.12), rgba(240,185,11,.16));
+  border: 1px solid rgba(240, 185, 11, 0.5);
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #f0e6c8;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.trial-band strong { color: var(--g2); }
+
+/* ============ 文档页移动端（2026-11-21） ============ */
+/* 390px 下表格最小内容宽度会把布局视口撑到 429px（=页面横向溢出） */
+@media (max-width: 760px) {
+  .doc-page { padding: 96px 16px 70px; }
+  .doc-table { table-layout: fixed; font-size: 0.82rem; }
+  .doc-table th,
+  .doc-table td { padding: 9px 10px; word-break: break-word; overflow-wrap: anywhere; }
+  .doc-table th { letter-spacing: 1px; font-size: 10px; }
+  .pill { white-space: normal; }
+}
+
+/* ============ 宽表格横向滚动（2026-11-21） ============ */
+.doc-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 18px 0 8px;
+  border-radius: 12px;
+}
+.doc-table-wrap > .doc-table { margin: 0; }
+/* 只有 4 列及以上的表才给最小宽度，2/3 列表仍自适应铺满 */
+@media (max-width: 760px) {
+  .doc-table-wrap:has(th:nth-child(4)) > .doc-table { min-width: 560px; table-layout: auto; }
+}
+
+/* 宽表滑动提示 + 可见滚动条 */
+.table-hint {
+  display: none;
+  margin: 14px 0 -6px;
+  font-size: 11.5px;
+  letter-spacing: 0.5px;
+  color: var(--text-faint);
+}
+.doc-table-wrap::-webkit-scrollbar { height: 6px; }
+.doc-table-wrap::-webkit-scrollbar-track { background: rgba(120,160,255,0.06); border-radius: 3px; }
+.doc-table-wrap::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.35); border-radius: 3px; }
+.doc-table-wrap::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.55); }
+@media (max-width: 760px) {
+  .table-hint { display: block; }
+}
+
+/* 清单序号列：不换行，等宽数字 */
+.doc-table td.num {
+  white-space: nowrap;
+  color: var(--g1);
+  font-family: "Orbitron", monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 双行标题：中文行 + 英文行，四列高度天然一致 */
+.kindred-head .kh-text { display: flex; flex-direction: column; line-height: 1.35; }
+.kindred-head .kh-zh { color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; }
+.kindred-head .kh-en { color: var(--text-faint); font-size: 11px; font-weight: 600; letter-spacing: 0.8px; margin-top: 2px; }

@@ -24,6 +24,8 @@
     { id: 'developers', label: 'Dev Command', href: 'developer-board.html' },
     { id: 'agents', label: 'Agent Command', href: 'agent-command.html' },
     { id: 'l5ci', label: 'L5 · CI', href: 'l5-ci.html' },
+    { id: 'kindred',  label: '共建者',      href: 'kindred.html' },
+    { id: 'status',   label: '状态',        href: 'status.html' },
     { id: 'about',    label: '使命',        href: 'mission.html' },
     { id: 'hkbtx',    label: 'HKBTX 交易所', href: HKBTX_URL },
     { id: 'services', label: 'AI 服务',     href: 'agent-services.html' }

@@ -11,6 +11,7 @@
 <script src="assets/lang-switcher.js" defer></script>
 <script src="assets/site-nav.js" defer></script>
 <link rel="stylesheet" href="assets/board-embed.css">
+<link rel="stylesheet" href="assets/kindred.css">
 <script src="assets/board-embed.js" defer></script>
 </head>
 <body data-page="home">
@@ -34,14 +35,14 @@
       <!-- 展示/体验版声明（纯静态，确保总是显示） -->
       <div class="deploy-note">
         <span class="dn-icon">⚡</span>
-        <span class="dn-text">当前门户功能为 <strong>展示 / 体验版</strong>，后续将全面部署至 <strong>源·ORIGIN 不死网络</strong></span>
+        <span class="dn-text">节点正在 <strong>试运行</strong> —— 网络按计划间歇运行、尚未接入实时监控，不会 7×24 在线；合约 <strong>v0.3 未经审计</strong>，请勿投入真实资金</span>
       </div>
 
       <div class="hero-stats">
-        <div class="hero-stat"><label data-i18n="index.hero.stat1">开源项目提纯入库</label></div>
-        <div class="hero-stat"><span class="cyan">5</span><label data-i18n="index.hero.stat2">条产品线</label></div>
-        <div class="hero-stat"><span class="gold">USDC</span><label data-i18n="index.hero.stat3">链上全球结算</label></div>
-        <div class="hero-stat"><span class="cyan">0</span><label data-i18n="index.hero.stat4">平台佣</label></div>
+        <div class="hero-stat"><span class="cyan">177</span><label>CI 测试全绿</label></div>
+        <div class="hero-stat"><span class="gold">24</span><label>FOUNDRY 套件</label></div>
+        <div class="hero-stat"><span class="cyan">15</span><label>全球共建伙伴</label></div>
+        <div class="hero-stat"><span class="gold">0</span><label>单点信任故障</label></div>
       </div>
     </div>
   </section>
@@ -145,6 +146,65 @@
       </div>
     </div>
   </section>
+  <!-- ===== 全球共建伙伴（分域） ===== -->
+  <section class="section" id="kindred">
+    <div class="container">
+      <h2 class="section-title">全球<span class="cyan">共建伙伴</span></h2>
+      <p class="section-subtitle">15 位同频者 · 按职责域分组 · 每一行只写已经发生过的事</p>
+
+      <div class="kindred-grid">
+        <div class="kindred-col">
+          <div class="kindred-head"><span class="kdot cyan"></span><span class="kh-text"><span class="kh-zh">标准层</span><span class="kh-en">Standards</span></span></div>
+          <ul class="kindred-list">
+            <li><b>EMILIA</b><span>IETF AI 授权标准提交者 · 对本项目 x402 路径做互操作复核并指出 money-path 缺陷，修复后复核确认关闭</span></li>
+            <li><b>APS</b><span>Martin Sansone · 国际 Agent 治理标准创始提交单位</span></li>
+            <li><b>giskard09</b><span>跨系统收据时序规范制定者 · 授权收据数据结构对齐</span></li>
+          </ul>
+        </div>
+
+        <div class="kindred-col">
+          <div class="kindred-head"><span class="kdot cyan"></span><span class="kh-text"><span class="kh-zh">身份与仲裁</span><span class="kh-en">Identity &amp; Arbitration</span></span></div>
+          <ul class="kindred-list">
+            <li><b>Motebit</b><span>Daniel Hakim · 主权 AI 智能体身份协议 · 就技术瓶颈与我方交换过方案</span></li>
+            <li><b>Arbitra</b><span>Ali-Adel-Nour · 链上仲裁层 · 定「裁决引用收据」接法</span></li>
+            <li><b>Archon</b><span>凭证状态验证层 · 历史状态切片验证规范对齐</span></li>
+          </ul>
+        </div>
+
+        <div class="kindred-col">
+          <div class="kindred-head"><span class="kdot gold"></span><span class="kh-text"><span class="kh-zh">安全与红队</span><span class="kh-en">Security</span></span></div>
+          <ul class="kindred-list">
+            <li><b>youboyo22</b><span>顶级外部白帽 · 产出 AgentEscrow 通道高危漏洞 PoC，联合内部极客完成修复</span></li>
+            <li><b>Codex</b><span>NSPG13 · 独立完成 L5 底层 168 项全绿回归（套件后续扩至 177 项 / 24 套件）</span></li>
+            <li><b>RustChain</b><span>Scottcjn · 硬件指纹抗女巫公链 · 账本对收据的原生存证字段支持</span></li>
+            <li><b>SCVD</b><span>seancrecord · 零知识证据层 · 逐条审我方公开树并指出真实漂移，全部真修</span></li>
+          </ul>
+        </div>
+
+        <div class="kindred-col">
+          <div class="kindred-head"><span class="kdot gold"></span><span class="kh-text"><span class="kh-zh">结算与风控</span><span class="kh-en">Settlement &amp; Risk</span></span></div>
+          <ul class="kindred-list">
+            <li><b>Sigvara</b><span>信誉评分与罚没清算逻辑 · 与仲裁模块联动的补偿路径</span></li>
+            <li><b>atlas-rail</b><span>Rime504 · AI 交易字节级风控 · 签名授权绑单端点单额</span></li>
+            <li><b>dhyabi2</b><span>Nano 原生微结算组件</span></li>
+            <li><b>Rai</b><span>x402 支付生态 Agent · 我方已交付 x402 → L5 逐字段映射</span></li>
+            <li><b>tiny.place</b><span>AI 智能体社交网络 · 上层 Demo 接入整套链路</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kindred-note">
+        <p><b>分档是因为证据分档。</b>已互认、对话中、已触达，三件事不写成同一行字。</p>
+        <p>另有 15+ 团队已收到一对一技术开场，对方尚未公开回应 —— 那是<strong>触达</strong>，不是共建。</p>
+        <p>出现在这里不代表任何一方认可我们的代币、路线图或商业安排。</p>
+        <div class="kindred-links">
+          <a href="kindred.html" class="btn btn-ghost">完整名录 →</a>
+          <a href="cobuild.html" class="btn btn-ghost">38 项共建清单 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== AI 智能体军团 ===== -->
   <section class="section army">
     <div class="container">

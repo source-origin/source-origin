@@ -1236,7 +1236,8 @@ body::before {
 .deploy-note .dn-icon { font-size: 16px; flex: 0 0 auto; }
 .deploy-note .dn-text strong { color: #f0b90b; font-weight: 600; }
 @media (max-width: 640px) {
-  .deploy-note { font-size: 12px; padding: 10px 14px; flex-wrap: wrap; justify-content: center; }
+  .deploy-note { font-size: 12px; padding: 10px 14px; flex-wrap: wrap; justify-content: center; text-wrap: pretty; align-items: flex-start; }
+  .deploy-note .dn-text { text-wrap: pretty; }
 }
 
 

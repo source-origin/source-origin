@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术共建总清单 — 源·ORIGIN</title>
+<meta name="description" content="ORIGIN L5 技术共建总清单 38 项，五层分工，标注已交付 / 进行中 / 未开工。">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/facade-v2.css">
+<script src="assets/i18n.js" defer></script>
+<script src="assets/lang-switcher.js" defer></script>
+<script src="assets/site-nav.js" defer></script>
+<link rel="stylesheet" href="assets/kindred.css">
+</head>
+<body data-page="cobuild">
+<main id="app">
+
+<div class="doc-page">
+  <h1>技术共建总清单</h1>
+  <p class="doc-lead">38 项，分六个层。谁负责哪一块，一眼看清。</p>
+  <p class="doc-lead">状态口径：<strong>未开工 / 进行中 / 已交付</strong>。没有证据的一律标「未开工」，不写「已完成」。</p>
+
+  <h2>一、标准层共建项</h2>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>统一哈希序列化规范</td><td>ORIGIN × EMILIA</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">2</td><td>CAID 动作唯一标识接入规范定义</td><td>EMILIA</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">3</td><td>授权收据数据结构对齐</td><td>EMILIA + giskard09</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">4</td><td>收据时序、存证顺序、不可篡改格式约定</td><td>giskard09</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">5</td><td>跨协议错误码、返回体、日志输出标准</td><td>全体共建方</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">6</td><td>敌意测试用例集仓库共享、版本管理机制</td><td>EMILIA + Codex + youboyo22</td><td><span class="pill todo">未开工</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>二、L5 适配器共建（核心互操作模块）</h2>
+  <p>ORIGIN 主责，多方联调。</p>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">7</td><td>L5-EMILIA 适配器：桥接 CAID、授权收据与 Escrow 托管入口</td><td>ORIGIN × EMILIA</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">8</td><td>适配器权限隔离：授权域与结算域边界隔离（授权 ≠ 执行）</td><td>ORIGIN + EMILIA + youboyo22</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">9</td><td>适配器事件转发：EMILIA 动作事件推送至 ORIGIN 结算合约</td><td>ORIGIN</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">10</td><td>适配器回查接口：结算合约反向核验 CAID 与授权收据有效性</td><td>ORIGIN + Archon</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">11</td><td>适配器压力测试、异常分支、断连恢复</td><td>Codex + youboyo22</td><td><span class="pill todo">未开工</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>三、合约与安全加固</h2>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">12</td><td>L5 合约权限漏洞修复（证据绑定、规范化、终局性）</td><td>ORIGIN + EMILIA + youboyo22</td><td><span class="pill done">已交付</span></td></tr>
+      <tr><td class="num">13</td><td>合约内 CAID 动作校验逻辑植入</td><td>ORIGIN + EMILIA</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">14</td><td>零知识证据 SCVD 与收据绑定方案落地</td><td>SCVD</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">15</td><td>Escrow 锁仓 / 释放 / 分账边界条件安全审计</td><td>youboyo22 + RustChain + Codex</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">16</td><td>越权执行、凭证重放、收据伪造攻击面攻防</td><td>EMILIA 敌意用例 + youboyo22 + Codex</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">17</td><td>Arbitra 仲裁模块时序攻击、恶意举证场景测试</td><td>Arbitra + youboyo22</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">18</td><td>安全报告输出流程：漏洞分级、修复回执、复测闭环</td><td>youboyo22 + Codex</td><td><span class="pill doing">进行中</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>四、测试与验证体系</h2>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">19</td><td>EMILIA 全套公开敌意用例在 L5 适配器批量跑通</td><td>Codex + EMILIA</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">20</td><td>端到端链路：CAID 授权 → 执行 → 收据 → 链上存证 → Escrow → 结算/仲裁</td><td>ORIGIN 牵头，全体联调</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">21</td><td>双场景测试集：软件智能体 + 人形机器人具身</td><td>Motebit + tiny.place</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">22</td><td>跨版本回归清单，每次合约升级必跑</td><td>Codex</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">23</td><td>互操作性正式报告（投资人 / 合作方留档）</td><td>ORIGIN 汇总</td><td><span class="pill todo">未开工</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>五、五层底层配套协同</h2>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">24</td><td>账本对 CAID、授权收据的原生存证字段支持</td><td>RustChain</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">25</td><td>零知识侧：收据与 CAID 的证据打包、可验证输出</td><td>SCVD</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">26</td><td>链上仲裁：接收证据材料，按收据时序判纠纷与补偿</td><td>Arbitra + Sigvara</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">27</td><td>上层应用 Demo，接入整套链路对外演示闭环</td><td>tiny.place</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">28</td><td>主权 Agent 身份层对接</td><td>Motebit</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">29</td><td>Agent 治理规范对齐</td><td>APS</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">30</td><td>凭证历史切片核验</td><td>Archon</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">31</td><td>AI 交易字节级风控</td><td>atlas-rail</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">32</td><td>Nano 原生微结算组件</td><td>dhyabi2</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">33</td><td>x402 支付生态 Agent 接入适配</td><td>Rai</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">34</td><td>信誉评分、罚没清算逻辑</td><td>Sigvara</td><td><span class="pill todo">未开工</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>六、社区与交付物里程碑</h2>
+  <p class="table-hint">↔ 本表较宽，可左右滑动查看</p><div class="doc-table-wrap"><table class="doc-table">
+    <thead><tr><th>#</th><th>共建事项</th><th>责任方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td class="num">35</td><td>开发者文档更新：接入手册、CAID 集成教程、适配器 SDK</td><td>ORIGIN</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">36</td><td>Demo 端到端演示版本交付（P1 里程碑）</td><td>全体</td><td><span class="pill todo">未开工</span></td></tr>
+      <tr><td class="num">37</td><td>核心开发者社区维护：向新加入黑客团队开放仓库权限、任务看板</td><td>ORIGIN</td><td><span class="pill doing">进行中</span></td></tr>
+      <tr><td class="num">38</td><td>定期同步会机制：安全小组 / 协议开发组 / 架构组 / 对外商务</td><td>ORIGIN</td><td><span class="pill doing">进行中</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>关于状态</h2>
+  <p>这张表上「已交付」只有第 12 项 —— 因为只有它有机可查的回归用例（权限漏洞修复 + 红队回归套件）。</p>
+  <p>其余「进行中」的判断依据是：<strong>有公开线程或已交换过字段映射</strong>。没有这两样的，一律标「未开工」，哪怕私下已经聊过。</p>
+  <blockquote><p>一张所有人都标「完成」的清单，等于没有清单。</p></blockquote>
+
+  <div class="kindred-links" style="margin-top:36px">
+    <a href="kindred.html" class="btn btn-ghost">共建者名录 →</a>
+    <a href="status.html" class="btn btn-ghost">节点状态 →</a>
+  </div>
+</div>
+
+</main>
+</body>
+</html>
