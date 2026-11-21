@@ -1,46 +1,48 @@
 /* ============================================================
    源·ORIGIN · Stack Pro
-   需求（2026-11-22 00:25 源亲定）：
-     「一条链 · 四层底座」整块字体放大 3 倍；去掉「· 100% 自有」
-   做法：字号用 clamp(移动端值, vw, 3倍值) —— 桌面严格 3 倍，
-         移动端自动收到可读尺寸；4 列改 2×2，否则 3 倍正文在窄卡里无法成行。
-   加载顺序：style.css → facade-v2.css → hero-pro.css → stack-pro.css
+   需求演变：
+     00:25 源说「字体太小」→ 我先做了机械 3 倍（节标题 102.4px）
+     00:36 源说「字体不太合理，调成合理大小要美观」→ 收回设计系统
+   定稿理由：站点基准 .section-title = 38.4px / .section-subtitle = 15px。
+     「放大」应放大到「比邻居略强」，而不是把每个数字乘 3 ——
+     102px 的节标题比首屏主标（99px）还大，层级就反了。
+   最终尺度：节标题 44px · 副标 17px · 卡标题 28px · 正文 17px · 标签 13px
    ============================================================ */
 
-/* ---------- 章节标题：3 倍会压过首屏主标，收到 2.67 倍 ---------- */
+/* ---------- 章节标题：比常规节（38.4px）略强一档 ---------- */
 #stack .section-title {
-  font-size: clamp(2.2rem, 7.2vw, 6.4rem);
-  line-height: 1.18;
+  font-size: clamp(1.65rem, 3.05vw, 2.75rem);
+  line-height: 1.25;
   letter-spacing: 0.01em;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
 #stack .section-title::after {
-  width: 96px;
-  height: 4px;
-  margin-top: 26px;
+  width: 64px;
+  height: 3px;
+  margin-top: 18px;
 }
 
-/* ---------- 章节副标：严格 3 倍（15px → 45px） ---------- */
+/* ---------- 章节副标：常规正文尺寸 ---------- */
 #stack .section-subtitle {
-  font-size: clamp(1.05rem, 3.2vw, 2.8rem);
-  line-height: 1.65;
-  letter-spacing: 0.01em;
-  max-width: 34em;
-  margin: 0 auto 4.6rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.06rem);
+  line-height: 1.85;
+  letter-spacing: 0.015em;
+  max-width: 46em;
+  margin: 0 auto 3rem;
   color: var(--text-dim);
 }
 
-/* ---------- 四层网格：4 列 → 2×2 ---------- */
+/* ---------- 四层网格：2×2（4 列中文正文每行仅 10 字，会碎） ---------- */
 #stack .stack-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
   margin-top: 0;
 }
 
 #stack .stack-card {
-  padding: 42px 38px 40px;
-  border-radius: 22px;
+  padding: 30px 30px 28px;
+  border-radius: 18px;
   border: 1px solid rgba(120, 160, 255, 0.16);
   background:
     linear-gradient(168deg, rgba(18, 27, 52, 0.85), rgba(9, 14, 30, 0.75));
@@ -48,95 +50,90 @@
 }
 
 #stack .stack-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: rgba(0, 212, 255, 0.42);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 18px 56px rgba(0, 212, 255, 0.14);
+    0 16px 46px rgba(0, 212, 255, 0.13);
 }
 
-/* 序号：11px → 33px
-   Orbitron 的 0 是带斜杠的，放大 3 倍后像 Ø，故改用系统无衬线 + 等宽数字 */
+/* 序号：做成标签，不做标题
+   Orbitron 的 0 是带斜杠的，像 Ø，故用系统无衬线 + 等宽数字 */
 #stack .stack-card .stack-num {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-variant-numeric: tabular-nums;
   font-weight: 800;
-  font-size: clamp(1rem, 2.4vw, 2.06rem);
-  letter-spacing: 0.08em;
-  color: rgba(0, 212, 255, 0.62);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: rgba(0, 212, 255, 0.6);
   line-height: 1;
 }
 
-/* 层级标签：11px → 33px */
+/* 层级标签：小号，拉开字距 */
 #stack .stack-card .layer {
-  margin-top: 1.15rem;
-  font-size: clamp(0.95rem, 2.3vw, 2.06rem);
-  letter-spacing: 0.1em;
-  line-height: 1.3;
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
   color: var(--g2);
 }
 
-/* 卡片标题：16px → 48px
-   但 10 个字的标题（如「开源项目进厂，出成品」）在 48px 下会挤成 480px > 卡内宽 470px，
-   故封顶 45.6px（=16×2.85），保证最长标题单行不断词 */
+/* 卡片标题 */
 #stack .stack-card h3 {
-  font-size: clamp(1.6rem, 3.4vw, 2.85rem);
-  line-height: 1.32;
-  margin: 1.1rem 0 1rem;
+  font-size: clamp(1.4rem, 2vw, 1.78rem);
+  line-height: 1.4;
+  margin: 0.7rem 0 0.75rem;
   letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
-/* 正文：12.5px → 37.5px；--text-faint 在大字号下发灰，提亮到可读区间 */
+/* 正文：与全站正文同级（17px），行高 1.9 保中文疏朗 */
 #stack .stack-card p {
-  font-size: clamp(1.22rem, 2.6vw, 2.34rem);
-  line-height: 1.62;
+  font-size: 1.0625rem;
+  line-height: 1.9;
   color: #a9bad9;
 }
 
-/* 状态徽章：10.5px → 31.5px */
+/* 状态徽章 */
 #stack .stack-card .stack-tag {
-  margin-top: 1.65rem;
-  padding: 0.4em 0.85em;
-  font-size: clamp(0.92rem, 2.2vw, 1.97rem);
+  margin-top: 1.35rem;
+  padding: 0.36em 0.8em;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   border-radius: 999px;
-  border-width: 1.5px;
+  border-width: 1px;
 }
 
 /* ---------- 双主体 ---------- */
 #stack .duo {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 30px;
+  gap: 22px;
+  margin-top: 22px;
 }
 
 #stack .duo-item {
-  padding: 42px 38px 40px;
-  border-radius: 22px;
+  padding: 30px 30px 28px;
+  border-radius: 18px;
   border: 1px solid rgba(120, 160, 255, 0.16);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* role：10.5px → 31.5px */
 #stack .duo-item .role {
-  font-size: clamp(0.92rem, 2.3vw, 1.97rem);
-  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+}
+
+#stack .duo-item h4 {
+  font-size: clamp(1.45rem, 2.1vw, 1.9rem);
+  margin: 0.55rem 0 0.7rem;
+  letter-spacing: 0.04em;
   line-height: 1.3;
 }
 
-/* 名称：16.8px → 50.4px */
-#stack .duo-item h4 {
-  font-size: clamp(1.7rem, 3.6vw, 3.15rem);
-  margin: 0.75rem 0 0.9rem;
-  letter-spacing: 0.04em;
-  line-height: 1.25;
-}
-
-/* 正文：12.5px → 37.5px */
 #stack .duo-item p {
-  font-size: clamp(1.22rem, 2.6vw, 2.34rem);
-  line-height: 1.62;
+  font-size: 1.0625rem;
+  line-height: 1.9;
   color: #a9bad9;
 }
 
@@ -144,43 +141,43 @@
    响应式
    ============================================================ */
 
-/* 平板：仍是 2 列，但要收内边距 */
+/* 平板 */
 @media (max-width: 1100px) {
   #stack .stack-card,
-  #stack .duo-item { padding: 32px 32px 30px; }
+  #stack .duo-item { padding: 26px 24px 24px; }
   #stack .stack-grid,
-  #stack .duo { gap: 20px; }
+  #stack .duo { gap: 18px; }
 }
 
-/* 手机 / 小屏：单列，字号回到 2 倍左右才排得下 */
+/* 手机 / 小屏：单列 */
 @media (max-width: 900px) {
   #stack .stack-grid,
   #stack .duo {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 16px;
   }
 
   #stack .stack-card,
-  #stack .duo-item { padding: 26px 22px 24px; border-radius: 18px; }
+  #stack .duo-item { padding: 24px 22px 22px; border-radius: 16px; }
 
-  #stack .section-subtitle { margin-bottom: 2.6rem; }
+  #stack .section-subtitle { margin-bottom: 2.2rem; }
 
-  #stack .stack-card .stack-num { font-size: 1.15rem; }
-  #stack .stack-card .layer { font-size: 1.05rem; margin-top: 0.85rem; }
-  #stack .stack-card h3 { font-size: 1.72rem; margin: 0.8rem 0 0.7rem; }
-  #stack .stack-card p { font-size: 1.16rem; line-height: 1.7; }
-  #stack .stack-card .stack-tag { font-size: 1rem; margin-top: 1.15rem; }
+  #stack .stack-card .stack-num { font-size: 0.9rem; }
+  #stack .stack-card .layer { font-size: 0.8rem; margin-top: 0.6rem; }
+  #stack .stack-card h3 { font-size: 1.3rem; margin: 0.6rem 0 0.6rem; }
+  #stack .stack-card p { font-size: 1rem; line-height: 1.85; }
+  #stack .stack-card .stack-tag { font-size: 0.74rem; margin-top: 1.1rem; }
 
-  #stack .duo-item .role { font-size: 1rem; }
-  #stack .duo-item h4 { font-size: 1.8rem; margin: 0.6rem 0 0.7rem; }
-  #stack .duo-item p { font-size: 1.16rem; line-height: 1.7; }
+  #stack .duo-item .role { font-size: 0.8rem; }
+  #stack .duo-item h4 { font-size: 1.36rem; margin: 0.45rem 0 0.6rem; }
+  #stack .duo-item p { font-size: 1rem; line-height: 1.85; }
 }
 
 @media (max-width: 480px) {
-  #stack .section-title { font-size: 1.85rem; }
-  #stack .section-subtitle { font-size: 1rem; }
-  #stack .stack-card h3 { font-size: 1.5rem; }
+  #stack .section-title { font-size: 1.55rem; }
+  #stack .section-subtitle { font-size: 0.92rem; }
+  #stack .stack-card h3 { font-size: 1.2rem; }
   #stack .stack-card p,
-  #stack .duo-item p { font-size: 1.06rem; }
-  #stack .duo-item h4 { font-size: 1.55rem; }
+  #stack .duo-item p { font-size: 0.95rem; }
+  #stack .duo-item h4 { font-size: 1.24rem; }
 }

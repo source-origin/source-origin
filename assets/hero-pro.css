@@ -9,6 +9,9 @@
   min-height: 100vh;
   min-height: 100svh;
   padding: 88px 24px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   isolation: isolate;
   overflow: hidden;
 }
@@ -213,10 +216,10 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 0;
-  margin: 26px auto 0;
-  font-size: clamp(1.3rem, 3.6vw, 2.35rem);
+  margin: 22px auto 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.9rem);
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   color: #dbe8ff;
   text-shadow: 0 0 22px rgba(0, 212, 255, 0.28);
@@ -597,8 +600,8 @@
   }
 
   .hero-pro .hero-brand {
-    font-size: 1.2rem;
-    letter-spacing: 0.04em;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
     gap: 0 0;
     margin-top: 20px;
     padding: 0 4px;
